@@ -633,7 +633,7 @@ WrapStyle: 2
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Tategaki,IPAGothic,38,&H00FFFFFF,&H000000FF,&H00000000,&H80384030,-1,0,0,0,100,100,8,0,3,2,0,7,25,0,20,1
+Style: Tategaki,IPAGothic,{tate_fs},&H00FFFFFF,&H000000FF,&H00000000,&H80384030,-1,0,0,0,100,100,8,0,3,2,0,7,25,0,20,1
 Style: Yokogaki,IPAGothic,72,&H00FFFFFF,&H000000FF,&H00000000,&H80384030,-1,0,0,0,100,100,0,0,3,2,0,1,30,30,30,1
 
 [Events]
@@ -953,11 +953,37 @@ def review_names(transcript):
     print("修正が必要なら GO_CORRECTIONS に追加してください\n")
 
 
-def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False):
+# 縦書き1列に入る字数の目安（1080px - 上下余白 を 1字あたり fs*1.1px で割る。実測で決めた係数）
+def tate_max_chars(fs):
+    return max(8, int((1080 - 60) / (fs * 1.07)))
+
+
+def split_for_column(text, max_chars):
+    """1列に収まらない文を、句読点の近くでほぼ均等に分ける"""
+    if len(text) <= max_chars:
+        return [text]
+    n = -(-len(text) // max_chars)
+    chunks, rest = [], text
+    for k in range(n, 1, -1):
+        target = -(-len(rest) // k)
+        lo, hi = max(1, target - 4), min(len(rest) - 1, max_chars)
+        cut = None
+        for i in range(hi, lo - 1, -1):     # 目標付近の句読点の直後で切る
+            if rest[i - 1] in '、。？！':
+                cut = i
+                break
+        cut = cut or min(target, max_chars)
+        chunks.append(rest[:cut])
+        rest = rest[cut:]
+    chunks.append(rest)
+    return [c for c in chunks if c]
+
+
+def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False, tate_fs=72):
     """Whisper JSONからASS字幕ファイルを生成"""
     style = "Yokogaki" if horizontal else "Tategaki"
     with open(output_path, 'w', encoding='utf-8-sig') as f:
-        f.write(ASS_HEADER.format(title=title))
+        f.write(ASS_HEADER.format(title=title, tate_fs=tate_fs))
         count = 0
         for seg in transcript:
             text = seg['text'].strip()
@@ -979,9 +1005,14 @@ def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False
                         f.write(f"Dialogue: 0,{time_to_ass(cs)},{time_to_ass(ce)},{style},,0,0,0,,{chunk}\n")
                         count += 1
             else:
-                display_text = to_vertical(text)
-                f.write(f"Dialogue: 0,{time_to_ass(seg['start'])},{time_to_ass(seg['end'])},{style},,0,0,0,,{display_text}\n")
-                count += 1
+                # 1列に入らない分は分割し、字数で時間を按分する
+                chunks = split_for_column(text, tate_max_chars(tate_fs))
+                t, dur = seg['start'], seg['end'] - seg['start']
+                for chunk in chunks:
+                    ce = t + dur * len(chunk) / len(text)
+                    f.write(f"Dialogue: 0,{time_to_ass(t)},{time_to_ass(ce)},{style},,0,0,0,,{to_vertical(chunk)}\n")
+                    t = ce
+                    count += 1
     print(f"Generated: {output_path} ({count} entries, {'横書き' if horizontal else '縦書き'})")
 
 
@@ -1002,6 +1033,7 @@ def main():
     parser.add_argument('--batch-size', type=int, default=10, help='LLMバッチサイズ')
     parser.add_argument('--review-names', action='store_true', help='人名候補を表示して確認')
     parser.add_argument('--horizontal', action='store_true', help='横書き字幕（最下段左揃え）')
+    parser.add_argument('--tate-size', type=int, default=72, help='縦書き字幕の文字サイズ(px)。38では小さすぎると指摘あり')
     parser.add_argument('--kishi-fix', action='store_true', help='棋士名辞書で自動修正（pykakasi）')
     args = parser.parse_args()
 
@@ -1037,7 +1069,7 @@ def main():
         print(f"Refined transcript saved: {args.save_refined_json}")
 
     # ASS生成
-    generate_ass(transcript, args.output, args.title, horizontal=args.horizontal)
+    generate_ass(transcript, args.output, args.title, horizontal=args.horizontal, tate_fs=args.tate_size)
 
 
 if __name__ == '__main__':
