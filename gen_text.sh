@@ -2,7 +2,8 @@
 # Wrapper script for text_generator.py
 # Usage: ./gen_text.sh "Your Text" [color] [--font font_path]
 
-PY_PATH="/home/mimura/telop-master/.venv/bin/python"
-SCRIPT_PATH="/home/mimura/telop-master/text_generator.py"
+DIR="$(cd "$(dirname "$0")" && pwd)"
+PY_PATH="$DIR/.venv/bin/python"
+[ -x "$PY_PATH" ] || PY_PATH=python3
 
-"$PY_PATH" "$SCRIPT_PATH" "$@"
+"$PY_PATH" "$DIR/text_generator.py" "$@"

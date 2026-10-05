@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Gemini APIクライアント（telop-master用の薄いラッパー）
+"""Gemini APIクライアント（video-studio用の薄いラッパー）
 
-~/.secrets/gemini.env を共有参照する（telop-master独自の.envは作らない）。
+~/.secrets/gemini.env を共有参照する（video-studio独自の.envは作らない）。
 super-data-archiver/archivers/llm.py の _gemini_chat() と同じ構成（APIキー方式、無料枠内）。
 """
 import os
