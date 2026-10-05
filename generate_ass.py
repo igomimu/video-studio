@@ -635,6 +635,7 @@ WrapStyle: 2
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Tategaki,IPAGothic,{tate_fs},&H00FFFFFF,&H000000FF,&H00000000,&H80384030,-1,0,0,0,100,100,8,0,3,2,0,7,25,0,20,1
 Style: Yokogaki,IPAGothic,72,&H00FFFFFF,&H000000FF,&H00000000,&H80384030,-1,0,0,0,100,100,0,0,3,2,0,1,30,30,30,1
+Style: Migiue,Noto Sans CJK JP,{right_fs},&H00FFFFFF,&H000000FF,&H00384030,&H00384030,-1,0,0,0,100,100,0,0,3,14,0,7,{right_x},0,{right_y},1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -958,38 +959,118 @@ def tate_max_chars(fs):
     return max(8, int((1080 - 60) / (fs * 1.07)))
 
 
-def split_for_column(text, max_chars):
-    """1列に収まらない文を、句読点の近くでほぼ均等に分ける"""
-    if len(text) <= max_chars:
+# 区切ってよい位置の強さ。3=句読点の後 2=助詞の後で次が漢字/カタカナ 1=ひらがな→漢字/カタカナ 0=語の途中
+_PUNCT = '、。？！'
+_PARTICLES = ('から', 'けど', 'ので', 'けれども', 'ても', 'では', 'には', 'のが', 'のは',
+              'は', 'が', 'を', 'に', 'で', 'と', 'も', 'ね', 'よ', 'て', 'ば', 'へ')
+_LONG_PARTICLES = ('から', 'けど', 'ので', 'けれども', 'ても', 'には')  # 「では」は「ではなく」を割るので入れない
+
+
+def _kind(ch):
+    if '\u3040' <= ch <= '\u309f':
+        return 'hira'
+    if '\u30a0' <= ch <= '\u30ff':
+        return 'kata'
+    if '\u4e00' <= ch <= '\u9fff' or ch in '々〆':
+        return 'kanji'
+    return 'other'
+
+
+def _break_score(text, i):
+    """text[:i] と text[i:] の間で切るときの良さ"""
+    a, b = text[i - 1], text[i]
+    head = text[:i]
+    if a in _PUNCT:
+        return 3
+    if _kind(a) == 'hira' and _kind(b) in ('kanji', 'kata', 'other'):
+        return 2 if head.endswith(_PARTICLES) else 1
+    if head.endswith(_LONG_PARTICLES) and _kind(b) == 'hira':
+        return 1   # 「〜けれども｜いい」など。1字の助詞は語の一部と区別できないので切らない
+    return 0
+
+
+_CUT_PENALTY = {3: 0, 2: 1, 1: 4, 0: 40}
+
+try:  # 文節区切り（Chrome の auto-phrase と同じ BudouX）。無ければ上の字種の規則で代用
+    import budoux
+    _BUDOUX = budoux.load_default_japanese_parser()
+except ImportError:
+    _BUDOUX = None
+
+
+def _scores(text):
+    """各位置 i (1..len-1) で切るときの良さ。BudouX があれば文節の境目=2、句読点の後=3"""
+    if _BUDOUX is None:
+        return {i: _break_score(text, i) for i in range(1, len(text))}
+    bounds, pos = set(), 0
+    for ph in _BUDOUX.parse(text)[:-1]:
+        pos += len(ph)
+        bounds.add(pos)
+    return {i: 3 if text[i - 1] in _PUNCT else 2 if i in bounds else 0 for i in range(1, len(text))}
+
+
+def split_phrases(text, max_chars, chunk_cost=12):
+    """max_chars 字以内の塊に分ける。塊の数を少なく、語の途中では切らず、長さを揃える（動的計画法）"""
+    n = len(text)
+    if n <= max_chars:
         return [text]
-    n = -(-len(text) // max_chars)
-    chunks, rest = [], text
-    for k in range(n, 1, -1):
-        target = -(-len(rest) // k)
-        lo, hi = max(1, target - 4), min(len(rest) - 1, max_chars)
-        cut = None
-        for i in range(hi, lo - 1, -1):     # 目標付近の句読点の直後で切る
-            if rest[i - 1] in '、。？！':
-                cut = i
-                break
-        cut = cut or min(target, max_chars)
-        chunks.append(rest[:cut])
-        rest = rest[cut:]
-    chunks.append(rest)
-    return [c for c in chunks if c]
+    INF = float('inf')
+    best = [INF] * (n + 1)
+    prev = [0] * (n + 1)
+    best[0] = 0
+    score = _scores(text)
+    for i in range(1, n + 1):
+        cut = 0 if i == n else _CUT_PENALTY[score[i]]
+        for j in range(max(0, i - max_chars), i):
+            if best[j] == INF:
+                continue
+            short = max_chars - (i - j)
+            cost = best[j] + chunk_cost + cut + 0.05 * short * short
+            if cost < best[i]:
+                best[i], prev[i] = cost, j
+    out, i = [], n
+    while i > 0:
+        out.append(text[prev[i]:i])
+        i = prev[i]
+    return out[::-1]
 
 
-def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False, tate_fs=72):
-    """Whisper JSONからASS字幕ファイルを生成"""
-    style = "Yokogaki" if horizontal else "Tategaki"
+def split_for_column(text, max_chars):
+    """1列に収まらない文を、意味の切れ目で分ける"""
+    return split_phrases(text, max_chars)
+
+
+def wrap_lines(text, per_line):
+    """1画面分の文を per_line 字以内の行に、意味の切れ目で折る"""
+    return split_phrases(text, per_line)
+
+
+def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False, tate_fs=72,
+                 right=False, right_fs=72, right_x=1080, right_y=40, right_chars=13, right_lines=2):
+    """Whisper JSONからASS字幕ファイルを生成
+
+    right=True: 碁盤を左端に寄せた画面向け。右上に横書きで right_chars 字×right_lines 行まで出す
+    """
+    style = "Migiue" if right else "Yokogaki" if horizontal else "Tategaki"
     with open(output_path, 'w', encoding='utf-8-sig') as f:
-        f.write(ASS_HEADER.format(title=title, tate_fs=tate_fs))
+        f.write(ASS_HEADER.format(title=title, tate_fs=tate_fs,
+                                  right_fs=right_fs, right_x=right_x, right_y=right_y))
         count = 0
         for seg in transcript:
             text = seg['text'].strip()
             if not text:
                 continue
-            if horizontal:
+            if right:
+                # 意味の切れ目で行に折り、right_lines 行ずつ1画面にする。時間は字数で按分
+                lines = wrap_lines(text, right_chars)
+                screens = [lines[k:k + right_lines] for k in range(0, len(lines), right_lines)]
+                t, dur = seg['start'], seg['end'] - seg['start']
+                for scr in screens:
+                    ce = t + dur * sum(map(len, scr)) / len(text)
+                    f.write(f"Dialogue: 0,{time_to_ass(t)},{time_to_ass(ce)},{style},,0,0,0,,{'\\N'.join(scr)}\n")
+                    t = ce
+                    count += 1
+            elif horizontal:
                 # 長いテロップは25文字ごとに分割し、時間を按分
                 max_chars = 25
                 if len(text) <= max_chars:
@@ -1013,7 +1094,8 @@ def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False
                     f.write(f"Dialogue: 0,{time_to_ass(t)},{time_to_ass(ce)},{style},,0,0,0,,{to_vertical(chunk)}\n")
                     t = ce
                     count += 1
-    print(f"Generated: {output_path} ({count} entries, {'横書き' if horizontal else '縦書き'})")
+    kind = '右上横書き' if right else '横書き' if horizontal else '縦書き'
+    print(f"Generated: {output_path} ({count} entries, {kind})")
 
 
 def main():
@@ -1033,6 +1115,10 @@ def main():
     parser.add_argument('--batch-size', type=int, default=10, help='LLMバッチサイズ')
     parser.add_argument('--review-names', action='store_true', help='人名候補を表示して確認')
     parser.add_argument('--horizontal', action='store_true', help='横書き字幕（最下段左揃え）')
+    parser.add_argument('--right', action='store_true',
+                        help='右上に横書き（碁盤を左端へ寄せた画面用。layout_right.py と組で使う）')
+    parser.add_argument('--right-size', type=int, default=72, help='右上横書きの文字サイズ(px)')
+    parser.add_argument('--right-x', type=int, default=1080, help='右上横書きの左端x(px)。碁盤の右端+余白')
     parser.add_argument('--tate-size', type=int, default=72, help='縦書き字幕の文字サイズ(px)。38では小さすぎると指摘あり')
     parser.add_argument('--kishi-fix', action='store_true', help='棋士名辞書で自動修正（pykakasi）')
     args = parser.parse_args()
@@ -1069,7 +1155,8 @@ def main():
         print(f"Refined transcript saved: {args.save_refined_json}")
 
     # ASS生成
-    generate_ass(transcript, args.output, args.title, horizontal=args.horizontal, tate_fs=args.tate_size)
+    generate_ass(transcript, args.output, args.title, horizontal=args.horizontal, tate_fs=args.tate_size,
+                 right=args.right, right_fs=args.right_size, right_x=args.right_x)
 
 
 if __name__ == '__main__':

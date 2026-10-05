@@ -150,3 +150,19 @@ python mix_bgm.py with_telops.mp4 ~/bgm/sample.mp3 -o with_bgm.mp4 --bgm-volume 
 実際の生成例（石の形講座 裂かれ形）:
 - `whisper_transcript.json` — Whisper文字起こし結果
 - `telops.ass` — 生成されたASS字幕
+
+## 碁盤を左端に寄せ、右上に横書き字幕（2026-10〜 標準）
+
+縦書き字幕は左端の細い余白に入れていたが、碁盤を左端まで寄せると右側に幅約820pxの空きができる。
+そこに横書きの字幕を出す。**碁盤の大きさは変えない**。録画（OBS）の配置もそのままでよい。
+
+```
+python3 generate_ass.py transcript.json --right -o telops.ass        # 右上・横書き 72px・13字×2行
+python3 layout_right.py cut.mp4 --detect                            # 碁盤の位置を確認（5コマの多数決）
+python3 layout_right.py cut.mp4 telops.ass -o s.mp4 --ss 600 -t 20  # 20秒だけ試す
+python3 layout_right.py cut.mp4 telops.ass -o final.mp4             # 全編
+```
+
+- 行の区切りは BudouX（Chrome の `word-break: auto-phrase` と同じ文節区切り）で決める。無ければ字種の規則で代用（`pip install budoux`）
+- 画面の割り付け（1920x1080）: 碁盤 x=0〜約1044 ／ 字幕 x=1080〜・上端 ／ **情報カード x=1066, y=230, 幅820, 高さ520以内**（字幕の下・顔の上）／ 顔は右下のまま
+- 情報カードの文字は本文28px以上（→ 字幕・カードは大きく）。カードの overlay は `--extra-filter` で足す
