@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""仕上がった動画を Google Drive に置き、デスクトップアプリのAIに渡す「投稿の指示書」を作る
+"""仕上がった動画を Google Drive に置き、Codex（ブラウザ操作）に渡す「投稿の指示書」を作る
 
 使い方:
   python upload_brief.py work/20261004 --title 2          # タイトル案の2番で作り、Driveへ上げる
@@ -12,7 +12,7 @@
   説明欄 description.txt の全文
   字幕   *.srt があれば一番新しいもの（--srt で指定可、--no-srt で付けない）
 
-AIはYouTube Studioをブラウザで操作して上げる。APIの「非公開固定」にはかからない。
+Codex がYouTube Studioをブラウザで操作して上げる（2026-10-06 から標準）。APIの「非公開固定」にはかからない。
 最初は必ず限定公開。三村さんが中身を見てから公開に切り替える。
 """
 import argparse
