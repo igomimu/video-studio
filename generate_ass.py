@@ -636,6 +636,7 @@ Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour,
 Style: Tategaki,IPAGothic,{tate_fs},&H00FFFFFF,&H000000FF,&H00000000,&H80384030,-1,0,0,0,100,100,8,0,3,2,0,7,25,0,20,1
 Style: Yokogaki,IPAGothic,72,&H00FFFFFF,&H000000FF,&H00000000,&H80384030,-1,0,0,0,100,100,0,0,3,2,0,1,30,30,30,1
 Style: Migiue,Noto Sans CJK JP,{right_fs},&H00FFFFFF,&H000000FF,&H00384030,&H00384030,-1,0,0,0,100,100,0,0,3,14,0,7,{right_x},0,{right_y},1
+Style: Shita,Noto Sans CJK JP,{right_fs},&H00FFFFFF,&H000000FF,&H00384030,&H00384030,-1,0,0,0,100,100,0,0,3,14,0,1,44,0,40,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -989,7 +990,7 @@ def _break_score(text, i):
     return 0
 
 
-_CUT_PENALTY = {3: 0, 2: 1, 1: 4, 0: 40}
+_CUT_PENALTY = {3: 0, 2: 1, 1: 4, 0: 40, -1: 1000}  # -1: 数字・英字の途中（「20｜26年」）は切らない
 
 try:  # 文節区切り（Chrome の auto-phrase と同じ BudouX）。無ければ上の字種の規則で代用
     import budoux
@@ -1006,7 +1007,17 @@ def _scores(text):
     for ph in _BUDOUX.parse(text)[:-1]:
         pos += len(ph)
         bounds.add(pos)
-    return {i: 3 if text[i - 1] in _PUNCT else 2 if i in bounds else 0 for i in range(1, len(text))}
+    return {i: 3 if text[i - 1] in _PUNCT else 2 if i in bounds else _inside_score(text, i) for i in range(1, len(text))}
+
+
+def _inside_score(text, i):
+    """文節の中で切るときの良さ。数字・英字の途中は不可(-1)、字種が変わる所（ランキング｜2026）はまし(1)"""
+    def word(c):  # 数字・英字・小数点（9.963）をひと続きとみなす
+        return c.isascii() and (c.isalnum() or c == ".")
+    a, b = text[i - 1], text[i]
+    if word(a) and word(b):
+        return -1
+    return 1 if word(a) != word(b) else 0
 
 
 def split_phrases(text, max_chars, chunk_cost=12):
@@ -1046,13 +1057,15 @@ def wrap_lines(text, per_line):
 
 
 def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False, tate_fs=72,
-                 right=False, right_fs=72, right_x=1080, right_y=40, right_chars=13, right_lines=2):
+                 right=False, right_fs=72, right_x=1080, right_y=40, right_chars=13, right_lines=2,
+                 bottom=False):
     """Whisper JSONからASS字幕ファイルを生成
 
     right=True: 碁盤を左端に寄せた画面向け。右上に横書きで right_chars 字×right_lines 行まで出す
+    bottom=True: 表が横幅いっぱいの画面（ランキング動画）向け。左下に同じ折り返しで出す（右下の顔ワイプを避けて字数を決める）
     """
-    style = "Migiue" if right else "Yokogaki" if horizontal else "Tategaki"
-    with open(output_path, 'w', encoding='utf-8-sig') as f:
+    style = "Shita" if bottom else "Migiue" if right else "Yokogaki" if horizontal else "Tategaki"
+    with open(output_path, 'w', encoding='utf-8') as f:  # ASS_HEADER の先頭に BOM があるので utf-8-sig だと二重になり libass が読めない
         f.write(ASS_HEADER.format(title=title, tate_fs=tate_fs,
                                   right_fs=right_fs, right_x=right_x, right_y=right_y))
         count = 0
@@ -1060,7 +1073,7 @@ def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False
             text = seg['text'].strip()
             if not text:
                 continue
-            if right:
+            if right or bottom:
                 # 意味の切れ目で行に折り、right_lines 行ずつ1画面にする。時間は字数で按分
                 lines = wrap_lines(text, right_chars)
                 screens = [lines[k:k + right_lines] for k in range(0, len(lines), right_lines)]
@@ -1094,7 +1107,7 @@ def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False
                     f.write(f"Dialogue: 0,{time_to_ass(t)},{time_to_ass(ce)},{style},,0,0,0,,{to_vertical(chunk)}\n")
                     t = ce
                     count += 1
-    kind = '右上横書き' if right else '横書き' if horizontal else '縦書き'
+    kind = '左下横書き' if bottom else '右上横書き' if right else '横書き' if horizontal else '縦書き'
     print(f"Generated: {output_path} ({count} entries, {kind})")
 
 
@@ -1117,7 +1130,9 @@ def main():
     parser.add_argument('--horizontal', action='store_true', help='横書き字幕（最下段左揃え）')
     parser.add_argument('--right', action='store_true',
                         help='右上に横書き（碁盤を左端へ寄せた画面用。layout_right.py と組で使う）')
-    parser.add_argument('--right-size', type=int, default=72, help='右上横書きの文字サイズ(px)')
+    parser.add_argument('--bottom', action='store_true',
+                        help='左下に横書き（表が横幅いっぱいのランキング動画用。右下の顔ワイプを避けて1行17字）')
+    parser.add_argument('--right-size', type=int, default=72, help='右上・左下横書きの文字サイズ(px)')
     parser.add_argument('--right-x', type=int, default=1080, help='右上横書きの左端x(px)。碁盤の右端+余白')
     parser.add_argument('--tate-size', type=int, default=72, help='縦書き字幕の文字サイズ(px)。38では小さすぎると指摘あり')
     parser.add_argument('--kishi-fix', action='store_true', help='棋士名辞書で自動修正（pykakasi）')
@@ -1156,7 +1171,8 @@ def main():
 
     # ASS生成
     generate_ass(transcript, args.output, args.title, horizontal=args.horizontal, tate_fs=args.tate_size,
-                 right=args.right, right_fs=args.right_size, right_x=args.right_x)
+                 right=args.right, right_fs=args.right_size, right_x=args.right_x,
+                 bottom=args.bottom, right_chars=17 if args.bottom else 13)
 
 
 if __name__ == '__main__':
