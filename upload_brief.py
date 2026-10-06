@@ -75,12 +75,14 @@ def caption_steps(srt: str | None) -> str:
 
 def spotify_steps(n: int, video: str, title: str, after_youtube: bool = True) -> str:
     first = "YouTube の作業が終わってから行う。" if after_youtube else ""
+    audio = Path(video).suffix.lower() in (".mp3", ".m4a", ".wav")
+    kind = "音声" if audio else "動画"
     return f"""
-## {n}. Spotify（みむ囲碁ラジオ）に動画エピソードとして上げる
+## {n}. Spotify（みむ囲碁ラジオ）に{kind}エピソードとして上げる
 {first}ここも**公開はしない。下書きで止める**。
 1. https://creators.spotify.com を開き、番組「みむ囲碁ラジオ」を選ぶ（ログイン済みのはず）
 2. エピソードの一覧で**いちばん新しい回の番号**（例「#350 …」）を確かめる。今回の番号はその次（例 #351）
-3. 「新しいエピソード」→ 動画ファイル `{video}` を上げる（音声ではなく**動画**として）
+3. 「新しいエピソード」→ {kind}ファイル `{video}` を上げる{"" if audio else "（音声ではなく**動画**として）"}
 4. タイトルは `#番号 ` を頭に付けて、下の「タイトル」を続ける（例 `#351 {title}`）
 5. 説明は、下の「説明」を**一字も変えずに**貼る
 6. 「下書きとして保存」する。**「公開」「予約」は押さない**
@@ -138,11 +140,11 @@ def spotify_only_text(title: str, description: str, video: str, drive_url: str) 
     """YouTube は投稿済みで、Spotify だけ追加で上げるときの指示書"""
     return f"""# Spotify 投稿の指示書（YouTube は投稿済み）
 
-みむ囲碁ラジオに動画エピソードを1本上げてください。**YouTube には何もしないでください。**
+みむ囲碁ラジオにエピソードを1本上げてください。**YouTube には何もしないでください。**
 **この指示書に書いてあること以外の操作はしないでください。** 他のエピソードや番組設定には触れないこと。
 
 ## 1. ファイルを手元に落とす
-Google Drive のフォルダを開き、動画 `{video}` をダウンロードする。
+Google Drive のフォルダを開き、ファイル `{video}` をダウンロードする。
 {drive_url}
 {spotify_steps(2, video, title, after_youtube=False)}
 ## 3. 終わったら
@@ -190,14 +192,23 @@ def main():
     if len(description.encode("utf-8")) > 5000:
         sys.exit("説明欄がYouTubeの上限5000バイトを超えている")
     video = a.video or newest(folder, "final*.mp4")
-    thumb = a.thumb or newest(folder, "thumbnail*.jpg")
+    video = video.resolve()
+    if a.spotify_only and not a.thumb and not list(folder.glob("thumbnail*.jpg")):
+        thumb = None  # Spotify だけならサムネは使わない
+    else:
+        thumb = a.thumb or newest(folder, "thumbnail*.jpg")
     srt = None if a.no_srt else (a.srt or (newest(folder, "*.srt") if list(folder.glob("*.srt")) else None))
-    if thumb.stat().st_size > 2 * 1024 * 1024:
+    if thumb and thumb.stat().st_size > 2 * 1024 * 1024:
         sys.exit(f"サムネイル {thumb.name} が2MBを超えている（YouTubeの上限）")
 
     if a.spotify_only:
         sub = folder_id(folder.name, folder_id(DRIVE_ROOT_NAME))
         drive_url = f"https://drive.google.com/drive/folders/{sub}"
+        if not a.no_upload:
+            names = {f["name"] for f in gog("search", f"'{sub}' in parents and trashed = false", "--raw-query")}
+            if video.name not in names:
+                print(f"Driveへ上げています: {video.name}", flush=True)
+                gog("upload", str(video), "--parent", sub)
         brief = folder / "Spotify投稿指示書.md"
         brief.write_text(spotify_only_text(title, description, video.name, drive_url), encoding="utf-8")
         if not a.no_upload:
