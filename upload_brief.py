@@ -12,6 +12,9 @@
   説明欄 description.txt の全文
   字幕   *.srt があれば一番新しいもの（--srt で指定可、--no-srt で付けない）
 
+YouTube のあとに、同じ動画を Spotify（みむ囲碁ラジオ）へ動画エピソードとして上げる手順も付く（--no-spotify で外す）。
+Spotify には動画投稿のAPIが無いので、ここもブラウザ操作。Apple・Audible・Amazon には音声だけが自動で流れる。
+
 Codex がYouTube Studioをブラウザで操作して上げる（2026-10-06 から標準）。APIの「非公開固定」にはかからない。
 最初は必ず限定公開。三村さんが中身を見てから公開に切り替える。
 """
@@ -70,7 +73,23 @@ def caption_steps(srt: str | None) -> str:
 """
 
 
-def brief_text(title: str, description: str, video: str, thumb: str, drive_url: str, srt: str | None = None) -> str:
+def spotify_steps(n: int, video: str, title: str, after_youtube: bool = True) -> str:
+    first = "YouTube の作業が終わってから行う。" if after_youtube else ""
+    return f"""
+## {n}. Spotify（みむ囲碁ラジオ）に動画エピソードとして上げる
+{first}ここも**公開はしない。下書きで止める**。
+1. https://creators.spotify.com を開き、番組「みむ囲碁ラジオ」を選ぶ（ログイン済みのはず）
+2. エピソードの一覧で**いちばん新しい回の番号**（例「#350 …」）を確かめる。今回の番号はその次（例 #351）
+3. 「新しいエピソード」→ 動画ファイル `{video}` を上げる（音声ではなく**動画**として）
+4. タイトルは `#番号 ` を頭に付けて、下の「タイトル」を続ける（例 `#351 {title}`）
+5. 説明は、下の「説明」を**一字も変えずに**貼る
+6. 「下書きとして保存」する。**「公開」「予約」は押さない**
+7. 終わったら、付けた回番号を三村さんに伝える
+"""
+
+
+def brief_text(title: str, description: str, video: str, thumb: str, drive_url: str, srt: str | None = None,
+               spotify: bool = True) -> str:
     return f"""# YouTube 投稿の指示書
 
 みむ囲碁ちゃんねる（@mimuigo）に動画を1本上げてください。
@@ -92,14 +111,42 @@ Google Drive のフォルダを開き、次の{'3' if srt else '2'}つをダウ�
 5. 「視聴者」は「いいえ、子ども向けではありません」
 6. 「動画の要素」（終了画面・カード）は**何もしない**
 7. 「公開設定」は **「限定公開」** を選んで保存する。**「公開」は選ばない**
-{caption_steps(srt)}
-## {'4' if srt else '3'}. 終わったら
-動画のURL（https://youtu.be/…）を三村さんに伝える。途中で止まったら、どの画面で何が出たかを伝える。
+{caption_steps(srt)}{spotify_steps(4 if srt else 3, video, title) if spotify else ""}
+## {(4 if srt else 3) + (1 if spotify else 0)}. 終わったら
+動画のURL（https://youtu.be/…）{"と Spotify の回番号" if spotify else ""}を三村さんに伝える。途中で止まったら、どの画面で何が出たかを伝える。
 
 ## （三村さんの確認のあと）公開は19時に予約する
 三村さんが限定公開の動画を見てOKを出したら、その動画の「公開設定」を開き、
 「公開」ではなく **「スケジュールを設定」→ その日の 19:00** にして保存する。
 （2023年以降の8分以上の動画では、17〜20時に出したものが朝に出したものより再生の中央値で約3.5倍）
+
+---
+
+## タイトル
+```
+{title}
+```
+
+## 説明
+```
+{description}
+```
+"""
+
+
+def spotify_only_text(title: str, description: str, video: str, drive_url: str) -> str:
+    """YouTube は投稿済みで、Spotify だけ追加で上げるときの指示書"""
+    return f"""# Spotify 投稿の指示書（YouTube は投稿済み）
+
+みむ囲碁ラジオに動画エピソードを1本上げてください。**YouTube には何もしないでください。**
+**この指示書に書いてあること以外の操作はしないでください。** 他のエピソードや番組設定には触れないこと。
+
+## 1. ファイルを手元に落とす
+Google Drive のフォルダを開き、動画 `{video}` をダウンロードする。
+{drive_url}
+{spotify_steps(2, video, title, after_youtube=False)}
+## 3. 終わったら
+付けた回番号を三村さんに伝える。途中で止まったら、どの画面で何が出たかを伝える。
 
 ---
 
@@ -124,6 +171,9 @@ def main():
     ap.add_argument("--thumb", type=Path)
     ap.add_argument("--srt", type=Path, help="字幕ファイル（無指定なら作業フォルダの *.srt の最新）")
     ap.add_argument("--no-srt", action="store_true", help="字幕を付けない")
+    ap.add_argument("--no-spotify", action="store_true", help="Spotify（みむ囲碁ラジオ）の手順を付けない")
+    ap.add_argument("--spotify-only", action="store_true",
+                    help="YouTubeは投稿済み。Spotifyの指示書だけ作る（動画はDriveの同じフォルダにある前提で上げ直さない）")
     ap.add_argument("--no-upload", action="store_true", help="Driveに上げず、指示書だけ作る")
     a = ap.parse_args()
 
@@ -145,6 +195,17 @@ def main():
     if thumb.stat().st_size > 2 * 1024 * 1024:
         sys.exit(f"サムネイル {thumb.name} が2MBを超えている（YouTubeの上限）")
 
+    if a.spotify_only:
+        sub = folder_id(folder.name, folder_id(DRIVE_ROOT_NAME))
+        drive_url = f"https://drive.google.com/drive/folders/{sub}"
+        brief = folder / "Spotify投稿指示書.md"
+        brief.write_text(spotify_only_text(title, description, video.name, drive_url), encoding="utf-8")
+        if not a.no_upload:
+            gog("upload", str(brief), "--parent", sub)
+        print(f"指示書: {brief}")
+        print(f"Drive: {drive_url}")
+        return
+
     drive_url = "（--no-upload のため未作成）"
     if not a.no_upload:
         sub = folder_id(folder.name, folder_id(DRIVE_ROOT_NAME))
@@ -154,7 +215,8 @@ def main():
             gog("upload", str(f), "--parent", sub)
 
     brief = folder / "投稿指示書.md"
-    brief.write_text(brief_text(title, description, video.name, thumb.name, drive_url, srt.name if srt else None), encoding="utf-8")
+    brief.write_text(brief_text(title, description, video.name, thumb.name, drive_url, srt.name if srt else None,
+                                 spotify=not a.no_spotify), encoding="utf-8")
     if not a.no_upload:
         gog("upload", str(brief), "--parent", sub)
     print(f"指示書: {brief}")
