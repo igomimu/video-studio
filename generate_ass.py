@@ -341,7 +341,6 @@ GO_CORRECTIONS_AUTO = {
     '毛瓶': '申旻埈',
     '再生': '崔精',
     '理性': '李世乭',
-    '連勝': '連笑',
     '釈迦': '謝科',
     '可決': '柯潔',
     '判定': '范廷鈺',
@@ -489,7 +488,6 @@ GO_CORRECTIONS_AUTO = {
     '真似語': '眞似碁',
     '主張': 'シチョウ',
     '下駄': 'ゲタ',
-    '羽根': 'ハネ',
     '賭け': 'カケ',
     '不快': '深い',
     '肩着': '堅ぎ',
@@ -866,12 +864,23 @@ def parse_numbered_response(text, expected_count):
 
 # --- テキスト処理 ---
 
-def correct_text(text):
-    """囲碁用語の修正: 手動辞書 → 自動収集辞書 → 正規表現活用形変換（長いキー優先）"""
+_KATAKANA = re.compile(r'[ァ-ヶー]')
+
+
+def correct_text(text, go_terms=True):
+    """囲碁用語の修正: 手動辞書 → 自動収集辞書 → 正規表現活用形変換（長いキー優先）
+
+    go_terms=False: 漢字をカタカナの囲碁用語に変える置き換え（抑え→オサエ・下がる→サガる 等）を止める。
+    ランキング動画のように手筋の話がほぼ無い動画では「順位が下がる」まで壊すため。聞き間違いの修正は残す
+    """
     # 手動辞書（優先）+ 自動収集辞書をマージ（手動側が優先）
     merged = {**GO_CORRECTIONS_AUTO, **GO_CORRECTIONS}
+    if not go_terms:
+        merged = {k: v for k, v in merged.items() if _KATAKANA.search(k) or not _KATAKANA.search(v)}
     for wrong in sorted(merged.keys(), key=len, reverse=True):
         text = text.replace(wrong, merged[wrong])
+    if not go_terms:
+        return text
     for pattern, repl in GO_VERB_RULES:
         if callable(repl):
             text = re.sub(pattern, repl, text)
@@ -1130,6 +1139,8 @@ def main():
     parser.add_argument('--horizontal', action='store_true', help='横書き字幕（最下段左揃え）')
     parser.add_argument('--right', action='store_true',
                         help='右上に横書き（碁盤を左端へ寄せた画面用。layout_right.py と組で使う）')
+    parser.add_argument('--no-go-terms', action='store_true',
+                        help='囲碁用語のカタカナ化（抑え→オサエ等）をしない。ランキング動画など手筋の話が無い動画用')
     parser.add_argument('--bottom', action='store_true',
                         help='左下に横書き（表が横幅いっぱいのランキング動画用。右下の顔ワイプを避けて1行17字）')
     parser.add_argument('--right-size', type=int, default=72, help='右上・左下横書きの文字サイズ(px)')
@@ -1154,7 +1165,7 @@ def main():
 
     # ルールベース修正を適用
     for seg in transcript:
-        seg['text'] = correct_text(seg['text'].strip())
+        seg['text'] = correct_text(seg['text'].strip(), go_terms=not args.no_go_terms)
 
     # 棋士名辞書修正（pykakasi読み→正字）
     if args.kishi_fix:
