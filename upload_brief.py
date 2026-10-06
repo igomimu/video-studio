@@ -10,6 +10,7 @@
   サムネ thumbnail*.jpg のうち一番新しいもの（--thumb で指定可）
   タイトル titles.txt の番号つきの行（--title 番号、または --title-text で直接）
   説明欄 description.txt の全文
+  字幕   *.srt があれば一番新しいもの（--srt で指定可、--no-srt で付けない）
 
 AIはYouTube Studioをブラウザで操作して上げる。APIの「非公開固定」にはかからない。
 最初は必ず限定公開。三村さんが中身を見てから公開に切り替える。
@@ -56,18 +57,32 @@ def folder_id(name: str, parent: str | None = None) -> str:
     return gog("mkdir", name, *(["--parent", parent] if parent else []))["id"]
 
 
-def brief_text(title: str, description: str, video: str, thumb: str, drive_url: str) -> str:
+def caption_steps(srt: str | None) -> str:
+    if not srt:
+        return ""
+    return f"""
+## 3. 字幕を上げる（限定公開で保存したあと）
+1. YouTube Studio の左のメニュー「字幕」→ 今上げた動画を選ぶ
+2. 言語が「日本語」になっていなければ、日本語を選ぶ
+3. 日本語の行の「追加」→「ファイルをアップロード」→ **「タイミングあり」** → `{srt}` を選んで「公開」
+   （ここでの「公開」は字幕の公開。動画は限定公開のまま変わらない）
+4. 「自動」の字幕が別にあっても、消したり触ったりしない
+"""
+
+
+def brief_text(title: str, description: str, video: str, thumb: str, drive_url: str, srt: str | None = None) -> str:
     return f"""# YouTube 投稿の指示書
 
 みむ囲碁ちゃんねる（@mimuigo）に動画を1本上げてください。
 **この指示書に書いてあること以外の操作はしないでください。** 他の動画やチャンネル設定には触れないこと。
 
 ## 1. ファイルを手元に落とす
-Google Drive のフォルダを開き、次の2つをダウンロードする。
+Google Drive のフォルダを開き、次の{'3' if srt else '2'}つをダウンロードする。
 {drive_url}
 
 - 動画: `{video}`
 - サムネイル: `{thumb}`
+{'- 字幕: `' + srt + '`' if srt else ''}
 
 ## 2. YouTube Studio で上げる
 1. https://studio.youtube.com を開く（三村さんのアカウントでログイン済みのはず）
@@ -77,8 +92,8 @@ Google Drive のフォルダを開き、次の2つをダウンロードする。
 5. 「視聴者」は「いいえ、子ども向けではありません」
 6. 「動画の要素」（終了画面・カード）は**何もしない**
 7. 「公開設定」は **「限定公開」** を選んで保存する。**「公開」は選ばない**
-
-## 3. 終わったら
+{caption_steps(srt)}
+## {'4' if srt else '3'}. 終わったら
 動画のURL（https://youtu.be/…）を三村さんに伝える。途中で止まったら、どの画面で何が出たかを伝える。
 
 ---
@@ -102,6 +117,8 @@ def main():
     ap.add_argument("--title-text", help="タイトルを直接書く")
     ap.add_argument("--video", type=Path)
     ap.add_argument("--thumb", type=Path)
+    ap.add_argument("--srt", type=Path, help="字幕ファイル（無指定なら作業フォルダの *.srt の最新）")
+    ap.add_argument("--no-srt", action="store_true", help="字幕を付けない")
     ap.add_argument("--no-upload", action="store_true", help="Driveに上げず、指示書だけ作る")
     a = ap.parse_args()
 
@@ -119,6 +136,7 @@ def main():
         sys.exit("説明欄がYouTubeの上限5000バイトを超えている")
     video = a.video or newest(folder, "final*.mp4")
     thumb = a.thumb or newest(folder, "thumbnail*.jpg")
+    srt = None if a.no_srt else (a.srt or (newest(folder, "*.srt") if list(folder.glob("*.srt")) else None))
     if thumb.stat().st_size > 2 * 1024 * 1024:
         sys.exit(f"サムネイル {thumb.name} が2MBを超えている（YouTubeの上限）")
 
@@ -126,12 +144,12 @@ def main():
     if not a.no_upload:
         sub = folder_id(folder.name, folder_id(DRIVE_ROOT_NAME))
         drive_url = f"https://drive.google.com/drive/folders/{sub}"
-        for f in (video, thumb):
+        for f in (video, thumb, *([srt] if srt else [])):
             print(f"Driveへ上げています: {f.name}", flush=True)
             gog("upload", str(f), "--parent", sub)
 
     brief = folder / "投稿指示書.md"
-    brief.write_text(brief_text(title, description, video.name, thumb.name, drive_url), encoding="utf-8")
+    brief.write_text(brief_text(title, description, video.name, thumb.name, drive_url, srt.name if srt else None), encoding="utf-8")
     if not a.no_upload:
         gog("upload", str(brief), "--parent", sub)
     print(f"指示書: {brief}")
