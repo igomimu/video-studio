@@ -166,3 +166,15 @@ python3 layout_right.py cut.mp4 telops.ass -o final.mp4             # 全編
 - 行の区切りは BudouX（Chrome の `word-break: auto-phrase` と同じ文節区切り）で決める。無ければ字種の規則で代用（`pip install budoux`）
 - 画面の割り付け（1920x1080）: 碁盤 x=0〜約1044 ／ 字幕 x=1080〜・上端 ／ **情報カード x=1066, y=230, 幅820, 高さ520以内**（字幕の下・顔の上）／ 顔は右下のまま
 - 情報カードの文字は本文28px以上（→ 字幕・カードは大きく）。カードの overlay は `--extra-filter` で足す
+
+## 投稿: デスクトップアプリのAIに頼む（2026-10-06〜）
+
+APIで上げると「非公開」に固定されるため、ブラウザで YouTube Studio を操作できるデスクトップアプリのAIに頼む。
+動画とサムネを Google Drive（`YouTube投稿/<作業フォルダ名>`）に置き、指示書を作る。
+
+```bash
+python3 upload_brief.py work/20261004 --title 2              # titles.txt の2番の案で作ってDriveへ上げる
+python3 upload_brief.py work/20261004 --title 2 --no-upload  # 指示書だけ作って中身を見る
+```
+
+指示書（`投稿指示書.md`）をAIに渡す。最初は必ず**限定公開**。三村さんが確認してから公開に切り替える。
