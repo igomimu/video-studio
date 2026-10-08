@@ -1145,6 +1145,10 @@ def main():
                         help='左下に横書き（表が横幅いっぱいのランキング動画用。右下の顔ワイプを避けて1行17字）')
     parser.add_argument('--right-size', type=int, default=72, help='右上・左下横書きの文字サイズ(px)')
     parser.add_argument('--right-x', type=int, default=1080, help='右上横書きの左端x(px)。碁盤の右端+余白')
+    parser.add_argument('--right-y', type=int, default=40,
+                        help='右上横書きの上端y(px)。右上に題字やロゴがある画面ではその下に下げる（石の形講座は360）')
+    parser.add_argument('--right-chars', type=int, default=None,
+                        help='横書き1行の字数（既定: 右上13・左下17）。右の空きが狭いとき減らす（72pxで810px幅なら11）')
     parser.add_argument('--tate-size', type=int, default=72, help='縦書き字幕の文字サイズ(px)。38では小さすぎると指摘あり')
     parser.add_argument('--kishi-fix', action='store_true', help='棋士名辞書で自動修正（pykakasi）')
     args = parser.parse_args()
@@ -1182,8 +1186,8 @@ def main():
 
     # ASS生成
     generate_ass(transcript, args.output, args.title, horizontal=args.horizontal, tate_fs=args.tate_size,
-                 right=args.right, right_fs=args.right_size, right_x=args.right_x,
-                 bottom=args.bottom, right_chars=17 if args.bottom else 13)
+                 right=args.right, right_fs=args.right_size, right_x=args.right_x, right_y=args.right_y,
+                 bottom=args.bottom, right_chars=args.right_chars or (17 if args.bottom else 13))
 
 
 if __name__ == '__main__':
