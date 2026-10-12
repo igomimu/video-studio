@@ -136,6 +136,12 @@ Google Drive のフォルダを開き、次の{'3' if srt else '2'}つをダウ�
 """
 
 
+def tag_regist(description: str, src: str) -> str:
+    """説明欄の みむいご通信 登録リンクに ?src= の印を付ける（2026-10-13）。
+    登録フォームがこの印を購読者の記録に残すので、どの媒体から登録されたか数えられる"""
+    return re.sub(r"(https://(?:www\.)?mimura15\.jp/regist/?)(?![?\w/])", rf"\g<1>?src={src}", description)
+
+
 def spotify_only_text(title: str, description: str, video: str, drive_url: str) -> str:
     """YouTube は投稿済みで、Spotify だけ追加で上げるときの指示書"""
     return f"""# Spotify 投稿の指示書（YouTube は投稿済み）
@@ -210,7 +216,7 @@ def main():
                 print(f"Driveへ上げています: {video.name}", flush=True)
                 gog("upload", str(video), "--parent", sub)
         brief = folder / "Spotify投稿指示書.md"
-        brief.write_text(spotify_only_text(title, description, video.name, drive_url), encoding="utf-8")
+        brief.write_text(spotify_only_text(title, tag_regist(description, "spotify"), video.name, drive_url), encoding="utf-8")
         if not a.no_upload:
             gog("upload", str(brief), "--parent", sub)
         print(f"指示書: {brief}")
@@ -226,7 +232,7 @@ def main():
             gog("upload", str(f), "--parent", sub)
 
     brief = folder / "投稿指示書.md"
-    brief.write_text(brief_text(title, description, video.name, thumb.name, drive_url, srt.name if srt else None,
+    brief.write_text(brief_text(title, tag_regist(description, "youtube"), video.name, thumb.name, drive_url, srt.name if srt else None,
                                  spotify=not a.no_spotify), encoding="utf-8")
     if not a.no_upload:
         gog("upload", str(brief), "--parent", sub)
