@@ -9,7 +9,7 @@
   動画   final*.mp4 のうち一番新しいもの（--video で指定可）
   サムネ thumbnail*.jpg のうち一番新しいもの（--thumb で指定可）
   タイトル titles.txt の番号つきの行（--title 番号、または --title-text で直接）
-  説明欄 description.txt の全文
+  説明欄 description.txt の全文（みむいご通信の登録リンクが無ければ末尾に足す）
   字幕   *.srt があれば一番新しいもの（--srt で指定可、--no-srt で付けない）
 
 YouTube のあとに、同じ動画を Spotify（みむ囲碁ラジオ）へ動画エピソードとして上げる手順も付く（--no-spotify で外す）。
@@ -137,6 +137,17 @@ Google Drive のフォルダを開き、次の{'3' if srt else '2'}つをダウ�
 """
 
 
+REGIST_FOOTER = "▼みむいご通信（毎週・無料）の登録はこちら\nhttps://mimura15.jp/regist"
+
+
+def ensure_regist(description: str) -> str:
+    """動画の締めで「概要欄のリンクから登録できます」と毎回言うので（2026-10-22 定型化）、
+    説明欄に登録リンクが無ければ末尾に足す"""
+    if re.search(r"mimura15\.jp/(regist|nl)\b", description):
+        return description
+    return f"{description}\n\n{REGIST_FOOTER}"
+
+
 def tag_regist(description: str, src: str) -> str:
     """説明欄の みむいご通信 登録リンクに ?src= の印を付ける（2026-10-13）。
     登録フォームがこの印を購読者の記録に残すので、どの媒体から登録されたか数えられる"""
@@ -195,7 +206,7 @@ def main():
         sys.exit("--title 番号 か --title-text を指定する")
     if len(title) > 100:
         sys.exit(f"タイトルが{len(title)}文字。YouTubeの上限は100文字")
-    description = (folder / "description.txt").read_text(encoding="utf-8").strip()
+    description = ensure_regist((folder / "description.txt").read_text(encoding="utf-8").strip())
     if len(description.encode("utf-8")) > 5000:
         sys.exit("説明欄がYouTubeの上限5000バイトを超えている")
     video = a.video or newest(folder, "final*.mp4")
