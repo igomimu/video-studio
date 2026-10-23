@@ -26,6 +26,7 @@ ffmpegで焼き込み:
 import json
 import re
 import csv
+import difflib
 import argparse
 import sys
 import time
@@ -1083,6 +1084,51 @@ def wrap_lines(text, per_line):
     return split_phrases(text, per_line)
 
 
+MIN_SCREEN_SEC = 0.3  # 単語の時刻で切り替えても、1画面はこれより短くしない（チカチカ防止）
+
+
+def _char_starts(seg, text):
+    """text の各文字が話され始めた時刻。seg に words（[開始, 終了, 語]）が無ければ None
+
+    text は LLM・辞書で補正済みなので、words を繋いだ元の文と差分で対応づける。
+    書き換わった文字は、元の文の対応位置の語の時刻を使う。
+    """
+    words = seg.get('words')
+    if not words:
+        return None
+    raw, starts = '', []
+    for s, _, w in words:
+        raw += w
+        starts += [s] * len(w)
+    times = [seg['end']] * len(text)
+    for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, text, raw, autojunk=False).get_opcodes():
+        if tag == 'equal':
+            times[i1:i2] = starts[j1:j2]
+        elif tag in ('replace', 'insert'):
+            times[i1:i2] = [starts[j1] if j1 < len(starts) else seg['end']] * (i2 - i1)
+    return times
+
+
+def split_times(seg, text, pieces):
+    """text を pieces（text を前から切った塊）に分けたときの各塊の (開始, 終了)
+
+    words があれば各塊の最初の文字が話された時刻で切り替える（考える間は前の塊を出したまま）。
+    無ければ字数で按分する。
+    """
+    start, end, n = seg['start'], seg['end'], len(pieces)
+    times = _char_starts(seg, text) if end - start >= MIN_SCREEN_SEC * n else None
+    bounds, pos = [start], 0
+    for i, p in enumerate(pieces[:-1], 1):
+        pos += len(p)
+        if times:  # 前の画面・残りの画面それぞれに最低限の時間を確保する
+            b = min(max(times[pos], bounds[-1] + MIN_SCREEN_SEC), end - MIN_SCREEN_SEC * (n - i))
+        else:
+            b = start + (end - start) * pos / len(text)
+        bounds.append(b)
+    bounds.append(end)
+    return list(zip(bounds[:-1], bounds[1:]))
+
+
 def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False, tate_fs=72,
                  right=False, right_fs=72, right_x=1080, right_y=40, right_chars=13, right_lines=2,
                  bottom=False):
@@ -1101,38 +1147,24 @@ def generate_ass(transcript, output_path, title="囲碁講座", horizontal=False
             if not text:
                 continue
             if right or bottom:
-                # 意味の切れ目で行に折り、right_lines 行ずつ1画面にする。時間は字数で按分
+                # 意味の切れ目で行に折り、right_lines 行ずつ1画面にする
                 lines = wrap_lines(text, right_chars)
                 screens = [lines[k:k + right_lines] for k in range(0, len(lines), right_lines)]
-                t, dur = seg['start'], seg['end'] - seg['start']
-                for scr in screens:
-                    ce = t + dur * sum(map(len, scr)) / len(text)
-                    f.write(f"Dialogue: 0,{time_to_ass(t)},{time_to_ass(ce)},{style},,0,0,0,,{'\\N'.join(scr)}\n")
-                    t = ce
+                for scr, (cs, ce) in zip(screens, split_times(seg, text, [''.join(x) for x in screens])):
+                    f.write(f"Dialogue: 0,{time_to_ass(cs)},{time_to_ass(ce)},{style},,0,0,0,,{'\\N'.join(scr)}\n")
                     count += 1
             elif horizontal:
-                # 長いテロップは25文字ごとに分割し、時間を按分
+                # 長いテロップは25文字ごとに分割する
                 max_chars = 25
-                if len(text) <= max_chars:
-                    f.write(f"Dialogue: 0,{time_to_ass(seg['start'])},{time_to_ass(seg['end'])},{style},,0,0,0,,{text}\n")
+                chunks = [text[i:i+max_chars] for i in range(0, len(text), max_chars)]
+                for chunk, (cs, ce) in zip(chunks, split_times(seg, text, chunks)):
+                    f.write(f"Dialogue: 0,{time_to_ass(cs)},{time_to_ass(ce)},{style},,0,0,0,,{chunk}\n")
                     count += 1
-                else:
-                    chunks = [text[i:i+max_chars] for i in range(0, len(text), max_chars)]
-                    duration = seg['end'] - seg['start']
-                    chunk_dur = duration / len(chunks)
-                    for ci, chunk in enumerate(chunks):
-                        cs = seg['start'] + chunk_dur * ci
-                        ce = seg['start'] + chunk_dur * (ci + 1)
-                        f.write(f"Dialogue: 0,{time_to_ass(cs)},{time_to_ass(ce)},{style},,0,0,0,,{chunk}\n")
-                        count += 1
             else:
-                # 1列に入らない分は分割し、字数で時間を按分する
+                # 1列に入らない分は分割する
                 chunks = split_for_column(text, tate_max_chars(tate_fs))
-                t, dur = seg['start'], seg['end'] - seg['start']
-                for chunk in chunks:
-                    ce = t + dur * len(chunk) / len(text)
-                    f.write(f"Dialogue: 0,{time_to_ass(t)},{time_to_ass(ce)},{style},,0,0,0,,{to_vertical(chunk)}\n")
-                    t = ce
+                for chunk, (cs, ce) in zip(chunks, split_times(seg, text, chunks)):
+                    f.write(f"Dialogue: 0,{time_to_ass(cs)},{time_to_ass(ce)},{style},,0,0,0,,{to_vertical(chunk)}\n")
                     count += 1
     kind = '左下横書き' if bottom else '右上横書き' if right else '横書き' if horizontal else '縦書き'
     print(f"Generated: {output_path} ({count} entries, {kind})")

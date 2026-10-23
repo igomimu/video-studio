@@ -68,12 +68,14 @@ def transcribe(video_path, output_path, model_name="large-v3", device="cuda"):
 
     segments, info = model.transcribe(video_path, **transcribe_opts)
 
+    # words は字幕の切り替え時刻に使う（文の途中の間で後半が先に出ないように）。形式は [開始, 終了, 語]
     result = []
     for seg in segments:
         result.append({
             "start": round(seg.start, 2),
             "end": round(seg.end, 2),
             "text": seg.text.strip(),
+            "words": [[round(w.start, 2), round(w.end, 2), w.word] for w in seg.words or []],
         })
 
     elapsed = time.time() - start_time
