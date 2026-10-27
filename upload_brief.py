@@ -111,16 +111,19 @@ Google Drive のフォルダを開き、次の{'3' if srt else '2'}つをダウ�
 3. 「詳細」の画面で、下の「タイトル」と「説明」を**一字も変えずに**貼る
 4. 「サムネイル」に、さきほどのサムネイル画像を上げる
 5. 「視聴者」は「いいえ、子ども向けではありません」
-6. 「動画の要素」（終了画面・カード）は**何もしない**
-7. 「公開設定」は **「限定公開」** を選んで保存する。**「公開」は選ばない**
+6. 「収益化」の画面で **収益化を「オン」** にする（限定公開・非公開でも必ずオン。オフにする場面は無い）
+7. 「動画の要素」（終了画面・カード）は**何もしない**
+8. 「公開設定」は **「限定公開」** を選んで保存する。**「公開」は選ばない**
+9. 保存したら、YouTube Studio の「コンテンツ」一覧でこの動画の**収益化が「オン」になっていることを確かめる**。
+   オフ・未設定のままなら、詳細を開いて「収益化」をオンにして保存し直す。YouTube 側の制限でオンにできないときは、画面に出た制限の内容を三村さんに伝える
 {caption_steps(srt)}{spotify_steps(4 if srt else 3, video, title) if spotify else ""}
 ## {(4 if srt else 3) + (1 if spotify else 0)}. 終わったら
-動画のURL（https://youtu.be/…）{"と Spotify の回番号" if spotify else ""}を三村さんに伝える。途中で止まったら、どの画面で何が出たかを伝える。
+動画のURL（https://youtu.be/…）、**収益化がオンで保存されたこと**{"、Spotify の回番号" if spotify else ""}を三村さんに伝える。途中で止まったら、どの画面で何が出たかを伝える。
 
 ## （三村さんの確認のあと）公開は18時に予約する
 三村さんが限定公開の動画を見てOKを出したら、その動画の「公開設定」を開き、
 「公開」ではなく **「スケジュールを設定」→ その日の 18:00** にして保存する。
-三村さんが別の時刻を伝えたら、その時刻にする。
+三村さんが別の時刻を伝えたら、その時刻にする。公開設定を変えても**収益化はオンのまま**であることを確かめる（公開設定と収益化は別の設定）。
 （2023年以降の8分以上283本: 18〜20時は朝の2〜3倍。18・19・20時の差は無いので、夕方の視聴時間帯を最初から使える18時）
 
 ---
@@ -198,6 +201,9 @@ def main():
     a = ap.parse_args()
 
     folder = a.workdir.resolve()
+    # Drive のフォルダ名。仕上げを work/日付_題/finish/ で作る回は「finish」が毎回同じになり、
+    # 前の回と同じフォルダに混ざった（2026-10-27 ハリム杯と水協杯の指示書が並んだ）→ 一つ上の名前を使う
+    drive_name = folder.parent.name if folder.name == "finish" else folder.name
     if a.title_text:
         title = a.title_text
     elif a.title:
@@ -220,7 +226,7 @@ def main():
         sys.exit(f"サムネイル {thumb.name} が2MBを超えている（YouTubeの上限）")
 
     if a.spotify_only:
-        sub = folder_id(folder.name, folder_id(DRIVE_ROOT_NAME))
+        sub = folder_id(drive_name, folder_id(DRIVE_ROOT_NAME))
         drive_url = f"https://drive.google.com/drive/folders/{sub}"
         if not a.no_upload:
             names = {f["name"] for f in gog("search", f"'{sub}' in parents and trashed = false", "--raw-query")}
@@ -237,7 +243,7 @@ def main():
 
     drive_url = "（--no-upload のため未作成）"
     if not a.no_upload:
-        sub = folder_id(folder.name, folder_id(DRIVE_ROOT_NAME))
+        sub = folder_id(drive_name, folder_id(DRIVE_ROOT_NAME))
         drive_url = f"https://drive.google.com/drive/folders/{sub}"
         for f in (video, thumb, *([srt] if srt else [])):
             print(f"Driveへ上げています: {f.name}", flush=True)
