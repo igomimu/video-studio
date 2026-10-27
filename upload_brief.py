@@ -57,6 +57,13 @@ def folder_id(name: str, parent: str | None = None) -> str:
     found = gog("search", q, "--raw-query")
     if found:
         return found[0]["id"]
+    if parent:
+        # Drive では作品フォルダを「作業名_日本語名」に改名している（2026-10-27 整理）
+        q = (f"name contains '{name}_' and mimeType = 'application/vnd.google-apps.folder'"
+             f" and trashed = false and '{parent}' in parents")
+        found = [f for f in gog("search", q, "--raw-query") if f["name"].startswith(f"{name}_")]
+        if found:
+            return found[0]["id"]
     return gog("mkdir", name, *(["--parent", parent] if parent else []))["id"]
 
 
