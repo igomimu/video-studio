@@ -179,8 +179,8 @@ def decide(w, prev, nxt, ex, tg):
     return None, ''
 
 
-def process(text, ex, tg):
-    """台帳で直した本文と、聞くことのリスト。長い語を優先し、重なりは取らない。"""
+def process(text, ex, tg, log=None):
+    """台帳で直した本文と、聞くことのリスト。長い語を優先し、重なりは取らない。log に自動の判断を積む。"""
     occ, used = [], set()
     for o in sorted(occurrences(text, list(ex)), key=lambda o: -len(o[0])):
         span = set(range(o[3], o[3] + len(o[0])))
@@ -195,6 +195,8 @@ def process(text, ex, tg):
             asks.append({'wrong': w, 'prev': a, 'next': b, 'pos': i, 'candidates': cands})
         elif ans != w:
             text = text[:i] + ans + text[i + len(w):]
+            if log is not None:
+                log.append({'wrong': w, 'right': ans, 'why': why, 'prev': a, 'next': b, 'pos': i})
     return text, asks[::-1]
 
 
@@ -249,6 +251,23 @@ def teach(wrong, answer, scope='here', prev='', nxt='', video='', note=''):
                             'video': video, 'note': note}, ensure_ascii=False) + '\n')
 
 
+def import_answers(folder):
+    """確認ページの答え（ArtifactData の out_dir に保存した *.json）を taught.jsonl に入れ直す。何度流しても同じになる。"""
+    rows = [t for t in taught() if t.get('source') != 'page']
+    for p in sorted(Path(folder).glob('**/*.json')):
+        d = json.load(open(p))
+        d = d.get('data', d)
+        if not d.get('answer'):
+            continue
+        rows.append({'wrong': d['wrong'], 'answer': d['answer'], 'scope': d['scope'], 'prev': d.get('prev', ''),
+                     'next': d.get('next', ''), 'video': d.get('video', ''), 'note': p.stem, 'source': 'page'})
+    LEDGER.mkdir(exist_ok=True)
+    with TAUGHT.open('w') as f:
+        for t in rows:
+            f.write(json.dumps(t, ensure_ascii=False) + '\n')
+    print(f"教わった答え {sum(t.get('source') == 'page' for t in rows)} 件（いつも {sum(t['scope'] == 'always' for t in rows)}）")
+
+
 if __name__ == '__main__':
     cmd, *args = sys.argv[1:] or ['evaluate']
-    {'add': add, 'add-all': add_all, 'evaluate': evaluate, 'ask': ask, 'teach': teach}[cmd](*args)
+    {'add': add, 'add-all': add_all, 'evaluate': evaluate, 'ask': ask, 'teach': teach, 'import': import_answers}[cmd](*args)

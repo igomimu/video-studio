@@ -1,0 +1,151 @@
+<title>テロップ用語の確認</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap">
+<style>
+/* 一列のリスト。語ごとのまとまり → 1か所ずつ。答えた所は淡く、まとめて答えた語は畳む */
+:root {
+  --bg: #f7f6f2; --card: #ffffff; --fg: #1d1f1c; --muted: #6b6e66; --line: #e2e0d8;
+  --accent: #2f5d50; --accent-fg: #ffffff; --mark: #f3e3a6; --warn: #9a4a1c;
+  --font: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #171917; --card: #20231f; --fg: #e9eae4; --muted: #9a9d94; --line: #33372f;
+  --accent: #7fb8a4; --accent-fg: #10201a; --mark: #5a4d1c; --warn: #e09a6b; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #171917; --card: #20231f; --fg: #e9eae4; --muted: #9a9d94; --line: #33372f;
+  --accent: #7fb8a4; --accent-fg: #10201a; --mark: #5a4d1c; --warn: #e09a6b; color-scheme: dark }
+html:lang(ja) { line-break: strict; word-break: normal; overflow-wrap: anywhere; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font); font-size: 16px; line-height: 1.75; }
+.wrap { max-width: 42rem; margin: 0 auto; padding-block: 20px 80px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1 { font-size: 1.35rem; line-height: 1.35; margin: 0 0 4px; }
+.lead { color: var(--muted); font-size: .9rem; margin: 0 0 16px; }
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg);
+  padding-block: 8px; border-bottom: 1px solid var(--line); margin-bottom: 16px; font-size: .9rem;
+  font-variant-numeric: tabular-nums; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.notice { color: var(--warn); font-size: .9rem; }
+.group { background: var(--card); border: 1px solid var(--line); border-radius: 8px; margin-bottom: 20px; }
+.ghead { padding: 14px 16px 10px; display: flex; flex-direction: column; gap: 8px; }
+.gword { font-size: 1.25rem; font-weight: 700; }
+.gword small { font-size: .85rem; font-weight: 400; color: var(--muted); margin-left: 8px; }
+.always { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: .9rem; }
+.always span { color: var(--muted); }
+.item { border-top: 1px solid var(--line); padding: 12px 16px; display: flex; flex-direction: column; gap: 6px; }
+.item.done { opacity: .55; }
+.row { display: flex; gap: 10px; align-items: flex-start; }
+.play { flex: none; width: 40px; height: 40px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--bg); color: var(--fg); font-size: 1rem; cursor: pointer; }
+.sent { min-width: 0; }
+.sent mark { background: var(--mark); color: inherit; padding: 0 2px; font-weight: 700; }
+.pub { font-size: .8rem; color: var(--muted); }
+.tag { font-size: .75rem; color: var(--warn); }
+.choices { display: flex; flex-wrap: wrap; gap: 6px; }
+button.c { font: inherit; font-size: .95rem; padding: 4px 12px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--card); color: var(--fg); cursor: pointer; transition: background .15s ease-in-out; }
+button.c.on { background: var(--accent); color: var(--accent-fg); border-color: var(--accent); }
+button.c:focus-visible, .play:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+input.other { font: inherit; font-size: .95rem; width: 8em; padding: 3px 8px; border-radius: 6px; border: 1px solid var(--line);
+  background: var(--card); color: var(--fg); line-height: 1.5; }
+.scope { font-size: .8rem; color: var(--muted); }
+</style>
+
+<div class="wrap">
+  <h1>テロップ用語の確認</h1>
+  <p class="lead">▶で音声を聞いて、正しい書き方を選んでください。語の見出しで「いつも」を選ぶと、その語は以後どの動画でも自動で直ります。1か所ずつ選んだ答えは、同じ言い回しのときだけ効きます。</p>
+  <div class="bar"><span id="prog"></span><span id="state" class="notice"></span></div>
+  <div id="list"></div>
+</div>
+<audio id="player" preload="none"></audio>
+
+<script>
+const QS = /*DATA*/[];
+const STATS = /*STATS*/{};
+const answers = {};   // doc id → {answer, scope}
+let db = null;
+
+const groups = [];
+const byWord = {};
+for (const q of QS) {
+  if (!byWord[q.wrong]) { byWord[q.wrong] = { word: q.wrong, items: [], gid: 'w' + groups.length }; groups.push(byWord[q.wrong]); }
+  byWord[q.wrong].items.push(q);
+}
+groups.sort((a, b) => b.items.length - a.items.length);
+
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) k === 'class' ? e.className = v : k.startsWith('on') ? e.addEventListener(k.slice(2), v) : e.setAttribute(k, v);
+  for (const k of kids) e.append(k);
+  return e;
+}
+function label(word, c) { return c === word ? word + '（そのまま）' : c; }
+
+async function save(id, data) {
+  answers[id] = data;
+  render();
+  if (!db) return;
+  try { await db.collection('answers').doc(id).set({ ...data, at: Date.now() }); }
+  catch (e) { document.getElementById('state').textContent = '保存できませんでした：' + (e.message || e.code); }
+}
+
+let stopAt = 0;
+function play(q) {
+  const p = document.getElementById('player');
+  if (!p.src) p.src = 'clips.mp3';
+  stopAt = q.clip[0] + q.clip[1];
+  const go = () => { p.currentTime = q.clip[0]; p.play().catch(() => {}); };
+  p.readyState >= 1 ? go() : p.addEventListener('loadedmetadata', go, { once: true });
+  if (p.readyState < 1) p.load();
+}
+document.getElementById('player').addEventListener('timeupdate', e => { if (e.target.currentTime >= stopAt) e.target.pause(); });
+
+function render() {
+  const list = document.getElementById('list');
+  list.replaceChildren();
+  let done = 0;
+  for (const g of groups) {
+    const always = answers[g.gid];
+    const cands = [...new Set(g.items.flatMap(q => q.candidates).concat([g.word]))];
+    const st = STATS[g.word] || { fixed: 0, kept: 0 };
+    const head = el('div', { class: 'ghead' },
+      el('div', { class: 'gword' }, g.word, el('small', {}, `${g.items.length}か所・これまで直した${st.fixed}回／そのまま${st.kept}回`)),
+      el('div', { class: 'always' }, el('span', {}, 'いつも：'),
+        ...cands.map(c => el('button', { class: 'c' + (always && always.answer === c ? ' on' : ''), type: 'button',
+          onclick: () => save(g.gid, always && always.answer === c ? { wrong: g.word, answer: null, scope: 'always' } : { wrong: g.word, answer: c, scope: 'always' }) }, label(g.word, c)))));
+    const box = el('section', { class: 'group' }, head);
+    for (const q of g.items) {
+      const a = answers[q.id];
+      const isDone = (a && a.answer) || (always && always.answer);
+      if (isDone) done++;
+      const input = el('input', { class: 'other', id: 'o-' + q.id, placeholder: 'ほかの書き方', 'aria-label': 'ほかの書き方' });
+      input.addEventListener('change', () => input.value.trim() && save(q.id, base(q, input.value.trim())));
+      box.append(el('div', { class: 'item' + (isDone ? ' done' : '') },
+        el('div', { class: 'row' },
+          el('button', { class: 'play', type: 'button', 'aria-label': '音声を聞く', onclick: () => play(q) }, '▶'),
+          el('div', { class: 'sent' },
+            el('div', {}, q.before, el('mark', {}, q.wrong), q.after),
+            el('div', { class: 'pub' }, '公開版：' + q.published),
+            q.type === 'conflict' ? el('div', { class: 'tag' }, '自動で直した形が公開版と違う') : '')),
+        el('div', { class: 'choices' },
+          ...cands.map(c => el('button', { class: 'c' + (a && a.answer === c ? ' on' : ''), type: 'button',
+            onclick: () => save(q.id, a && a.answer === c ? { ...base(q, null) } : base(q, c)) }, label(g.word, c))), input),
+        always && always.answer && !(a && a.answer) ? el('div', { class: 'scope' }, `「いつも ${always.answer}」で答え済み`) : ''));
+    }
+    list.append(box);
+  }
+  document.getElementById('prog').textContent = `答えた ${done} / ${QS.length} か所（${groups.length} 語）`;
+}
+function base(q, answer) {
+  return { wrong: q.wrong, answer, scope: 'here', prev: q.prev, next: q.next, video: q.video, seg: q.seg };
+}
+
+render();
+(async () => {
+  db = await window.claude?.use?.('db');
+  if (!db) { document.getElementById('state').textContent = 'この画面では答えを保存できません（claude.ai にサインインして開いてください）'; return; }
+  db.collection('answers').onSnapshot(snap => {
+    for (const d of snap.docs) answers[d.id] = d.data();
+    render();
+  }, e => { document.getElementById('state').textContent = '読み込めませんでした：' + e.message; });
+})();
+</script>
