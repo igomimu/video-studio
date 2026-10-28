@@ -67,7 +67,7 @@ let db = null;
 const groups = [];
 const byWord = {};
 for (const q of QS) {
-  if (!byWord[q.wrong]) { byWord[q.wrong] = { word: q.wrong, items: [], gid: 'w' + groups.length }; groups.push(byWord[q.wrong]); }
+  if (!byWord[q.wrong]) { byWord[q.wrong] = { word: q.wrong, items: [], gid: 'g' + [...q.wrong].map(c => c.codePointAt(0).toString(16)).join('-') }; groups.push(byWord[q.wrong]); }
   byWord[q.wrong].items.push(q);
 }
 groups.sort((a, b) => b.items.length - a.items.length);

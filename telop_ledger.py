@@ -161,12 +161,21 @@ def examples(exclude=None):
     return ex
 
 
+NUM = re.compile(r'^[0-9０-９一二三四五六七八九十百千]+$')
+
+
+def key(tok):
+    """文脈の目印。数字はまとめる（「8目」で教わった答えを「7目」にも効かせる）。"""
+    return '#' if NUM.match(tok or '') else tok
+
+
 def decide(w, prev, nxt, ex, tg):
     """(答え, 理由)。答えが None なら三村さんに聞く。"""
+    k = (key(prev), key(nxt))
     for t in reversed(tg):
-        if t['wrong'] == w and (t['scope'] == 'always' or (t['prev'], t['next']) == (prev, nxt)):
+        if t['wrong'] == w and (t['scope'] == 'always' or (key(t['prev']), key(t['next'])) == k):
             return t['answer'], '教わった'
-    same = [r for a, b, r in ex[w] if (a, b) == (prev, nxt)]
+    same = [r for a, b, r in ex[w] if (key(a), key(b)) == k]
     if len(same) >= MIN_SAME and len(set(same)) == 1:
         return same[0], '同じ文脈'
     allr = [r for _, _, r in ex[w]]
@@ -180,7 +189,10 @@ def decide(w, prev, nxt, ex, tg):
 
 
 def process(text, ex, tg, log=None):
-    """台帳で直した本文と、聞くことのリスト。長い語を優先し、重なりは取らない。log に自動の判断を積む。"""
+    """台帳で直した本文と、聞くことのリスト。長い語を優先し、重なりは取らない。log に自動の判断を積む。
+    先に go_text_common（局←曲・教わった「いつも」）を通す＝決まっていることは聞かない。"""
+    import go_text_common
+    text = go_text_common.apply(text)
     occ, used = [], set()
     for o in sorted(occurrences(text, list(ex)), key=lambda o: -len(o[0])):
         span = set(range(o[3], o[3] + len(o[0])))

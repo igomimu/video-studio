@@ -1,6 +1,6 @@
 [
  {
-  "id": "q000",
+  "id": "h758b1ea6f1",
   "video": "20261027_suhyup1/finish",
   "seg": 0,
   "type": "ask",
@@ -15,39 +15,7 @@
   "published": "こんにちは、三村です。今回は、仲邑菫六段が金恩持九段と五番勝負で戦う、Sh水協銀行杯の決勝戦がついに始まりました。その第一局を解説していきます。"
  },
  {
-  "id": "q001",
-  "video": "20261027_suhyup1/finish",
-  "seg": 0,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "局",
-  "next": "を",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "こんにちは三村です。今回は仲邑菫六段が金恩持九段と五番勝負で戦うというSH水協銀行杯決勝戦がついに始まったその1局",
-  "after": "を解説していきます。",
-  "published": "こんにちは、三村です。今回は、仲邑菫六段が金恩持九段と五番勝負で戦う、Sh水協銀行杯の決勝戦がついに始まりました。その第一局を解説していきます。"
- },
- {
-  "id": "q002",
-  "video": "20261027_suhyup1/finish",
-  "seg": 1,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "局",
-  "next": "負け",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "結論から言うと残念ながら1局",
-  "after": "負けてしまったんですが、今後に向けて内容をしっかり見ていきたいと思います。",
-  "published": "結論から言うと、残念ながら第一局は負けてしまったんですが、今後に向けて内容をしっかり見ていきたいと思います。"
- },
- {
-  "id": "q003",
+  "id": "h2161b7fbe4",
   "video": "20261027_suhyup1/finish",
   "seg": 2,
   "type": "ask",
@@ -65,7 +33,7 @@
   "published": "初手から、いきなりいきましょう"
  },
  {
-  "id": "q004",
+  "id": "h483cb428f2",
   "video": "20261027_suhyup1/finish",
   "seg": 6,
   "type": "ask",
@@ -81,23 +49,7 @@
   "published": "押さえる難解な変化には進まずに"
  },
  {
-  "id": "q005",
-  "video": "20261027_suhyup1/finish",
-  "seg": 7,
-  "type": "ask",
-  "wrong": "桂馬",
-  "prev": "",
-  "next": "に",
-  "candidates": [
-   "ケイマ",
-   "桂馬"
-  ],
-  "before": "",
-  "after": "にしまって",
-  "published": "ケイマにシマって"
- },
- {
-  "id": "q006",
+  "id": "h33e13a69d7",
   "video": "20261027_suhyup1/finish",
   "seg": 8,
   "type": "ask",
@@ -113,7 +65,7 @@
   "published": "このあたり、非常に面白い布石なんですけども"
  },
  {
-  "id": "q007",
+  "id": "h77f2ea67d0",
   "video": "20261027_suhyup1/finish",
   "seg": 9,
   "type": "ask",
@@ -128,7 +80,7 @@
   "published": "まずね、棋戦の情報について"
  },
  {
-  "id": "q008",
+  "id": "h4108562523",
   "video": "20261027_suhyup1/finish",
   "seg": 12,
   "type": "ask",
@@ -143,7 +95,7 @@
   "published": "五番勝負が始まったのは、Sh水協銀行、女子囲碁最強戦"
  },
  {
-  "id": "q009",
+  "id": "hba61f0c287",
   "video": "20261027_suhyup1/finish",
   "seg": 12,
   "type": "ask",
@@ -159,7 +111,7 @@
   "published": "五番勝負が始まったのは、Sh水協銀行、女子囲碁最強戦"
  },
  {
-  "id": "q010",
+  "id": "h69b40d6cca",
   "video": "20261027_suhyup1/finish",
   "seg": 12,
   "type": "conflict",
@@ -175,23 +127,7 @@
   "published": "五番勝負が始まったのは、Sh水協銀行、女子囲碁最強戦"
  },
  {
-  "id": "q011",
-  "video": "20261027_suhyup1/finish",
-  "seg": 30,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "1",
-  "next": "ぐらい",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "この違いが何かと言ったら0.1",
-  "after": "ぐらいしか違いません",
-  "published": "この違いが何かと言ったら、0.1目ぐらいしか違いません"
- },
- {
-  "id": "q012",
+  "id": "hc20074acaf",
   "video": "20261027_suhyup1/finish",
   "seg": 42,
   "type": "ask",
@@ -207,7 +143,7 @@
   "published": "そうすると例えば、こんな風に普通のツケ二段定石を打って"
  },
  {
-  "id": "q013",
+  "id": "h1444261991",
   "video": "20261027_suhyup1/finish",
   "seg": 44,
   "type": "ask",
@@ -223,7 +159,7 @@
   "published": "ツケ二段定石には、よくこんな風に打ちますね"
  },
  {
-  "id": "q014",
+  "id": "h86baf6e2e4",
   "video": "20261027_suhyup1/finish",
   "seg": 45,
   "type": "ask",
@@ -239,7 +175,7 @@
   "published": "アテてツイで、こんな風な定石もあるんですけど"
  },
  {
-  "id": "q015",
+  "id": "hf22ef2aacb",
   "video": "20261027_suhyup1/finish",
   "seg": 45,
   "type": "conflict",
@@ -255,7 +191,7 @@
   "published": "アテてツイで、こんな風な定石もあるんですけど"
  },
  {
-  "id": "q016",
+  "id": "h15f47acdfa",
   "video": "20261027_suhyup1/finish",
   "seg": 49,
   "type": "ask",
@@ -271,7 +207,7 @@
   "published": "このような間がすごく空いていて、ツナがってないようだけども"
  },
  {
-  "id": "q017",
+  "id": "h8edec828c0",
   "video": "20261027_suhyup1/finish",
   "seg": 66,
   "type": "conflict",
@@ -287,7 +223,7 @@
   "published": "盤の広い他の場所に、黒は影響力を中央の壁で得ているわけです"
  },
  {
-  "id": "q018",
+  "id": "h877a394d9a",
   "video": "20261027_suhyup1/finish",
   "seg": 67,
   "type": "ask",
@@ -302,7 +238,7 @@
   "published": "こういう損得のやり取りで囲碁は進んでいく"
  },
  {
-  "id": "q019",
+  "id": "hcd96d2934a",
   "video": "20261027_suhyup1/finish",
   "seg": 69,
   "type": "ask",
@@ -318,7 +254,7 @@
   "published": "特に菫さんの棋風で、ここはちょっと現金もらうよっていう打ち方は、好きではない、やりにくいかと思います"
  },
  {
-  "id": "q020",
+  "id": "h017d3009d1",
   "video": "20261027_suhyup1/finish",
   "seg": 73,
   "type": "ask",
@@ -334,23 +270,7 @@
   "published": "このように切っていった"
  },
  {
-  "id": "q021",
-  "video": "20261027_suhyup1/finish",
-  "seg": 95,
-  "type": "ask",
-  "wrong": "桂馬",
-  "prev": "に",
-  "next": "を",
-  "candidates": [
-   "ケイマ",
-   "桂馬"
-  ],
-  "before": "ここに",
-  "after": "をするというのがいい形で",
-  "published": "ここにケイマをするというのがいい形で"
- },
- {
-  "id": "q022",
+  "id": "hec71df22e0",
   "video": "20261027_suhyup1/finish",
   "seg": 96,
   "type": "ask",
@@ -367,7 +287,7 @@
   "published": "これが出てきた時には押さえて、ちょうどカケツギのいい形の連絡になるので"
  },
  {
-  "id": "q023",
+  "id": "h15216e26f7",
   "video": "20261027_suhyup1/finish",
   "seg": 98,
   "type": "ask",
@@ -383,7 +303,7 @@
   "published": "これは評価値的には70%を超えて、白がいい感じになります"
  },
  {
-  "id": "q024",
+  "id": "h9f3ba2a092",
   "video": "20261027_suhyup1/finish",
   "seg": 101,
   "type": "ask",
@@ -398,39 +318,7 @@
   "published": "相手の弱点をついた手でこのように打つわけですね"
  },
  {
-  "id": "q025",
-  "video": "20261027_suhyup1/finish",
-  "seg": 102,
-  "type": "ask",
-  "wrong": "桂馬",
-  "prev": "",
-  "next": "さ",
-  "candidates": [
-   "ケイマ",
-   "桂馬"
-  ],
-  "before": "",
-  "after": "させないぞと形的には伸びるものです",
-  "published": "ケイマさせないぞと、形的にはノビるものです"
- },
- {
-  "id": "q026",
-  "video": "20261027_suhyup1/finish",
-  "seg": 104,
-  "type": "ask",
-  "wrong": "羽",
-  "prev": "で",
-  "next": "一",
-  "candidates": [
-   "ハネ",
-   "羽根"
-  ],
-  "before": "スミレさんはここで",
-  "after": "一発で先手を取って攻めに行きます",
-  "published": "菫さんはここで、ハネ一発で先手を取って攻めに行きます"
- },
- {
-  "id": "q027",
+  "id": "heb2e3431c8",
   "video": "20261027_suhyup1/finish",
   "seg": 104,
   "type": "ask",
@@ -439,32 +327,16 @@
   "next": "ます",
   "candidates": [
    "行き",
-   "活き",
    "イキ",
-   "来"
+   "来",
+   "活き"
   ],
-  "before": "スミレさんはここで羽一発で先手を取って攻めに",
-  "after": "ます",
+  "before": "スミレさんはここで羽一発で先手を取って攻めに行",
+  "after": "す",
   "published": "菫さんはここで、ハネ一発で先手を取って攻めに行きます"
  },
  {
-  "id": "q028",
-  "video": "20261027_suhyup1/finish",
-  "seg": 107,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "",
-  "after": "が一個もないぞと言ったわけですけれども",
-  "published": "眼が一個もないぞと言ったわけですけれども"
- },
- {
-  "id": "q029",
+  "id": "hb5d9428383",
   "video": "20261027_suhyup1/finish",
   "seg": 115,
   "type": "ask",
@@ -480,7 +352,7 @@
   "published": "この方が石が張っているんですけども、ハサミツケがあって、サガる"
  },
  {
-  "id": "q030",
+  "id": "h0a07a0c4dc",
   "video": "20261027_suhyup1/finish",
   "seg": 115,
   "type": "ask",
@@ -495,7 +367,7 @@
   "published": "この方が石が張っているんですけども、ハサミツケがあって、サガる"
  },
  {
-  "id": "q031",
+  "id": "hdb226eb8cd",
   "video": "20261027_suhyup1/finish",
   "seg": 118,
   "type": "ask",
@@ -511,7 +383,7 @@
   "published": "そして実際ツケて、ここで切ったわけですね"
  },
  {
-  "id": "q032",
+  "id": "hf1d854b555",
   "video": "20261027_suhyup1/finish",
   "seg": 119,
   "type": "ask",
@@ -527,24 +399,23 @@
   "published": "このあたりも難しい"
  },
  {
-  "id": "q033",
+  "id": "h1af3b38df0",
   "video": "20261027_suhyup1/finish",
   "seg": 127,
-  "type": "ask",
+  "type": "conflict",
   "wrong": "つなぎ",
   "prev": "と",
   "next": "は",
   "candidates": [
    "ツナギ",
-   "つなぎ",
-   "ツギ"
+   "つなぎ"
   ],
   "before": "もちろんこうなるならばこの当たりと",
   "after": "は絶対得な手なんですけども",
   "published": "もちろん、こうなるならば、このアタリとツギは絶対得な手なんですけども"
  },
  {
-  "id": "q034",
+  "id": "h9b7cf8f58b",
   "video": "20261027_suhyup1/finish",
   "seg": 136,
   "type": "ask",
@@ -560,7 +431,7 @@
   "published": "AIはね、先にツケて、これは押さえる一手なんで、そこで切りなさい"
  },
  {
-  "id": "q035",
+  "id": "h8d46cec2c7",
   "video": "20261027_suhyup1/finish",
   "seg": 136,
   "type": "ask",
@@ -576,7 +447,7 @@
   "published": "AIはね、先にツケて、これは押さえる一手なんで、そこで切りなさい"
  },
  {
-  "id": "q036",
+  "id": "h1761cfb441",
   "video": "20261027_suhyup1/finish",
   "seg": 136,
   "type": "conflict",
@@ -592,7 +463,7 @@
   "published": "AIはね、先にツケて、これは押さえる一手なんで、そこで切りなさい"
  },
  {
-  "id": "q037",
+  "id": "h6c0ca1e4e8",
   "video": "20261027_suhyup1/finish",
   "seg": 137,
   "type": "ask",
@@ -608,7 +479,7 @@
   "published": "今度はアテて出て、こうなった時に、さっきよりも白がまずいんですね"
  },
  {
-  "id": "q038",
+  "id": "ha4c77cabcb",
   "video": "20261027_suhyup1/finish",
   "seg": 138,
   "type": "ask",
@@ -618,15 +489,15 @@
   "candidates": [
    "行って",
    "イって",
-   "1手",
-   "一手"
+   "一手",
+   "1手"
   ],
   "before": "これねここ",
   "after": "もこれ両あたりでここを助けるとこっちボーンと行っちゃうんで",
   "published": "これね、ここ行っても、これ両アタリで、ここを助けると、こっちボーンと行っちゃうんで"
  },
  {
-  "id": "q039",
+  "id": "h9d195c01ab",
   "video": "20261027_suhyup1/finish",
   "seg": 138,
   "type": "ask",
@@ -642,7 +513,7 @@
   "published": "これね、ここ行っても、これ両アタリで、ここを助けると、こっちボーンと行っちゃうんで"
  },
  {
-  "id": "q040",
+  "id": "h560c204216",
   "video": "20261027_suhyup1/finish",
   "seg": 138,
   "type": "ask",
@@ -658,7 +529,7 @@
   "published": "これね、ここ行っても、これ両アタリで、ここを助けると、こっちボーンと行っちゃうんで"
  },
  {
-  "id": "q041",
+  "id": "h506808cd7a",
   "video": "20261027_suhyup1/finish",
   "seg": 146,
   "type": "ask",
@@ -674,7 +545,7 @@
   "published": "こうツケからノビるという"
  },
  {
-  "id": "q042",
+  "id": "hb903c67600",
   "video": "20261027_suhyup1/finish",
   "seg": 148,
   "type": "ask",
@@ -691,23 +562,7 @@
   "published": "押さえるとアタリ"
  },
  {
-  "id": "q043",
-  "video": "20261027_suhyup1/finish",
-  "seg": 157,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "が",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "これとこれが",
-  "after": "がなくなっているし地も得なんで",
-  "published": "これとこれで眼がなくなっているし、地も得なんで"
- },
- {
-  "id": "q044",
+  "id": "hc524c8cc3b",
   "video": "20261027_suhyup1/finish",
   "seg": 167,
   "type": "ask",
@@ -723,7 +578,7 @@
   "published": "ただ菫さんとしては、楽しみは、まだこの黒が活きてないよということなんですね"
  },
  {
-  "id": "q045",
+  "id": "h3dd0754452",
   "video": "20261027_suhyup1/finish",
   "seg": 168,
   "type": "ask",
@@ -739,39 +594,7 @@
   "published": "これをうっかりこんな風に打ってしまいますと、サガリ"
  },
  {
-  "id": "q046",
-  "video": "20261027_suhyup1/finish",
-  "seg": 170,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "は",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "取ってここ当たりということになって黒は",
-  "after": "がない",
-  "published": "取って、ここアタリということになって、黒は眼がない"
- },
- {
-  "id": "q047",
-  "video": "20261027_suhyup1/finish",
-  "seg": 171,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "",
-  "after": "がないけどももし手を入れるときにはここに打たなきゃいけないんです",
-  "published": "眼がないけども、もし手を入れるときには、ここに打たなきゃいけないんです"
- },
- {
-  "id": "q048",
+  "id": "hc2c2f74601",
   "video": "20261027_suhyup1/finish",
   "seg": 174,
   "type": "ask",
@@ -787,23 +610,7 @@
   "published": "こういうふうに活きなければいけない"
  },
  {
-  "id": "q049",
-  "video": "20261027_suhyup1/finish",
-  "seg": 176,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "",
-  "next": "二つ",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "",
-  "after": "二つという状態です",
-  "published": "眼二つという状態です"
- },
- {
-  "id": "q050",
+  "id": "ha0e60d8363",
   "video": "20261027_suhyup1/finish",
   "seg": 177,
   "type": "ask",
@@ -819,7 +626,7 @@
   "published": "だから、あなた活きなきゃいけないわよ"
  },
  {
-  "id": "q051",
+  "id": "h8efee52b9f",
   "video": "20261027_suhyup1/finish",
   "seg": 182,
   "type": "ask",
@@ -835,23 +642,7 @@
   "published": "これはツグのは全く意味がなくて"
  },
  {
-  "id": "q052",
-  "video": "20261027_suhyup1/finish",
-  "seg": 184,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "も",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "でこの1個は取れても",
-  "after": "が増えるわけでなくて白もちゃんと形が整ってて結局ここに打たなければいけない",
-  "published": "で、この1個は取れても眼が増えるわけでなくて、白もちゃんと形が整ってて、結局ここに打たなければいけない"
- },
- {
-  "id": "q053",
+  "id": "h36285ce319",
   "video": "20261027_suhyup1/finish",
   "seg": 190,
   "type": "ask",
@@ -867,7 +658,7 @@
   "published": "これって、ツガれることはないのかな"
  },
  {
-  "id": "q054",
+  "id": "h658afc0abb",
   "video": "20261027_suhyup1/finish",
   "seg": 191,
   "type": "ask",
@@ -875,16 +666,16 @@
   "prev": "",
   "next": "だら",
   "candidates": [
-   "つない",
    "ツイ",
-   "ツナい"
+   "ツナい",
+   "つない"
   ],
   "before": "",
   "after": "だら",
   "published": "ツイだら"
  },
  {
-  "id": "q055",
+  "id": "h032a8875ac",
   "video": "20261027_suhyup1/finish",
   "seg": 192,
   "type": "ask",
@@ -900,7 +691,7 @@
   "published": "受けるんだ"
  },
  {
-  "id": "q056",
+  "id": "hc1cfeb3820",
   "video": "20261027_suhyup1/finish",
   "seg": 196,
   "type": "ask",
@@ -908,16 +699,16 @@
   "prev": "",
   "next": "じゃう",
   "candidates": [
-   "つない",
    "ツイ",
-   "ツナい"
+   "ツナい",
+   "つない"
   ],
   "before": "",
   "after": "じゃうことも",
   "published": "ツイじゃうことも"
  },
  {
-  "id": "q057",
+  "id": "h93a38bb06b",
   "video": "20261027_suhyup1/finish",
   "seg": 201,
   "type": "ask",
@@ -933,7 +724,7 @@
   "published": "押して"
  },
  {
-  "id": "q058",
+  "id": "h61e56f7394",
   "video": "20261027_suhyup1/finish",
   "seg": 202,
   "type": "ask",
@@ -941,31 +732,15 @@
   "prev": "も",
   "next": "ん",
   "candidates": [
-   "継ぐ",
-   "ツグ"
+   "ツグ",
+   "継ぐ"
   ],
   "before": "黒も",
   "after": "んじゃ意味がないんですね",
   "published": "黒もツグんじゃ意味がないんですね"
  },
  {
-  "id": "q059",
-  "video": "20261027_suhyup1/finish",
-  "seg": 204,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "は",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "これは",
-  "after": "ができる形にはなってないんで",
-  "published": "これは眼ができる形にはなってないんで"
- },
- {
-  "id": "q060",
+  "id": "h67537defcf",
   "video": "20261027_suhyup1/finish",
   "seg": 217,
   "type": "ask",
@@ -981,7 +756,7 @@
   "published": "そうかそうか、サガリか"
  },
  {
-  "id": "q061",
+  "id": "h568d7d0b65",
   "video": "20261027_suhyup1/finish",
   "seg": 220,
   "type": "ask",
@@ -997,7 +772,7 @@
   "published": "そうか、サガリ"
  },
  {
-  "id": "q062",
+  "id": "h18dadec884",
   "video": "20261027_suhyup1/finish",
   "seg": 228,
   "type": "ask",
@@ -1013,7 +788,7 @@
   "published": "このあたりで、こういうところをドーンとやって、ここがね、アタリとか、これ効きそうですけど、これ多分なんか"
  },
  {
-  "id": "q063",
+  "id": "h84c9935580",
   "video": "20261027_suhyup1/finish",
   "seg": 228,
   "type": "ask",
@@ -1029,7 +804,7 @@
   "published": "このあたりで、こういうところをドーンとやって、ここがね、アタリとか、これ効きそうですけど、これ多分なんか"
  },
  {
-  "id": "q064",
+  "id": "h2b1b675b8b",
   "video": "20261027_suhyup1/finish",
   "seg": 228,
   "type": "ask",
@@ -1044,7 +819,7 @@
   "published": "このあたりで、こういうところをドーンとやって、ここがね、アタリとか、これ効きそうですけど、これ多分なんか"
  },
  {
-  "id": "q065",
+  "id": "hf189142b31",
   "video": "20261027_suhyup1/finish",
   "seg": 229,
   "type": "ask",
@@ -1060,55 +835,7 @@
   "published": "こんな風になって、この左側がね、死んじゃうんでしょうね。これでこのあたりがボーンってなって、これでまあ、大差ではないけど白がいいと"
  },
  {
-  "id": "q066",
-  "video": "20261027_suhyup1/finish",
-  "seg": 234,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "しっかり",
-  "next": "を",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "黒はしっかり",
-  "after": "を作って",
-  "published": "黒はしっかり眼を作って"
- },
- {
-  "id": "q067",
-  "video": "20261027_suhyup1/finish",
-  "seg": 245,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "けど",
-  "next": "は",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "これって破ったんですけど",
-  "after": "は増えてないんで",
-  "published": "これって破ったんですけど、眼は増えてないんで"
- },
- {
-  "id": "q068",
-  "video": "20261027_suhyup1/finish",
-  "seg": 250,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "ちょっと",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "ここにちょっと",
-  "after": "ができたら",
-  "published": "ここにちょっと眼ができたら"
- },
- {
-  "id": "q069",
+  "id": "h0d2b1da73b",
   "video": "20261027_suhyup1/finish",
   "seg": 255,
   "type": "ask",
@@ -1125,7 +852,7 @@
   "published": "ハネて二段に押さえた"
  },
  {
-  "id": "q070",
+  "id": "hdf9be808a6",
   "video": "20261027_suhyup1/finish",
   "seg": 257,
   "type": "ask",
@@ -1140,7 +867,7 @@
   "published": "ここで菫さんが長考に入った"
  },
  {
-  "id": "q071",
+  "id": "hf6da77fd30",
   "video": "20261027_suhyup1/finish",
   "seg": 258,
   "type": "ask",
@@ -1155,24 +882,23 @@
   "published": "長考に入ったということは、困ったと思ったんだと思います"
  },
  {
-  "id": "q072",
+  "id": "h270e7769a5",
   "video": "20261027_suhyup1/finish",
   "seg": 261,
-  "type": "ask",
+  "type": "conflict",
   "wrong": "つなぎ",
   "prev": "で",
   "next": "の",
   "candidates": [
    "ツナギ",
-   "つなぎ",
-   "ツギ"
+   "つなぎ"
   ],
   "before": "これは当たりで",
   "after": "の",
   "published": "これはアタリでツギの"
  },
  {
-  "id": "q073",
+  "id": "h34ee38c8a9",
   "video": "20261027_suhyup1/finish",
   "seg": 263,
   "type": "ask",
@@ -1180,8 +906,8 @@
   "prev": "て",
   "next": "こと",
   "candidates": [
-   "渡る",
    "ワタる",
+   "渡る",
    "わたる"
   ],
   "before": "この場合はここに来て",
@@ -1189,24 +915,23 @@
   "published": "この場合は、ここに来てワタることはできなくなるんですね"
  },
  {
-  "id": "q074",
+  "id": "h261a4d85e9",
   "video": "20261027_suhyup1/finish",
   "seg": 267,
-  "type": "ask",
+  "type": "conflict",
   "wrong": "つなぎ",
   "prev": "に",
   "next": "た",
   "candidates": [
    "ツナギ",
-   "つなぎ",
-   "ツギ"
+   "つなぎ"
   ],
   "before": "でこのように",
   "after": "たんですけど",
   "published": "で、このようにツイだんですけど"
  },
  {
-  "id": "q075",
+  "id": "h668d7e4535",
   "video": "20261027_suhyup1/finish",
   "seg": 268,
   "type": "ask",
@@ -1221,7 +946,7 @@
   "published": "これがほぼ本局の敗着に近い"
  },
  {
-  "id": "q076",
+  "id": "h582087b5f6",
   "video": "20261027_suhyup1/finish",
   "seg": 279,
   "type": "ask",
@@ -1237,7 +962,7 @@
   "published": "これで活きると"
  },
  {
-  "id": "q077",
+  "id": "he96083125a",
   "video": "20261027_suhyup1/finish",
   "seg": 282,
   "type": "ask",
@@ -1253,7 +978,7 @@
   "published": "これで形勢は白が3目ほど優勢だったそうです"
  },
  {
-  "id": "q078",
+  "id": "h50dd18ae4f",
   "video": "20261027_suhyup1/finish",
   "seg": 285,
   "type": "conflict",
@@ -1269,7 +994,7 @@
   "published": "もともと白の模様だった左辺はなくなっている"
  },
  {
-  "id": "q079",
+  "id": "hb2564f876d",
   "video": "20261027_suhyup1/finish",
   "seg": 290,
   "type": "ask",
@@ -1285,23 +1010,7 @@
   "published": "ここで黙ってね、ここ切って眼を作るのですと、ここに打たれて、活きることは活きる"
  },
  {
-  "id": "q080",
-  "video": "20261027_suhyup1/finish",
-  "seg": 290,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "て",
-  "next": "を",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "これここで黙ってね、ここ切って",
-  "after": "を作るのですと、ここに打たれて、生きることは生きる。",
-  "published": "ここで黙ってね、ここ切って眼を作るのですと、ここに打たれて、活きることは活きる"
- },
- {
-  "id": "q081",
+  "id": "hf2955cfcfa",
   "video": "20261027_suhyup1/finish",
   "seg": 290,
   "type": "ask",
@@ -1317,7 +1026,7 @@
   "published": "ここで黙ってね、ここ切って眼を作るのですと、ここに打たれて、活きることは活きる"
  },
  {
-  "id": "q082",
+  "id": "h1f0434fbb4",
   "video": "20261027_suhyup1/finish",
   "seg": 290,
   "type": "ask",
@@ -1333,7 +1042,7 @@
   "published": "ここで黙ってね、ここ切って眼を作るのですと、ここに打たれて、活きることは活きる"
  },
  {
-  "id": "q083",
+  "id": "h7a10d25e40",
   "video": "20261027_suhyup1/finish",
   "seg": 291,
   "type": "ask",
@@ -1349,7 +1058,7 @@
   "published": "こういうふうに打ったり、こういうふうに打ったり、活きることはできるんですけど"
  },
  {
-  "id": "q084",
+  "id": "h51ca7cc8ed",
   "video": "20261027_suhyup1/finish",
   "seg": 292,
   "type": "ask",
@@ -1365,7 +1074,7 @@
   "published": "ここに打っても、こういうふうに打って活きるんですけども、サガリが先手になる"
  },
  {
-  "id": "q085",
+  "id": "h103d42998a",
   "video": "20261027_suhyup1/finish",
   "seg": 292,
   "type": "ask",
@@ -1381,7 +1090,7 @@
   "published": "ここに打っても、こういうふうに打って活きるんですけども、サガリが先手になる"
  },
  {
-  "id": "q086",
+  "id": "hd6040bc891",
   "video": "20261027_suhyup1/finish",
   "seg": 299,
   "type": "ask",
@@ -1396,71 +1105,7 @@
   "published": "これが一間トビで、次にここを打たないと"
  },
  {
-  "id": "q087",
-  "video": "20261027_suhyup1/finish",
-  "seg": 300,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "は",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "白は",
-  "after": "がなくなってしまう",
-  "published": "白は眼がなくなってしまう"
- },
- {
-  "id": "q088",
-  "video": "20261027_suhyup1/finish",
-  "seg": 301,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "て",
-  "next": "を",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "そこでここに打って",
-  "after": "を作る",
-  "published": "そこで、ここに打って眼を作る"
- },
- {
-  "id": "q089",
-  "video": "20261027_suhyup1/finish",
-  "seg": 303,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "ば",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "一手打てば",
-  "after": "があるということで",
-  "published": "一手打てば眼があるということで"
- },
- {
-  "id": "q090",
-  "video": "20261027_suhyup1/finish",
-  "seg": 317,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "9",
-  "next": "だ",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "0.9",
-  "after": "だから若干これでも白が良かった",
-  "published": "0.9目だから、若干これでも白が良かった"
- },
- {
-  "id": "q091",
+  "id": "ha0f6252330",
   "video": "20261027_suhyup1/finish",
   "seg": 321,
   "type": "conflict",
@@ -1476,23 +1121,7 @@
   "published": "ノゾキでツギになった方がいいんで"
  },
  {
-  "id": "q092",
-  "video": "20261027_suhyup1/finish",
-  "seg": 338,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "6",
-  "next": "黒",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "これで6",
-  "after": "黒が良くなった",
-  "published": "これで6目、黒が良くなった"
- },
- {
-  "id": "q093",
+  "id": "h85236d7437",
   "video": "20261027_suhyup1/finish",
   "seg": 341,
   "type": "conflict",
@@ -1508,23 +1137,7 @@
   "published": "この左辺の黒は"
  },
  {
-  "id": "q094",
-  "video": "20261027_suhyup1/finish",
-  "seg": 366,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "",
-  "next": "二つ",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "",
-  "after": "二つの行きになるぐらいなら",
-  "published": "眼二つの活きになるぐらいなら"
- },
- {
-  "id": "q095",
+  "id": "h5773811943",
   "video": "20261027_suhyup1/finish",
   "seg": 366,
   "type": "ask",
@@ -1533,16 +1146,16 @@
   "next": "に",
   "candidates": [
    "行き",
-   "活き",
    "イキ",
-   "来"
+   "来",
+   "活き"
   ],
   "before": "目二つの",
   "after": "になるぐらいなら",
   "published": "眼二つの活きになるぐらいなら"
  },
  {
-  "id": "q096",
+  "id": "h706ee0b3e2",
   "video": "20261027_suhyup1/finish",
   "seg": 367,
   "type": "ask",
@@ -1557,7 +1170,7 @@
   "published": "菫さんは、えいっと言って"
  },
  {
-  "id": "q097",
+  "id": "ha7b070810b",
   "video": "20261027_suhyup1/finish",
   "seg": 370,
   "type": "conflict",
@@ -1573,7 +1186,7 @@
   "published": "ここの一目取らせる手がね"
  },
  {
-  "id": "q098",
+  "id": "hfc73a017f1",
   "video": "20261027_suhyup1/finish",
   "seg": 374,
   "type": "ask",
@@ -1588,7 +1201,7 @@
   "published": "黒は二間ビラキでね、確実に減らす"
  },
  {
-  "id": "q099",
+  "id": "hc8d047f658",
   "video": "20261027_suhyup1/finish",
   "seg": 376,
   "type": "ask",
@@ -1603,23 +1216,7 @@
   "published": "ちょうどここに一間トビ、守りながらここのラインを出てくる手がいいポイントで"
  },
  {
-  "id": "q100",
-  "video": "20261027_suhyup1/finish",
-  "seg": 395,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "ね",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼"
-  ],
-  "before": "これ殺せってれるかって言ったら殺せないんですね",
-  "after": "がねここを打たないといけないけども",
-  "published": "これ殺せるかって言ったら、殺せないんですね。眼がね、ここを打たないといけないけども"
- },
- {
-  "id": "q101",
+  "id": "ha62724462f",
   "video": "20261027_suhyup1/finish",
   "seg": 408,
   "type": "ask",
@@ -1635,7 +1232,7 @@
   "published": "これをコウダテとして使いながら打つ"
  },
  {
-  "id": "q102",
+  "id": "hb7984cb369",
   "video": "20261027_suhyup1/finish",
   "seg": 409,
   "type": "conflict",
@@ -1651,7 +1248,7 @@
   "published": "しかも白が長くなって、団子になって"
  },
  {
-  "id": "q103",
+  "id": "h61cff0d4d4",
   "video": "20261027_suhyup1/finish",
   "seg": 422,
   "type": "ask",
@@ -1667,7 +1264,7 @@
   "published": "これはツグと"
  },
  {
-  "id": "q104",
+  "id": "h52eda3c2a5",
   "video": "20261027_suhyup1/finish",
   "seg": 423,
   "type": "ask",
@@ -1682,7 +1279,7 @@
   "published": "ここをハわれて、助けられて"
  },
  {
-  "id": "q105",
+  "id": "h421aff4326",
   "video": "20261027_suhyup1/finish",
   "seg": 425,
   "type": "ask",
@@ -1699,7 +1296,7 @@
   "published": "この白5子が取られてしまいます"
  },
  {
-  "id": "q106",
+  "id": "h68b29bff88",
   "video": "20261027_suhyup1/finish",
   "seg": 425,
   "type": "ask",
@@ -1709,15 +1306,15 @@
   "candidates": [
    "子",
    "碁",
-   "こと",
-   "男の子"
+   "男の子",
+   "こと"
   ],
   "before": "この白5",
   "after": "が取られてしまいます",
   "published": "この白5子が取られてしまいます"
  },
  {
-  "id": "q107",
+  "id": "hcdd6303db7",
   "video": "20261027_suhyup1/finish",
   "seg": 437,
   "type": "ask",
@@ -1732,7 +1329,7 @@
   "published": "後半になれば、菫さんは終盤は非常に強いので"
  },
  {
-  "id": "q108",
+  "id": "h3f4d0f72c9",
   "video": "20261027_suhyup1/finish",
   "seg": 440,
   "type": "ask",
@@ -1747,7 +1344,7 @@
   "published": "崔精九段には、菫さんは何回か勝っているので"
  },
  {
-  "id": "q109",
+  "id": "h14a1e12121",
   "video": "20261027_suhyup1/finish",
   "seg": 440,
   "type": "ask",
@@ -1762,7 +1359,7 @@
   "published": "崔精九段には、菫さんは何回か勝っているので"
  },
  {
-  "id": "q110",
+  "id": "hec2a7ae44c",
   "video": "20261027_suhyup1/finish",
   "seg": 442,
   "type": "conflict",
@@ -1778,7 +1375,7 @@
   "published": "今回の五番勝負、あと4回ありますから、なるべく早くね"
  },
  {
-  "id": "q111",
+  "id": "h842a44db8a",
   "video": "20261027_suhyup1/finish",
   "seg": 448,
   "type": "ask",
@@ -1795,7 +1392,7 @@
   "published": "なんだろう、この5日間ぐらい、もう毎日対局しているわけなんですよ"
  },
  {
-  "id": "q112",
+  "id": "hbedaeeddb0",
   "video": "20261027_suhyup1/finish",
   "seg": 453,
   "type": "ask",
@@ -1810,7 +1407,7 @@
   "published": "おそらく今、韓国の棋戦の数がめちゃくちゃ増えてて"
  },
  {
-  "id": "q113",
+  "id": "h566e16b42c",
   "video": "20261027_suhyup1/finish",
   "seg": 454,
   "type": "ask",
@@ -1825,7 +1422,7 @@
   "published": "若手の棋戦、女性の棋戦、一般棋戦と全部出てたら"
  },
  {
-  "id": "q114",
+  "id": "h94c2243c7b",
   "video": "20261027_suhyup1/finish",
   "seg": 454,
   "type": "ask",
@@ -1840,7 +1437,7 @@
   "published": "若手の棋戦、女性の棋戦、一般棋戦と全部出てたら"
  },
  {
-  "id": "q115",
+  "id": "hce19d44d6a",
   "video": "20261027_suhyup1/finish",
   "seg": 454,
   "type": "ask",
@@ -1855,7 +1452,7 @@
   "published": "若手の棋戦、女性の棋戦、一般棋戦と全部出てたら"
  },
  {
-  "id": "q116",
+  "id": "h3d24fff9a2",
   "video": "20261027_suhyup1/finish",
   "seg": 455,
   "type": "conflict",
@@ -1871,7 +1468,7 @@
   "published": "もう本当パンクするぐらい、体が持たないよっていうぐらいの"
  },
  {
-  "id": "q117",
+  "id": "h3276a6f6e2",
   "video": "20261027_suhyup1/finish",
   "seg": 456,
   "type": "ask",
@@ -1881,15 +1478,15 @@
   "candidates": [
    "行って",
    "イって",
-   "1手",
-   "一手"
+   "一手",
+   "1手"
   ],
   "before": "ハードスケジュールで韓国は",
   "after": "いるんですよ",
   "published": "ハードスケジュールで、韓国はやっているんですよ"
  },
  {
-  "id": "q118",
+  "id": "hfc60f12092",
   "video": "20261027_suhyup1/finish",
   "seg": 467,
   "type": "ask",
@@ -1905,7 +1502,7 @@
   "published": "注目度も高いところでもあり"
  },
  {
-  "id": "q119",
+  "id": "h488c5d3cb5",
   "video": "20261027_suhyup1/finish",
   "seg": 480,
   "type": "ask",
@@ -1921,7 +1518,7 @@
   "published": "水協銀行杯、決勝五番勝負"
  },
  {
-  "id": "q120",
+  "id": "hfec08dc804",
   "video": "20261027_suhyup1/finish",
   "seg": 480,
   "type": "conflict",
@@ -1937,7 +1534,7 @@
   "published": "水協銀行杯、決勝五番勝負"
  },
  {
-  "id": "q121",
+  "id": "h415a6ea204",
   "video": "20261027_suhyup1/finish",
   "seg": 481,
   "type": "ask",
@@ -1953,7 +1550,7 @@
   "published": "仲邑菫さん、残念ながら負けました、と"
  },
  {
-  "id": "q122",
+  "id": "h2b1887c992",
   "video": "20261028_suhyup2/finish",
   "seg": 0,
   "type": "ask",
@@ -1968,7 +1565,7 @@
   "published": "こんにちは、三村です。Sh水協銀行杯決勝五番勝負、仲邑菫六段、第2局も残念ながら負けてしまいました。"
  },
  {
-  "id": "q123",
+  "id": "hd0bb6c839b",
   "video": "20261028_suhyup2/finish",
   "seg": 3,
   "type": "ask",
@@ -1986,22 +1583,7 @@
   "published": "まず初手からいきましょう。"
  },
  {
-  "id": "q124",
-  "video": "20261028_suhyup2/finish",
-  "seg": 4,
-  "type": "ask",
-  "wrong": "本曲",
-  "prev": "",
-  "next": "は",
-  "candidates": [
-   "本局"
-  ],
-  "before": "",
-  "after": "はスミレさんが黒版です",
-  "published": "本局は菫さんが黒番です"
- },
- {
-  "id": "q125",
+  "id": "hdc69c2fa67",
   "video": "20261028_suhyup2/finish",
   "seg": 4,
   "type": "ask",
@@ -2016,7 +1598,7 @@
   "published": "本局は菫さんが黒番です"
  },
  {
-  "id": "q126",
+  "id": "hfd39a5175f",
   "video": "20261028_suhyup2/finish",
   "seg": 12,
   "type": "ask",
@@ -2034,23 +1616,7 @@
   "published": "難解定石に進んでいきます"
  },
  {
-  "id": "q127",
-  "video": "20261028_suhyup2/finish",
-  "seg": 14,
-  "type": "ask",
-  "wrong": "桂馬",
-  "prev": "は",
-  "next": "に",
-  "candidates": [
-   "ケイマ",
-   "桂馬"
-  ],
-  "before": "黒は",
-  "after": "に外すまではいいんですけども、ここで伸びれば、このように打てば穏やかで問題は起きないんですけども、",
-  "published": "黒はケイマにハズすまではいいんですけども、ここでノビれば、このように打てば穏やかで問題は起きないんですけども、"
- },
- {
-  "id": "q128",
+  "id": "h3731e25c00",
   "video": "20261028_suhyup2/finish",
   "seg": 15,
   "type": "ask",
@@ -2059,15 +1625,15 @@
   "next": "て",
   "candidates": [
    "抑え",
-   "押さえ",
-   "オサえ"
+   "オサえ",
+   "押さえ"
   ],
   "before": "ここで",
   "after": "ていくと、白もこういけば穏やかなんですけど、",
   "published": "ここで押さえていくと、白もこういけば穏やかなんですけど、"
  },
  {
-  "id": "q129",
+  "id": "hfb19b2d222",
   "video": "20261028_suhyup2/finish",
   "seg": 24,
   "type": "ask",
@@ -2082,7 +1648,7 @@
   "published": "金恩持九段の"
  },
  {
-  "id": "q130",
+  "id": "heb6ee2c72c",
   "video": "20261028_suhyup2/finish",
   "seg": 29,
   "type": "ask",
@@ -2098,7 +1664,7 @@
   "published": "ダイレクト三々"
  },
  {
-  "id": "q131",
+  "id": "h03898045ae",
   "video": "20261028_suhyup2/finish",
   "seg": 33,
   "type": "ask",
@@ -2114,7 +1680,7 @@
   "published": "盤の4分の1が全部埋まっちゃうぐらいのすごい定石なんですけども"
  },
  {
-  "id": "q132",
+  "id": "hb8829d6fe0",
   "video": "20261028_suhyup2/finish",
   "seg": 33,
   "type": "ask",
@@ -2130,7 +1696,7 @@
   "published": "盤の4分の1が全部埋まっちゃうぐらいのすごい定石なんですけども"
  },
  {
-  "id": "q133",
+  "id": "h865d5ba1a7",
   "video": "20261028_suhyup2/finish",
   "seg": 49,
   "type": "ask",
@@ -2147,7 +1713,7 @@
   "published": "でもねこれすでに白がもう一手打たないと活きないわけです"
  },
  {
-  "id": "q134",
+  "id": "hdbedf16797",
   "video": "20261028_suhyup2/finish",
   "seg": 51,
   "type": "conflict",
@@ -2163,7 +1729,7 @@
   "published": "目二つに閉じ込められてめちゃくちゃ損してる"
  },
  {
-  "id": "q135",
+  "id": "hd3418b4974",
   "video": "20261028_suhyup2/finish",
   "seg": 55,
   "type": "ask",
@@ -2179,7 +1745,7 @@
   "published": "これもね、うっかり両アタリだからといって受けると、また少し悪くなるらしいですね"
  },
  {
-  "id": "q136",
+  "id": "h6b4693204a",
   "video": "20261028_suhyup2/finish",
   "seg": 55,
   "type": "ask",
@@ -2194,7 +1760,7 @@
   "published": "これもね、うっかり両アタリだからといって受けると、また少し悪くなるらしいですね"
  },
  {
-  "id": "q137",
+  "id": "h2b3f599441",
   "video": "20261028_suhyup2/finish",
   "seg": 55,
   "type": "ask",
@@ -2210,7 +1776,7 @@
   "published": "これもね、うっかり両アタリだからといって受けると、また少し悪くなるらしいですね"
  },
  {
-  "id": "q138",
+  "id": "h00f3b21dfb",
   "video": "20261028_suhyup2/finish",
   "seg": 57,
   "type": "conflict",
@@ -2226,7 +1792,7 @@
   "published": "攻め合いになるんですよ。ここだけでも分かんないですよね、皆さんね"
  },
  {
-  "id": "q139",
+  "id": "h858c2072cb",
   "video": "20261028_suhyup2/finish",
   "seg": 58,
   "type": "ask",
@@ -2242,7 +1808,7 @@
   "published": "分かんないと思うんですけど、こんな風になった時に放り込みがいい手で"
  },
  {
-  "id": "q140",
+  "id": "h3c12b1bf95",
   "video": "20261028_suhyup2/finish",
   "seg": 64,
   "type": "conflict",
@@ -2258,7 +1824,7 @@
   "published": "右下隅がこれ、攻め合いがセキでお互い取られないで済んでるんですけども"
  },
  {
-  "id": "q141",
+  "id": "h336f342d8b",
   "video": "20261028_suhyup2/finish",
   "seg": 66,
   "type": "ask",
@@ -2274,7 +1840,7 @@
   "published": "しかしここに黒石があるんで"
  },
  {
-  "id": "q142",
+  "id": "hfe3a4b2f76",
   "video": "20261028_suhyup2/finish",
   "seg": 70,
   "type": "ask",
@@ -2290,7 +1856,7 @@
   "published": "本当かな、ざっくりくんはちょっとこれ苦手だと思いますね"
  },
  {
-  "id": "q143",
+  "id": "h8181437b84",
   "video": "20261028_suhyup2/finish",
   "seg": 74,
   "type": "ask",
@@ -2306,24 +1872,7 @@
   "published": "ここに黒は受けちゃいけない"
  },
  {
-  "id": "q144",
-  "video": "20261028_suhyup2/finish",
-  "seg": 80,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "3",
-  "next": "ぐらい",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "結構いい3",
-  "after": "ぐらいいいんで",
-  "published": "結構いい、3目ぐらいいいんで"
- },
- {
-  "id": "q145",
+  "id": "hc4ab3617eb",
   "video": "20261028_suhyup2/finish",
   "seg": 84,
   "type": "ask",
@@ -2339,7 +1888,7 @@
   "published": "知識としてね、調べてあれば怖くない。これ受けるんですね"
  },
  {
-  "id": "q146",
+  "id": "h5ec9045074",
   "video": "20261028_suhyup2/finish",
   "seg": 85,
   "type": "conflict",
@@ -2355,7 +1904,7 @@
   "published": "これもサガって渡りを止めるのではないんですね"
  },
  {
-  "id": "q147",
+  "id": "h88a828f01f",
   "video": "20261028_suhyup2/finish",
   "seg": 96,
   "type": "ask",
@@ -2370,41 +1919,7 @@
   "published": "最善手がちょっと微妙に変わるというところが"
  },
  {
-  "id": "q148",
-  "video": "20261028_suhyup2/finish",
-  "seg": 109,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "10",
-  "next": "20",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "それでも10",
-  "after": "20目いいわけではなくてね",
-  "published": "それでも10目20目いいわけではなくてね"
- },
- {
-  "id": "q149",
-  "video": "20261028_suhyup2/finish",
-  "seg": 109,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "20",
-  "next": "いいわけ",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "それでも10目20",
-  "after": "いいわけではなくてね",
-  "published": "それでも10目20目いいわけではなくてね"
- },
- {
-  "id": "q150",
+  "id": "h764f3dbaf7",
   "video": "20261028_suhyup2/finish",
   "seg": 110,
   "type": "ask",
@@ -2420,24 +1935,7 @@
   "published": "少し黒がいい、7目ぐらいいいと"
  },
  {
-  "id": "q151",
-  "video": "20261028_suhyup2/finish",
-  "seg": 110,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "7",
-  "next": "ぐらい",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "少し黒がいいと7",
-  "after": "ぐらいいいと",
-  "published": "少し黒がいい、7目ぐらいいいと"
- },
- {
-  "id": "q152",
+  "id": "hd650ef12c7",
   "video": "20261028_suhyup2/finish",
   "seg": 111,
   "type": "ask",
@@ -2453,24 +1951,7 @@
   "published": "7目はもちろん、プロの世界では致命的なので"
  },
  {
-  "id": "q153",
-  "video": "20261028_suhyup2/finish",
-  "seg": 111,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "7",
-  "next": "は",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "7",
-  "after": "はもちろんプロの世界では致命的なので",
-  "published": "7目はもちろん、プロの世界では致命的なので"
- },
- {
-  "id": "q154",
+  "id": "he467103a6f",
   "video": "20261028_suhyup2/finish",
   "seg": 113,
   "type": "ask",
@@ -2487,7 +1968,7 @@
   "published": "これもこういう風に打って抜くのではなくて"
  },
  {
-  "id": "q155",
+  "id": "h390a38dced",
   "video": "20261028_suhyup2/finish",
   "seg": 115,
   "type": "ask",
@@ -2502,7 +1983,7 @@
   "published": "むしろアタリしてツイでもらった方が"
  },
  {
-  "id": "q156",
+  "id": "h951603aa97",
   "video": "20261028_suhyup2/finish",
   "seg": 117,
   "type": "ask",
@@ -2511,15 +1992,15 @@
   "next": "必要",
   "candidates": [
    "行って",
-   "1手",
-   "一手"
+   "一手",
+   "1手"
   ],
   "before": "この辺",
   "after": "必要になって",
   "published": "この辺イって必要になって"
  },
  {
-  "id": "q157",
+  "id": "h75b0043814",
   "video": "20261028_suhyup2/finish",
   "seg": 119,
   "type": "ask",
@@ -2535,7 +2016,7 @@
   "published": "だからここへツグ方が黒はいいんですね"
  },
  {
-  "id": "q158",
+  "id": "hc058cc695a",
   "video": "20261028_suhyup2/finish",
   "seg": 121,
   "type": "ask",
@@ -2551,7 +2032,7 @@
   "published": "私のアプリのAIだと0.7目白有利ということで"
  },
  {
-  "id": "q159",
+  "id": "h846f8f3051",
   "video": "20261028_suhyup2/finish",
   "seg": 128,
   "type": "conflict",
@@ -2567,7 +2048,7 @@
   "published": "この固い白には響かない"
  },
  {
-  "id": "q160",
+  "id": "haf0c9fed28",
   "video": "20261028_suhyup2/finish",
   "seg": 146,
   "type": "ask",
@@ -2583,7 +2064,7 @@
   "published": "またシタツケは鋭そうな手ですね"
  },
  {
-  "id": "q161",
+  "id": "heb167e6402",
   "video": "20261028_suhyup2/finish",
   "seg": 149,
   "type": "ask",
@@ -2600,7 +2081,7 @@
   "published": "これは押さえたらキルという狙いで"
  },
  {
-  "id": "q162",
+  "id": "h3b6adf476e",
   "video": "20261028_suhyup2/finish",
   "seg": 165,
   "type": "ask",
@@ -2609,15 +2090,15 @@
   "next": "にくい",
   "candidates": [
    "抑え",
-   "押さえ",
-   "オサえ"
+   "オサえ",
+   "押さえ"
   ],
   "before": "",
   "after": "にくい",
   "published": "押さえにくい"
  },
  {
-  "id": "q163",
+  "id": "hda657136b2",
   "video": "20261028_suhyup2/finish",
   "seg": 169,
   "type": "ask",
@@ -2632,7 +2113,7 @@
   "published": "ゆるみシチョウという手筋です"
  },
  {
-  "id": "q164",
+  "id": "hec4c7ffeb8",
   "video": "20261028_suhyup2/finish",
   "seg": 172,
   "type": "ask",
@@ -2640,16 +2121,16 @@
   "prev": "て",
   "next": "せ",
   "candidates": [
-   "繋が",
    "ツナが",
-   "ツガ"
+   "ツガ",
+   "繋が"
   ],
   "before": "こういう風に打って",
   "after": "せて",
   "published": "こういう風に打ってツナがせて"
  },
  {
-  "id": "q165",
+  "id": "h55da477ab5",
   "video": "20261028_suhyup2/finish",
   "seg": 186,
   "type": "conflict",
@@ -2665,7 +2146,7 @@
   "published": "これは攻め合いが黒負けですね"
  },
  {
-  "id": "q166",
+  "id": "h4ab34db346",
   "video": "20261028_suhyup2/finish",
   "seg": 188,
   "type": "ask",
@@ -2680,7 +2161,7 @@
   "published": "ここへツナいで"
  },
  {
-  "id": "q167",
+  "id": "h8360666774",
   "video": "20261028_suhyup2/finish",
   "seg": 194,
   "type": "ask",
@@ -2697,24 +2178,7 @@
   "published": "碁は勝てません、このレベルになるとね"
  },
  {
-  "id": "q168",
-  "video": "20261028_suhyup2/finish",
-  "seg": 209,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "に",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "普通ここに",
-  "after": "が行きますよね",
-  "published": "普通ここに目が行きますよね"
- },
- {
-  "id": "q169",
+  "id": "hd4702d23a7",
   "video": "20261028_suhyup2/finish",
   "seg": 209,
   "type": "ask",
@@ -2731,7 +2195,7 @@
   "published": "普通ここに目が行きますよね"
  },
  {
-  "id": "q170",
+  "id": "h6b6beeced1",
   "video": "20261028_suhyup2/finish",
   "seg": 211,
   "type": "ask",
@@ -2746,7 +2210,7 @@
   "published": "次にここのハネダシを狙う"
  },
  {
-  "id": "q171",
+  "id": "h414b2de98b",
   "video": "20261028_suhyup2/finish",
   "seg": 212,
   "type": "ask",
@@ -2761,40 +2225,7 @@
   "published": "それでハネダして"
  },
  {
-  "id": "q172",
-  "video": "20261028_suhyup2/finish",
-  "seg": 218,
-  "type": "ask",
-  "wrong": "羽",
-  "prev": "の",
-  "next": " ",
-  "candidates": [
-   "羽根",
-   "ハネ"
-  ],
-  "before": "そのための",
-  "after": " でここに手を戻して",
-  "published": "そのためのハネ。でここに手を戻して"
- },
- {
-  "id": "q173",
-  "video": "20261028_suhyup2/finish",
-  "seg": 219,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "はっきり",
-  "next": "が",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "どうなってるんだ隅の黒もねまだはっきり",
-  "after": "がない 右辺の白もまだ収まっていない",
-  "published": "どうなってるんだ。隅の黒もね、まだはっきり眼がない。右辺の白もまだ収まっていない"
- },
- {
-  "id": "q174",
+  "id": "h7c3bb43d67",
   "video": "20261028_suhyup2/finish",
   "seg": 220,
   "type": "ask",
@@ -2810,7 +2241,7 @@
   "published": "こっちもどうなっているんだと。こちらツナいで閉じ込める手には、ここへツケる手があって、これは次にここ"
  },
  {
-  "id": "q175",
+  "id": "h16256572a7",
   "video": "20261028_suhyup2/finish",
   "seg": 220,
   "type": "ask",
@@ -2818,50 +2249,16 @@
   "prev": "へ",
   "next": "手",
   "candidates": [
-   "つける",
+   "付ける",
    "ツケる",
-   "付ける"
+   "つける"
   ],
   "before": "こっちもどうなっているんだと こちらつないで閉じ込める手にはここへ",
   "after": "手があってこれは次にここ",
   "published": "こっちもどうなっているんだと。こちらツナいで閉じ込める手には、ここへツケる手があって、これは次にここ"
  },
  {
-  "id": "q176",
-  "video": "20261028_suhyup2/finish",
-  "seg": 228,
-  "type": "ask",
-  "wrong": "つなぎ",
-  "prev": "ここ",
-  "next": "も",
-  "candidates": [
-   "ツギ",
-   "つなぎ",
-   "ツナギ"
-  ],
-  "before": "ここ",
-  "after": "もね",
-  "published": "ここツナギもね"
- },
- {
-  "id": "q177",
-  "video": "20261028_suhyup2/finish",
-  "seg": 237,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "",
-  "next": "は",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "",
-  "after": "はできるのだろうか",
-  "published": "眼はできるのだろうか"
- },
- {
-  "id": "q178",
+  "id": "hd10a14ca32",
   "video": "20261028_suhyup2/finish",
   "seg": 238,
   "type": "ask",
@@ -2877,7 +2274,7 @@
   "published": "ツキがいい手です"
  },
  {
-  "id": "q179",
+  "id": "h4b2a96217c",
   "video": "20261028_suhyup2/finish",
   "seg": 242,
   "type": "ask",
@@ -2893,7 +2290,7 @@
   "published": "ここ受けといて"
  },
  {
-  "id": "q180",
+  "id": "h4cd3c539b4",
   "video": "20261028_suhyup2/finish",
   "seg": 251,
   "type": "ask",
@@ -2909,7 +2306,7 @@
   "published": "これに受けて、こちらツナいだらこういうふうに打って、ちょうどカケツギで眼ができます"
  },
  {
-  "id": "q181",
+  "id": "h0c78f23cc0",
   "video": "20261028_suhyup2/finish",
   "seg": 254,
   "type": "ask",
@@ -2918,15 +2315,15 @@
   "next": "、",
   "candidates": [
    "行って",
-   "1手",
-   "一手"
+   "一手",
+   "1手"
   ],
   "before": "そしてそれを狙って、まずこの、もし来たらね、こういうふうに",
   "after": "、",
   "published": "そしてそれを狙って、まずこの、もし来たらね、こういうふうにイって"
  },
  {
-  "id": "q182",
+  "id": "h7a6ae0c711",
   "video": "20261028_suhyup2/finish",
   "seg": 255,
   "type": "ask",
@@ -2934,16 +2331,16 @@
   "prev": "に",
   "next": "れる",
   "candidates": [
-   "繋が",
    "ツナが",
-   "ツガ"
+   "ツガ",
+   "繋が"
   ],
   "before": "ここの出にこういうふうに",
   "after": "れるということですね",
   "published": "ここのデにこういうふうにツナがれるということですね"
  },
  {
-  "id": "q183",
+  "id": "h54a27c8468",
   "video": "20261028_suhyup2/finish",
   "seg": 258,
   "type": "ask",
@@ -2959,7 +2356,7 @@
   "published": "隅に手入れが必要でしょうと言って、受けてキリになったと"
  },
  {
-  "id": "q184",
+  "id": "hd58d1f6c15",
   "video": "20261028_suhyup2/finish",
   "seg": 263,
   "type": "ask",
@@ -2975,39 +2372,7 @@
   "published": "ざっくりくん、これは地を計算する局面じゃないんですけどね"
  },
  {
-  "id": "q185",
-  "video": "20261028_suhyup2/finish",
-  "seg": 279,
-  "type": "ask",
-  "wrong": "桂馬",
-  "prev": "こう",
-  "next": "に",
-  "candidates": [
-   "ケイマ",
-   "桂馬"
-  ],
-  "before": "こう",
-  "after": "に打つのがいいんだ",
-  "published": "こうケイマに打つのがいいんだ"
- },
- {
-  "id": "q186",
-  "video": "20261028_suhyup2/finish",
-  "seg": 282,
-  "type": "ask",
-  "wrong": "桂馬",
-  "prev": "",
-  "next": "が",
-  "candidates": [
-   "ケイマ",
-   "桂馬"
-  ],
-  "before": "",
-  "after": "がいいんだ",
-  "published": "ケイマがいいんだ"
- },
- {
-  "id": "q187",
+  "id": "hf8cef9e058",
   "video": "20261028_suhyup2/finish",
   "seg": 305,
   "type": "ask",
@@ -3022,7 +2387,7 @@
   "published": "この辺打たれるとこの黒が目がなくなる"
  },
  {
-  "id": "q188",
+  "id": "h8eed0109cb",
   "video": "20261028_suhyup2/finish",
   "seg": 314,
   "type": "ask",
@@ -3038,7 +2403,7 @@
   "published": "この白をね、この白への攻めのためなんですね"
  },
  {
-  "id": "q189",
+  "id": "h3d8662d649",
   "video": "20261028_suhyup2/finish",
   "seg": 323,
   "type": "ask",
@@ -3054,7 +2419,7 @@
   "published": "72%だった"
  },
  {
-  "id": "q190",
+  "id": "h9ca899e8ef",
   "video": "20261028_suhyup2/finish",
   "seg": 328,
   "type": "ask",
@@ -3063,15 +2428,15 @@
   "next": "",
   "candidates": [
    "行って",
-   "1手",
-   "一手"
+   "一手",
+   "1手"
   ],
   "before": "まずはそこへ地を稼ぎに",
   "after": "",
   "published": "まずはそこへ地を稼ぎに行って"
  },
  {
-  "id": "q191",
+  "id": "h6f7b09d5d6",
   "video": "20261028_suhyup2/finish",
   "seg": 331,
   "type": "ask",
@@ -3087,7 +2452,7 @@
   "published": "ここに何かこういう風に普通は開いたりするんでしょうけど"
  },
  {
-  "id": "q192",
+  "id": "h1351841e2e",
   "video": "20261028_suhyup2/finish",
   "seg": 334,
   "type": "ask",
@@ -3103,39 +2468,7 @@
   "published": "それには一応ツケて"
  },
  {
-  "id": "q193",
-  "video": "20261028_suhyup2/finish",
-  "seg": 341,
-  "type": "ask",
-  "wrong": "羽",
-  "prev": "て",
-  "next": "に",
-  "candidates": [
-   "羽根",
-   "ハネ"
-  ],
-  "before": "取って",
-  "after": "になって",
-  "published": "取ってハネになって"
- },
- {
-  "id": "q194",
-  "video": "20261028_suhyup2/finish",
-  "seg": 348,
-  "type": "ask",
-  "wrong": "羽",
-  "prev": "は",
-  "next": "を",
-  "candidates": [
-   "羽根",
-   "ハネ"
-  ],
-  "before": "この手では",
-  "after": "を打って",
-  "published": "この手ではハネを打って"
- },
- {
-  "id": "q195",
+  "id": "h38ed64b9ad",
   "video": "20261028_suhyup2/finish",
   "seg": 356,
   "type": "conflict",
@@ -3151,7 +2484,7 @@
   "published": "これ白はキりますと、こういう風になってね"
  },
  {
-  "id": "q196",
+  "id": "h4541bb3839",
   "video": "20261028_suhyup2/finish",
   "seg": 357,
   "type": "ask",
@@ -3166,7 +2499,7 @@
   "published": "これがシチョウですよね"
  },
  {
-  "id": "q197",
+  "id": "h6132719cfb",
   "video": "20261028_suhyup2/finish",
   "seg": 360,
   "type": "ask",
@@ -3181,7 +2514,7 @@
   "published": "ツナいでこれ渡るのは"
  },
  {
-  "id": "q198",
+  "id": "hb170daa87a",
   "video": "20261028_suhyup2/finish",
   "seg": 360,
   "type": "ask",
@@ -3197,7 +2530,7 @@
   "published": "ツナいでこれ渡るのは"
  },
  {
-  "id": "q199",
+  "id": "h75bc5652d0",
   "video": "20261028_suhyup2/finish",
   "seg": 366,
   "type": "ask",
@@ -3213,7 +2546,7 @@
   "published": "これはもう黒が厚くて、白がぺちゃんこすぎますから"
  },
  {
-  "id": "q200",
+  "id": "h3115e770e2",
   "video": "20261028_suhyup2/finish",
   "seg": 367,
   "type": "conflict",
@@ -3229,7 +2562,7 @@
   "published": "貧乏渡りはできないんですけども、どうぞと捨てられてね、捨てられて、この"
  },
  {
-  "id": "q201",
+  "id": "h66df74b979",
   "video": "20261028_suhyup2/finish",
   "seg": 374,
   "type": "ask",
@@ -3245,7 +2578,7 @@
   "published": "このコウはね、置碁で上手が黒をいじめる時にやる手ですけど"
  },
  {
-  "id": "q202",
+  "id": "hdbec16d001",
   "video": "20261028_suhyup2/finish",
   "seg": 374,
   "type": "ask",
@@ -3255,15 +2588,15 @@
   "candidates": [
    "子",
    "碁",
-   "こと",
-   "男の子"
+   "男の子",
+   "こと"
   ],
   "before": "このこうはね置き",
   "after": "で上手が黒をいじめる時にやる手ですけど",
   "published": "このコウはね、置碁で上手が黒をいじめる時にやる手ですけど"
  },
  {
-  "id": "q203",
+  "id": "ha66b32fd4a",
   "video": "20261028_suhyup2/finish",
   "seg": 378,
   "type": "ask",
@@ -3278,7 +2611,7 @@
   "published": "コウダテをしていくという作戦ですけども"
  },
  {
-  "id": "q204",
+  "id": "h3d6842096b",
   "video": "20261028_suhyup2/finish",
   "seg": 392,
   "type": "ask",
@@ -3294,7 +2627,7 @@
   "published": "でそこで上辺を1回受けて"
  },
  {
-  "id": "q205",
+  "id": "hb797933c36",
   "video": "20261028_suhyup2/finish",
   "seg": 394,
   "type": "ask",
@@ -3310,7 +2643,7 @@
   "published": "いよいよねこの白の攻めによって"
  },
  {
-  "id": "q206",
+  "id": "h754ba56c7e",
   "video": "20261028_suhyup2/finish",
   "seg": 395,
   "type": "ask",
@@ -3325,7 +2658,7 @@
   "published": "コウダテができたら左下に仕掛けるぞと"
  },
  {
-  "id": "q207",
+  "id": "hc0f11d7481",
   "video": "20261028_suhyup2/finish",
   "seg": 401,
   "type": "ask",
@@ -3340,7 +2673,7 @@
   "published": "ここに打って、ウッテガエシを狙った手が"
  },
  {
-  "id": "q208",
+  "id": "heefa18489e",
   "video": "20261028_suhyup2/finish",
   "seg": 404,
   "type": "ask",
@@ -3357,7 +2690,7 @@
   "published": "ここ以外の手だと活きちゃうわけですね"
  },
  {
-  "id": "q209",
+  "id": "h2eaad9f141",
   "video": "20261028_suhyup2/finish",
   "seg": 423,
   "type": "ask",
@@ -3373,24 +2706,7 @@
   "published": "こういうふうにつながるんじゃなくてね"
  },
  {
-  "id": "q210",
-  "video": "20261028_suhyup2/finish",
-  "seg": 428,
-  "type": "ask",
-  "wrong": "つなぎ",
-  "prev": "",
-  "next": "ます",
-  "candidates": [
-   "ツギ",
-   "つなぎ",
-   "ツナギ"
-  ],
-  "before": "",
-  "after": "ますよね",
-  "published": "ツナギますよね"
- },
- {
-  "id": "q211",
+  "id": "h551585e1d6",
   "video": "20261028_suhyup2/finish",
   "seg": 430,
   "type": "ask",
@@ -3405,7 +2721,7 @@
   "published": "これ打って、ウッテガエシで捕えちゃいますから"
  },
  {
-  "id": "q212",
+  "id": "hb7b648800f",
   "video": "20261028_suhyup2/finish",
   "seg": 433,
   "type": "ask",
@@ -3413,16 +2729,16 @@
   "prev": "当たり",
   "next": "",
   "candidates": [
-   "ツナぐ",
    "つなぐ",
-   "ツナギ"
+   "ツナギ",
+   "ツナぐ"
   ],
   "before": "当たり",
   "after": "",
   "published": "アタリ、ツナぐ"
  },
  {
-  "id": "q213",
+  "id": "h3c5e821dae",
   "video": "20261028_suhyup2/finish",
   "seg": 434,
   "type": "ask",
@@ -3438,7 +2754,7 @@
   "published": "ここにツナいで"
  },
  {
-  "id": "q214",
+  "id": "h2be01cb5cd",
   "video": "20261028_suhyup2/finish",
   "seg": 435,
   "type": "ask",
@@ -3453,7 +2769,7 @@
   "published": "でこの2つのシチョウを見合いにするわけです"
  },
  {
-  "id": "q215",
+  "id": "h40639656fd",
   "video": "20261028_suhyup2/finish",
   "seg": 436,
   "type": "ask",
@@ -3469,7 +2785,7 @@
   "published": "これこちらへ受けるとこれが"
  },
  {
-  "id": "q216",
+  "id": "ha82a2438d5",
   "video": "20261028_suhyup2/finish",
   "seg": 439,
   "type": "ask",
@@ -3485,7 +2801,7 @@
   "published": "黒石は結構あるからツナがるかなと思いきや"
  },
  {
-  "id": "q217",
+  "id": "h23cc77caa1",
   "video": "20261028_suhyup2/finish",
   "seg": 441,
   "type": "ask",
@@ -3500,7 +2816,7 @@
   "published": "ということで、シチョウが悪いんですね、黒は残念ながら"
  },
  {
-  "id": "q218",
+  "id": "h61e7b10422",
   "video": "20261028_suhyup2/finish",
   "seg": 443,
   "type": "ask",
@@ -3515,7 +2831,7 @@
   "published": "シチョウを防ぐために、ここへ取る手があります"
  },
  {
-  "id": "q219",
+  "id": "h05931257ad",
   "video": "20261028_suhyup2/finish",
   "seg": 445,
   "type": "ask",
@@ -3523,16 +2839,16 @@
   "prev": "",
   "next": "で",
   "candidates": [
-   "ツナぐ",
    "つなぐ",
-   "ツナギ"
+   "ツナギ",
+   "ツナぐ"
   ],
   "before": "",
   "after": "でここ絞られるのが非常に痛い",
   "published": "ツナぐで、ここ絞られるのが非常に痛い"
  },
  {
-  "id": "q220",
+  "id": "h461322e5f8",
   "video": "20261028_suhyup2/finish",
   "seg": 449,
   "type": "ask",
@@ -3547,7 +2863,7 @@
   "published": "さっきのシチョウが成立しない"
  },
  {
-  "id": "q221",
+  "id": "h315ef22331",
   "video": "20261028_suhyup2/finish",
   "seg": 460,
   "type": "ask",
@@ -3564,24 +2880,7 @@
   "published": "5目勝ちということで"
  },
  {
-  "id": "q222",
-  "video": "20261028_suhyup2/finish",
-  "seg": 460,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "5",
-  "next": "勝ち",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "5",
-  "after": "勝ちということで",
-  "published": "5目勝ちということで"
- },
- {
-  "id": "q223",
+  "id": "hd39c9d4cd2",
   "video": "20261028_suhyup2/finish",
   "seg": 462,
   "type": "ask",
@@ -3597,71 +2896,7 @@
   "published": "分かりやすいヨセになるでしょう"
  },
  {
-  "id": "q224",
-  "video": "20261028_suhyup2/finish",
-  "seg": 465,
-  "type": "ask",
-  "wrong": "羽",
-  "prev": "",
-  "next": "が",
-  "candidates": [
-   "羽根",
-   "ハネ"
-  ],
-  "before": "",
-  "after": "が強く羽で白がどうもうまくいっている",
-  "published": "ハネが強く、ハネで白がどうもうまくいっている"
- },
- {
-  "id": "q225",
-  "video": "20261028_suhyup2/finish",
-  "seg": 465,
-  "type": "ask",
-  "wrong": "羽",
-  "prev": "強く",
-  "next": "で",
-  "candidates": [
-   "羽根",
-   "ハネ"
-  ],
-  "before": "羽が強く",
-  "after": "で白がどうもうまくいっている",
-  "published": "ハネが強く、ハネで白がどうもうまくいっている"
- },
- {
-  "id": "q226",
-  "video": "20261028_suhyup2/finish",
-  "seg": 469,
-  "type": "ask",
-  "wrong": "羽",
-  "prev": "は",
-  "next": "は",
-  "candidates": [
-   "羽根",
-   "ハネ"
-  ],
-  "before": "ここでは",
-  "after": "はそこで羽られちゃう形できちゃうからな",
-  "published": "ここではハネは、そこでハネられちゃう形ができちゃうからな"
- },
- {
-  "id": "q227",
-  "video": "20261028_suhyup2/finish",
-  "seg": 469,
-  "type": "ask",
-  "wrong": "羽",
-  "prev": "で",
-  "next": "られ",
-  "candidates": [
-   "羽根",
-   "ハネ"
-  ],
-  "before": "ここでは羽はそこで",
-  "after": "られちゃう形できちゃうからな",
-  "published": "ここではハネは、そこでハネられちゃう形ができちゃうからな"
- },
- {
-  "id": "q228",
+  "id": "h58aa66cf9a",
   "video": "20261028_suhyup2/finish",
   "seg": 470,
   "type": "ask",
@@ -3677,7 +2912,7 @@
   "published": "で、カケツいでオシを打って、ワリコミという手筋を見せます"
  },
  {
-  "id": "q229",
+  "id": "h9ed799419d",
   "video": "20261028_suhyup2/finish",
   "seg": 471,
   "type": "ask",
@@ -3694,7 +2929,7 @@
   "published": "これ押さえたら、ここにね両アタリで"
  },
  {
-  "id": "q230",
+  "id": "hb9eb9ebae3",
   "video": "20261028_suhyup2/finish",
   "seg": 471,
   "type": "ask",
@@ -3710,7 +2945,7 @@
   "published": "これ押さえたら、ここにね両アタリで"
  },
  {
-  "id": "q231",
+  "id": "h6d23ecc64a",
   "video": "20261028_suhyup2/finish",
   "seg": 487,
   "type": "ask",
@@ -3726,24 +2961,23 @@
   "published": "ここはトんでもシタ、これで渡っている形ですので"
  },
  {
-  "id": "q232",
+  "id": "hb7f5fc047d",
   "video": "20261028_suhyup2/finish",
   "seg": 497,
-  "type": "ask",
+  "type": "conflict",
   "wrong": "目",
   "prev": "",
   "next": "が",
   "candidates": [
-   "目",
    "眼",
-   "は"
+   "目"
   ],
   "before": "",
   "after": "がない状態です",
   "published": "目がない状態です"
  },
  {
-  "id": "q233",
+  "id": "hde27950e6c",
   "video": "20261028_suhyup2/finish",
   "seg": 498,
   "type": "conflict",
@@ -3759,7 +2993,7 @@
   "published": "そこで渡られた"
  },
  {
-  "id": "q234",
+  "id": "h68e8efc374",
   "video": "20261028_suhyup2/finish",
   "seg": 510,
   "type": "ask",
@@ -3775,7 +3009,7 @@
   "published": "ツケて、白は手堅くアタリを一回逃げてハネダシ"
  },
  {
-  "id": "q235",
+  "id": "h2ef69a4e5c",
   "video": "20261028_suhyup2/finish",
   "seg": 510,
   "type": "ask",
@@ -3790,7 +3024,7 @@
   "published": "ツケて、白は手堅くアタリを一回逃げてハネダシ"
  },
  {
-  "id": "q236",
+  "id": "h047944edec",
   "video": "20261028_suhyup2/finish",
   "seg": 515,
   "type": "ask",
@@ -3807,41 +3041,7 @@
   "published": "ここがね、ここコウダテがあるから"
  },
  {
-  "id": "q237",
-  "video": "20261028_suhyup2/finish",
-  "seg": 518,
-  "type": "ask",
-  "wrong": "つなぎ",
-  "prev": "当たり",
-  "next": "つなぎ",
-  "candidates": [
-   "ツギ",
-   "つなぎ",
-   "ツナギ"
-  ],
-  "before": "逃げたら当たり",
-  "after": "つなぎでここへ当たりしたらこれ打って返しですね",
-  "published": "逃げたらアタリ、ツナギ、ツナギで、ここへアタリしたら、これウッテガエシですね"
- },
- {
-  "id": "q238",
-  "video": "20261028_suhyup2/finish",
-  "seg": 518,
-  "type": "ask",
-  "wrong": "つなぎ",
-  "prev": "つなぎ",
-  "next": "で",
-  "candidates": [
-   "ツギ",
-   "つなぎ",
-   "ツナギ"
-  ],
-  "before": "逃げたら当たりつなぎ",
-  "after": "でここへ当たりしたらこれ打って返しですね",
-  "published": "逃げたらアタリ、ツナギ、ツナギで、ここへアタリしたら、これウッテガエシですね"
- },
- {
-  "id": "q239",
+  "id": "h21a38c5a57",
   "video": "20261028_suhyup2/finish",
   "seg": 518,
   "type": "ask",
@@ -3856,7 +3056,7 @@
   "published": "逃げたらアタリ、ツナギ、ツナギで、ここへアタリしたら、これウッテガエシですね"
  },
  {
-  "id": "q240",
+  "id": "hf806119ff7",
   "video": "20261028_suhyup2/finish",
   "seg": 519,
   "type": "ask",
@@ -3873,41 +3073,7 @@
   "published": "ということで、この5目は残念ながら逃げることができなくて"
  },
  {
-  "id": "q241",
-  "video": "20261028_suhyup2/finish",
-  "seg": 519,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "5",
-  "next": "は",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "ということでこれを5",
-  "after": "は残念ながら逃げることができなくて",
-  "published": "ということで、この5目は残念ながら逃げることができなくて"
- },
- {
-  "id": "q242",
-  "video": "20261028_suhyup2/finish",
-  "seg": 521,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "8",
-  "next": "ぐらい",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "これで8",
-  "after": "ぐらい",
-  "published": "これで8目ぐらい"
- },
- {
-  "id": "q243",
+  "id": "h86d26b57f0",
   "video": "20261028_suhyup2/finish",
   "seg": 524,
   "type": "ask",
@@ -3924,58 +3090,7 @@
   "published": "特に今抜いた5目は10目以上の価値がありますね"
  },
  {
-  "id": "q244",
-  "video": "20261028_suhyup2/finish",
-  "seg": 524,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "5",
-  "next": "は",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "特に今抜いた5",
-  "after": "は10目以上の価値がありますね",
-  "published": "特に今抜いた5目は10目以上の価値がありますね"
- },
- {
-  "id": "q245",
-  "video": "20261028_suhyup2/finish",
-  "seg": 524,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "10",
-  "next": "以上",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "特に今抜いた5目は10",
-  "after": "以上の価値がありますね",
-  "published": "特に今抜いた5目は10目以上の価値がありますね"
- },
- {
-  "id": "q246",
-  "video": "20261028_suhyup2/finish",
-  "seg": 526,
-  "type": "ask",
-  "wrong": "目",
-  "prev": "10",
-  "next": "差",
-  "candidates": [
-   "目",
-   "眼",
-   "は"
-  ],
-  "before": "AIの評価値だともっと10",
-  "after": "差になりますね",
-  "published": "AIの評価値だともっと、10目差になりますね"
- },
- {
-  "id": "q247",
+  "id": "h6c71dc13f1",
   "video": "20261028_suhyup2/finish",
   "seg": 529,
   "type": "ask",
@@ -3990,7 +3105,7 @@
   "published": "こうツナいでも、ここへアタリから取られて"
  },
  {
-  "id": "q248",
+  "id": "h6577491622",
   "video": "20261028_suhyup2/finish",
   "seg": 530,
   "type": "ask",
@@ -4005,7 +3120,7 @@
   "published": "これ、コウダテが多分続かないと"
  },
  {
-  "id": "q249",
+  "id": "hfead525224",
   "video": "20261028_suhyup2/finish",
   "seg": 531,
   "type": "ask",
@@ -4020,7 +3135,7 @@
   "published": "全くどこにもコウダテがないという状況だと思います"
  },
  {
-  "id": "q250",
+  "id": "h18f2616e61",
   "video": "20261028_suhyup2/finish",
   "seg": 534,
   "type": "ask",
@@ -4036,7 +3151,7 @@
   "published": "ということで本局では、菫さんが右下隅でダイレクト三々の大型定石を仕掛けたんですけども"
  },
  {
-  "id": "q251",
+  "id": "h9f25233b37",
   "video": "20261028_suhyup2/finish",
   "seg": 539,
   "type": "ask",
@@ -4052,7 +3167,7 @@
   "published": "金恩持九段のシノギがやっぱり強かった"
  },
  {
-  "id": "q252",
+  "id": "hb106e1cfb6",
   "video": "20261028_suhyup2/finish",
   "seg": 539,
   "type": "ask",
@@ -4067,7 +3182,7 @@
   "published": "金恩持九段のシノギがやっぱり強かった"
  },
  {
-  "id": "q253",
+  "id": "he0acae0c65",
   "video": "20261028_suhyup2/finish",
   "seg": 541,
   "type": "ask",
@@ -4083,57 +3198,12 @@
   "published": "受け切られた感じです"
  },
  {
-  "id": "q254",
-  "video": "20261028_suhyup2/finish",
-  "seg": 544,
-  "type": "ask",
-  "wrong": "曲",
-  "prev": "3",
-  "next": "ほど",
-  "candidates": [
-   "局"
-  ],
-  "before": "ここの3",
-  "after": "ほどですね",
-  "published": "ここの3局ほどですね"
- },
- {
-  "id": "q255",
-  "video": "20261028_suhyup2/finish",
-  "seg": 546,
-  "type": "ask",
-  "wrong": "曲",
-  "prev": "3",
-  "next": "が",
-  "candidates": [
-   "局"
-  ],
-  "before": "今日ね第3",
-  "after": "が多分連続で行われるんですが",
-  "published": "今日ね、第3局が多分連続で行われるんですが"
- },
- {
-  "id": "q256",
-  "video": "20261028_suhyup2/finish",
-  "seg": 566,
-  "type": "ask",
-  "wrong": "曲",
-  "prev": "3",
-  "next": "目",
-  "candidates": [
-   "局"
-  ],
-  "before": "ぜひ3",
-  "after": "目でできればもちろん勝ってほしいですけども",
-  "published": "ぜひ3局目で、できればもちろん勝ってほしいですけども"
- },
- {
-  "id": "q257",
+  "id": "hf357b34b9d",
   "video": "20261028_suhyup2/finish",
   "seg": 566,
   "type": "ask",
   "wrong": "目",
-  "prev": "曲",
+  "prev": "局",
   "next": "で",
   "candidates": [
    "目",
@@ -4145,7 +3215,7 @@
   "published": "ぜひ3局目で、できればもちろん勝ってほしいですけども"
  },
  {
-  "id": "q258",
+  "id": "h23818b6d14",
   "video": "20261028_suhyup2/finish",
   "seg": 570,
   "type": "conflict",
@@ -4161,7 +3231,7 @@
   "published": "仲邑菫さんの五番勝負"
  },
  {
-  "id": "q259",
+  "id": "h28c75bdcf1",
   "video": "20261028_suhyup2/finish",
   "seg": 571,
   "type": "ask",
@@ -4173,21 +3243,6 @@
   ],
   "before": "",
   "after": "九段が2連勝した残念な1曲を",
-  "published": "金恩持九段が2連勝した、残念な一局を"
- },
- {
-  "id": "q260",
-  "video": "20261028_suhyup2/finish",
-  "seg": 571,
-  "type": "ask",
-  "wrong": "1曲",
-  "prev": "な",
-  "next": "を",
-  "candidates": [
-   "一局"
-  ],
-  "before": "木文字九段が2連勝した残念な",
-  "after": "を",
   "published": "金恩持九段が2連勝した、残念な一局を"
  }
 ]

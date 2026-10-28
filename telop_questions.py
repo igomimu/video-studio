@@ -5,7 +5,7 @@
   → ledger/page/questions.json と ledger/page/clips/*.m4a。ページは ledger/page/index.html（同じ JSON を埋め込む）
 音声は <作業>/audio.wav、文字起こしは <作業>/finish/transcript.json（同じ時間軸）、公開版は refined_final.json（'i' で対応）
 """
-import json, subprocess, sys
+import hashlib, json, subprocess, sys
 from pathlib import Path
 import telop_ledger as L
 
@@ -49,7 +49,8 @@ def build(works):
                       for x in log if x['right'] not in final[k]]
             for x in items:
                 t = s['text']
-                qid = f'q{len(qs):03d}'
+                # 作り直しても同じ箇所は同じ番号（保存済みの答えと食い違わない）
+                qid = 'h' + hashlib.md5(f"{vid}|{k}|{x['wrong']}|{x['pos']}".encode()).hexdigest()[:10]
                 clip(w / 'audio.wav', word_time(s, x['pos']), s, PAGE / 'clips' / f'{qid}.m4a')
                 qs.append({'id': qid, 'video': vid, 'seg': k, 'type': x['type'], 'wrong': x['wrong'],
                            'prev': x['prev'], 'next': x['next'], 'candidates': x['candidates'][:4],
@@ -61,10 +62,6 @@ def build(works):
         by[q['wrong']] += 1
     print(f'{len(qs)} か所・{len(by)} 語:', sorted(by.items(), key=lambda x: -x[1])[:30])
 
-
-if __name__ == '__main__':
-    build(sys.argv[1:])
-    page()
 
 
 def page():
@@ -95,3 +92,8 @@ def page():
     t = t.replace('/*DATA*/[]', json.dumps(qs, ensure_ascii=False)).replace('/*STATS*/{}', json.dumps(stats, ensure_ascii=False))
     (PAGE / 'index.html').write_text(t)
     print('ledger/page/index.html', len(t) // 1024, 'KB')
+
+
+if __name__ == '__main__':
+    build(sys.argv[1:])
+    page()
