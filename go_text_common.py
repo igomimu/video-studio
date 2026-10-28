@@ -31,12 +31,44 @@ def taught_always():
     return [(r['wrong'], r['answer']) for r in rows if r['scope'] == 'always' and r['answer'] != r['wrong']]
 
 
+_tok = None
+
+
+def at_word_boundaries(t, rules):
+    """教わった「いつも」の直しを、語の切れ目にぴったり重なる所だけにかける。
+    文字列のまま置き換えると「強→協」が「強い→協い」、「選→戦」が「選手→戦手」になる（2026-10-29 実例）。
+    janome が無い環境では語の切れ目が分からないので、かけない。"""
+    global _tok
+    if not rules:
+        return t
+    if _tok is None:
+        try:
+            from janome.tokenizer import Tokenizer
+        except ImportError:
+            return t
+        _tok = Tokenizer()
+    bounds, pos = {0}, 0
+    for w in _tok.tokenize(t):
+        pos += len(w.surface)
+        bounds.add(pos)
+    hits, used = [], set()
+    for a, b in sorted(rules, key=lambda r: -len(r[0])):
+        i = t.find(a)
+        while i >= 0:
+            span = set(range(i, i + len(a)))
+            if i in bounds and i + len(a) in bounds and not span & used:
+                used |= span
+                hits.append((i, a, b))
+            i = t.find(a, i + 1)
+    for i, a, b in sorted(hits, reverse=True):
+        t = t[:i] + b + t[i + len(a):]
+    return t
+
+
 def apply(t):
     for a, b in COMMON:
         t = re.sub(a, b, t)
-    for a, b in taught_always():
-        t = t.replace(a, b)
-    return t
+    return at_word_boundaries(t, taught_always())
 
 
 def check(texts):

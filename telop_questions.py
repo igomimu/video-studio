@@ -89,7 +89,8 @@ def page():
     subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', str(tmp / 'list.txt'),
                     '-c:a', 'libmp3lame', '-b:a', '48k', str(PAGE / 'clips.mp3')], check=True)
     t = (PAGE / 'template.html').read_text()
-    t = t.replace('/*DATA*/[]', json.dumps(qs, ensure_ascii=False)).replace('/*STATS*/{}', json.dumps(stats, ensure_ascii=False))
+    t = t.replace('/*DATA*/[]', json.dumps(qs, ensure_ascii=False)).replace('/*STATS*/{}', json.dumps(stats, ensure_ascii=False))\
+        .replace('/*REVIEW*/[]', (PAGE / 'review.json').read_text() if (PAGE / 'review.json').exists() else '[]')
     (PAGE / 'index.html').write_text(t)
     print('ledger/page/index.html', len(t) // 1024, 'KB')
 

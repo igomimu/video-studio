@@ -266,13 +266,19 @@ def teach(wrong, answer, scope='here', prev='', nxt='', video='', note=''):
 def import_answers(folder):
     """確認ページの答え（ArtifactData の out_dir に保存した *.json）を taught.jsonl に入れ直す。何度流しても同じになる。"""
     rows = [t for t in taught() if t.get('source') != 'page']
+    context = set()   # 「いつも」の見直しで「囲碁の意味のときだけ」になった語
     for p in sorted(Path(folder).glob('**/*.json')):
         d = json.load(open(p))
         d = d.get('data', d)
+        if d.get('scope') == 'review':
+            if d.get('answer') == 'context':
+                context.add(d['wrong'])
+            continue
         if not d.get('answer'):
             continue
         rows.append({'wrong': d['wrong'], 'answer': d['answer'], 'scope': d['scope'], 'prev': d.get('prev', ''),
                      'next': d.get('next', ''), 'video': d.get('video', ''), 'note': p.stem, 'source': 'page'})
+    rows = [t for t in rows if not (t['scope'] == 'always' and t['wrong'] in context)]
     LEDGER.mkdir(exist_ok=True)
     with TAUGHT.open('w') as f:
         for t in rows:

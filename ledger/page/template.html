@@ -54,6 +54,7 @@ input.other { font: inherit; font-size: .95rem; width: 8em; padding: 3px 8px; bo
   <h1>テロップ用語の確認</h1>
   <p class="lead">▶で音声を聞いて、正しい書き方を選んでください。語の見出しで「いつも」を選ぶと、その語は以後どの動画でも自動で直ります。1か所ずつ選んだ答えは、同じ言い回しのときだけ効きます。</p>
   <div class="bar"><span id="prog"></span><span id="state" class="notice"></span></div>
+  <section id="review" class="group" hidden></section>
   <div id="list"></div>
 </div>
 <audio id="player" preload="none"></audio>
@@ -61,6 +62,7 @@ input.other { font: inherit; font-size: .95rem; width: 8em; padding: 3px 8px; bo
 <script>
 const QS = /*DATA*/[];
 const STATS = /*STATS*/{};
+const REVIEW = /*REVIEW*/[];
 const answers = {};   // doc id → {answer, scope}
 let db = null;
 
@@ -99,7 +101,28 @@ function play(q) {
 }
 document.getElementById('player').addEventListener('timeupdate', e => { if (e.target.currentTime >= stopAt) e.target.pause(); });
 
+function hex(w) { return [...w].map(c => c.codePointAt(0).toString(16)).join('-'); }
+function renderReview() {
+  const box = document.getElementById('review');
+  const todo = REVIEW.filter(r => !answers['r' + hex(r.wrong)]);
+  box.hidden = REVIEW.length === 0;
+  box.replaceChildren(el('div', { class: 'ghead' },
+    el('div', { class: 'gword' }, '「いつも」の見直し', el('small', {}, `残り ${todo.length} / ${REVIEW.length}`)),
+    el('div', { class: 'pub' }, '「いつも」と答えた語が、これまでの公開版では下のように書かれていました。一般の言葉の意味でも使われていれば「囲碁の意味のときだけ」を選んでください。その語は以後、1か所ずつ聞きます。')));
+  for (const r of REVIEW) {
+    const id = 'r' + hex(r.wrong), a = answers[id];
+    box.append(el('div', { class: 'item' + (a ? ' done' : '') },
+      el('div', {}, el('b', {}, `${r.wrong} → ${r.answer}`), el('span', { class: 'pub' }, `　公開版に${r.n}か所`)),
+      ...r.examples.map(x => el('div', { class: 'pub' }, '・' + x)),
+      el('div', { class: 'choices' },
+        ...[['always', 'それでも いつも ' + r.answer], ['context', '囲碁の意味のときだけ']].map(([v, l]) =>
+          el('button', { class: 'c' + (a && a.answer === v ? ' on' : ''), type: 'button',
+            onclick: () => save(id, { wrong: r.wrong, answer: v, scope: 'review' }) }, l)))));
+  }
+}
+
 function render() {
+  renderReview();
   const list = document.getElementById('list');
   list.replaceChildren();
   let done = 0;
