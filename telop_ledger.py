@@ -236,6 +236,7 @@ def evaluate():
         tot = [tot[0] + e0, tot[1] + e1, tot[2] + n, tot[3] + worse, tot[4] + q]
         print(f'{vid} | {len(pairs)} | {e0 / n:.1%} → {e1 / n:.1%} | {worse} | {q}')
     print(f'合計 | | {tot[0] / tot[2]:.1%} → {tot[1] / tot[2]:.1%} | {tot[3]} | {tot[4]}')
+    return {'before': tot[0] / tot[2], 'after': tot[1] / tot[2], 'worse': tot[3], 'asks': tot[4]}
 
 
 def ask(transcript):
@@ -253,6 +254,24 @@ def ask(transcript):
     json.dump(segs, open(out, 'w'), ensure_ascii=False, indent=1)
     json.dump(qs, open(LEDGER / 'questions.json', 'w'), ensure_ascii=False, indent=1)
     print(f'{out.name} を書いた。聞くこと {len(qs)} 件 → ledger/questions.json')
+
+
+def apply_to(segs, transcript):
+    """仕上げの流れ（generate_ass.py）から呼ぶ。台帳で直し、迷う箇所は確認ページに載るよう ledger/pending.json に登録する。"""
+    ex, tg = examples(), taught()
+    n = q = 0
+    for s in segs:
+        before = s['text']
+        s['text'], asks = process(s['text'], ex, tg)
+        n, q = n + (s['text'] != before), q + len(asks)
+    tr = Path(transcript).resolve()
+    if (ROOT / 'work') in tr.parents:
+        pend = LEDGER / 'pending.json'
+        d = json.load(open(pend)) if pend.exists() else {}
+        d[str(tr.parent.relative_to(ROOT / 'work'))] = str(tr.relative_to(ROOT))
+        json.dump(d, open(pend, 'w'), ensure_ascii=False, indent=1)
+    print(f'台帳: {n} 区切りを直した。迷う箇所 {q} → 今夜の確認ページに載る')
+    return segs
 
 
 def teach(wrong, answer, scope='here', prev='', nxt='', video='', note=''):

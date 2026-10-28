@@ -1200,6 +1200,7 @@ def main():
     parser.add_argument('--right-chars', type=int, default=None,
                         help='横書き1行の字数（既定: 右上13・左下17）。右の空きが狭いとき減らす（72pxで810px幅なら11）')
     parser.add_argument('--tate-size', type=int, default=72, help='縦書き字幕の文字サイズ(px)。38では小さすぎると指摘あり')
+    parser.add_argument('--no-ledger', action='store_true', help='直しの台帳（ledger/）をかけない')
     parser.add_argument('--kishi-fix', action='store_true', help='棋士名辞書で自動修正（pykakasi）')
     args = parser.parse_args()
 
@@ -1220,6 +1221,11 @@ def main():
     # ルールベース修正を適用
     for seg in transcript:
         seg['text'] = correct_text(seg['text'].strip(), go_terms=not args.no_go_terms)
+
+    # 直しの台帳（三村さんに教わった答え・過去の動画で直した語）。迷う箇所は確認ページへ
+    if not args.no_ledger:
+        import telop_ledger
+        transcript = telop_ledger.apply_to(transcript, args.transcript)
 
     # 棋士名辞書修正（pykakasi読み→正字）
     if args.kishi_fix:

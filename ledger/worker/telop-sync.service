@@ -1,0 +1,11 @@
+[Unit]
+Description=テロップ台帳の夜の一巡（確認ページの答え取込→再評価→ページ更新→push）
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/mimura/projects/video-studio
+Environment=PATH=/home/mimura/.local/bin:/home/mimura/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/mimura/projects/video-studio/.venv/bin/python telop_sync.py
+StandardOutput=append:/home/mimura/projects/video-studio/logs/telop_sync.log
+StandardError=append:/home/mimura/projects/video-studio/logs/telop_sync.log
+TimeoutStartSec=1h

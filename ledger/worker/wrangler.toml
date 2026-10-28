@@ -1,0 +1,17 @@
+# テロップ確認ページ（三村さんが音声を聞いて答える）。答えは D1 に入り、telop_sync.py が毎晩取りに来る。
+# 公開: ledger/worker/deploy.sh（鍵は ~/.secrets/cloudflare-ai.env の CLOUDFLARE_AI_TOKEN）
+# [[routes]] は書かない（トークンに Zone:Workers Routes 権限が無い）。workers.dev で配る
+name = "telop-check"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[assets]
+directory = "../page/site"
+binding = "ASSETS"
+run_worker_first = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "telop-check"
+database_id = "75348304-8783-4cd7-a7f0-8d49f449e312"

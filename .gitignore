@@ -6,3 +6,4 @@ assets/
 venv/
 examples/
 work/
+logs/

@@ -1,5 +1,9 @@
+<!doctype html>
+<html lang="ja">
+<head>
 <title>テロップ用語の確認</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;600;700&display=swap">
 <style>
 /* 一列のリスト。語ごとのまとまり → 1か所ずつ。答えた所は淡く、まとめて答えた語は畳む */
@@ -64,7 +68,6 @@ const QS = /*DATA*/[];
 const STATS = /*STATS*/{};
 const REVIEW = /*REVIEW*/[];
 const answers = {};   // doc id → {answer, scope}
-let db = null;
 
 const groups = [];
 const byWord = {};
@@ -85,9 +88,10 @@ function label(word, c) { return c === word ? word + '（そのまま）' : c; }
 async function save(id, data) {
   answers[id] = data;
   render();
-  if (!db) return;
-  try { await db.collection('answers').doc(id).set({ ...data, at: Date.now() }); }
-  catch (e) { document.getElementById('state').textContent = '保存できませんでした：' + (e.message || e.code); }
+  try {
+    const r = await fetch('/api/answers/' + id, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
+    if (!r.ok) throw new Error(r.status);
+  } catch (e) { document.getElementById('state').textContent = '保存できませんでした：' + e.message; }
 }
 
 let stopAt = 0;
@@ -164,11 +168,11 @@ function base(q, answer) {
 
 render();
 (async () => {
-  db = await window.claude?.use?.('db');
-  if (!db) { document.getElementById('state').textContent = 'この画面では答えを保存できません（claude.ai にサインインして開いてください）'; return; }
-  db.collection('answers').onSnapshot(snap => {
-    for (const d of snap.docs) answers[d.id] = d.data();
+  try {
+    const r = await fetch('/api/answers');
+    if (!r.ok) throw new Error(r.status);
+    Object.assign(answers, await r.json());
     render();
-  }, e => { document.getElementById('state').textContent = '読み込めませんでした：' + e.message; });
+  } catch (e) { document.getElementById('state').textContent = '読み込めませんでした：' + e.message; }
 })();
 </script>
