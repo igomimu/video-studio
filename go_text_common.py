@@ -21,9 +21,21 @@ BANNED = [
 ]
 
 
+def taught_always():
+    """telop_ledger.py の台帳で三村さんが「いつも」と答えた語（確認ページ・直接の指示）。"""
+    import json, pathlib
+    p = pathlib.Path(__file__).resolve().parent / 'ledger' / 'taught.jsonl'
+    if not p.exists():
+        return []
+    rows = [json.loads(l) for l in p.open() if l.strip()]
+    return [(r['wrong'], r['answer']) for r in rows if r['scope'] == 'always' and r['answer'] != r['wrong']]
+
+
 def apply(t):
     for a, b in COMMON:
         t = re.sub(a, b, t)
+    for a, b in taught_always():
+        t = t.replace(a, b)
     return t
 
 
