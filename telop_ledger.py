@@ -258,12 +258,25 @@ def ask(transcript):
 
 def apply_to(segs, transcript):
     """仕上げの流れ（generate_ass.py）から呼ぶ。台帳で直し、迷う箇所は確認ページに載るよう ledger/pending.json に登録する。"""
+    import telop_judge
     ex, tg = examples(), taught()
     n = q = 0
-    for s in segs:
+    pending = []
+    for k, s in enumerate(segs):
         before = s['text']
         s['text'], asks = process(s['text'], ex, tg)
         n, q = n + (s['text'] != before), q + len(asks)
+        t = s['text']
+        pending += [{'id': f'{k}:{x["pos"]}', 'seg': k, 'pos': x['pos'], 'wrong': x['wrong'], 'candidates': x['candidates'],
+                     'before': t[:x['pos']], 'after': t[x['pos'] + len(x['wrong']):]} for x in asks]
+    # 台帳が迷った箇所は機械が判断する（三村さんには聞かない）。後ろから置き換えて位置をずらさない
+    got = telop_judge.decide_now(pending, video=str(Path(transcript).resolve().parent.name))
+    for x in sorted(pending, key=lambda x: (x['seg'], -x['pos'])):
+        a = got.get(x['id'])
+        if a and a != x['wrong']:
+            t = segs[x['seg']]['text']
+            segs[x['seg']]['text'] = t[:x['pos']] + a + t[x['pos'] + len(x['wrong']):]
+    print(f'機械の判断: {len(got)}/{len(pending)} か所を決めた（うち書き換え {sum(got[i] != x["wrong"] for x in pending for i in [x["id"]] if i in got)}）')
     tr = Path(transcript).resolve()
     if (ROOT / 'work') in tr.parents:
         pend = LEDGER / 'pending.json'

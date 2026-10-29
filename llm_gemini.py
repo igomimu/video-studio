@@ -52,7 +52,9 @@ def chat(
     except ImportError:
         return None
 
-    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    # 時間切れを付けないと、無料枠を使い切った後や混雑時に応答待ちで何時間も止まる（2026-10-29 実例）
+    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"],
+                          http_options=types.HttpOptions(timeout=180_000, retry_options=types.HttpRetryOptions(attempts=2)))
 
     contents = []
     system_parts = []

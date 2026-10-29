@@ -11,9 +11,11 @@ import json, os, subprocess, sys, time, urllib.request
 from pathlib import Path
 import telop_ledger as L
 import telop_questions as Q
+import telop_judge as J
 
 ANS = L.LEDGER / 'answers' / 'page'
 HISTORY = L.LEDGER / 'history.tsv'
+JUDGE_CALLS = 30   # 1晩に Gemini を呼ぶ上限（無料枠は3モデル×1日20回ほど）
 
 
 def env(path):
@@ -52,17 +54,23 @@ def main():
         pend = {k: v for k, v in json.load(open(Q.PENDING)).items() if k not in src}
         json.dump(pend, open(Q.PENDING, 'w'), ensure_ascii=False, indent=1)
     r = L.evaluate()
-    Q.build()
-    qs = Q.page(answered={i for i, d in answers.items() if d.get('answer')})
+    built = Q.build()
+    # 機械の正誤判断: 新しい箇所を判断し（無料枠の範囲で。残りは次の晩）、答えの分かる箇所で語ごとに採点して任せる語を決め直す
+    judged = J.judge(built, limit=JUDGE_CALLS)
+    sc = J.evaluate(fresh=False)
+    ok = J.delegated()
+    machine = {q['id'] for q in built if q['wrong'] in ok and q['id'] in judged}
+    qs = Q.page(answered={i for i, d in answers.items() if d.get('answer')} | machine)
     new = not HISTORY.exists()
     with HISTORY.open('a') as f:
         if new:
-            f.write('日時\t動画数\t教わった答え\t誤り率(原文)\t誤り率(台帳後)\t悪化\t聞く(評価)\t確認ページ\n')
+            f.write('日時\t動画数\t教わった答え\t誤り率(原文)\t誤り率(台帳後)\t悪化\t聞く(評価)\t確認ページ\t機械に任せる語\t機械の正解(判断済み中)\t機械が決めた箇所\n')
         f.write(f"{time.strftime('%Y-%m-%d %H:%M')}\t{len(json.load(open(L.SOURCES)))}\t{len(answers)}\t"
-                f"{r['before']:.2%}\t{r['after']:.2%}\t{r['worse']}\t{r['asks']}\t{len(qs)}\n")
+                f"{r['before']:.2%}\t{r['after']:.2%}\t{r['worse']}\t{r['asks']}\t{len(qs)}\t"
+                f"{sc['delegated']}\t{sc['mixed']}/{sc['judged']}（直さない{sc['keep']}）\t{len(machine)}\n")
     subprocess.run([str(L.LEDGER / 'worker' / 'deploy.sh')], check=True)
     git('add', 'ledger/changes.jsonl', 'ledger/sources.json', 'ledger/taught.jsonl', 'ledger/history.tsv',
-        'ledger/page/questions.json', 'ledger/pending.json')
+        'ledger/page/questions.json', 'ledger/pending.json', 'ledger/judged.jsonl', 'ledger/judge_score.json')
     if git('diff', '--cached', '--quiet').returncode:
         msg = (f"テロップ台帳: 夜の一巡（答え{len(answers)}件・誤り率 {r['after']:.1%}・悪化{r['worse']}・確認{len(qs)}か所）\n\n"
                'telop_sync.py による自動の記録')
