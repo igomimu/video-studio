@@ -68,6 +68,11 @@ def at_word_boundaries(t, rules):
 def apply(t):
     for a, b in COMMON:
         t = re.sub(a, b, t)
+    try:   # 韓国棋士のカタカナ読み → 漢字（kishi-data から自動で作る）
+        import korean_names
+        t = korean_names.apply(t)
+    except ImportError:
+        pass
     return at_word_boundaries(t, taught_always())
 
 
