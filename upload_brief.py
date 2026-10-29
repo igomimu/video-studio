@@ -27,6 +27,8 @@ from pathlib import Path
 
 ACCOUNT = "lucky.mim@gmail.com"
 DRIVE_ROOT_NAME = "YouTube投稿"
+# 投稿するパソコン（YOGAPro）では Google ドライブが G: に同期されている。ダウンロードさせず、ここから選ばせる（2026-10-29）
+LOCAL_ROOT = r"G:\マイドライブ" + "\\" + DRIVE_ROOT_NAME
 
 
 def newest(folder: Path, pattern: str) -> Path:
@@ -48,6 +50,12 @@ def gog(*args) -> dict:
     out = subprocess.run(["gog", "drive", *args, "--account", ACCOUNT, "--json", "--results-only"],
                          check=True, capture_output=True, text=True).stdout
     return json.loads(out)
+
+
+def local_path(fid: str) -> str:
+    """Drive の作品フォルダの、G: ドライブ上の場所（改名後の実際の名前を使う）"""
+    info = gog("get", fid)
+    return LOCAL_ROOT + "\\" + info.get("name", info.get("file", {}).get("name", ""))
 
 
 def folder_id(name: str, parent: str | None = None) -> str:
@@ -98,19 +106,21 @@ def spotify_steps(n: int, video: str, title: str, after_youtube: bool = True) ->
 
 
 def brief_text(title: str, description: str, video: str, thumb: str, drive_url: str, srt: str | None = None,
-               spotify: bool = True) -> str:
+               spotify: bool = True, local_dir: str = LOCAL_ROOT) -> str:
     return f"""# YouTube 投稿の指示書
 
 みむ囲碁ちゃんねる（@mimuigo）に動画を1本上げてください。
 **この指示書に書いてあること以外の操作はしないでください。** 他の動画やチャンネル設定には触れないこと。
 
-## 1. ファイルを手元に落とす
-Google Drive のフォルダを開き、次の{'3' if srt else '2'}つをダウンロードする。
-{drive_url}
+## 1. ファイルの場所
+このパソコンの G: ドライブ（Google ドライブ）に同期済み。**ダウンロードはしない。**
+ファイルを選ぶ画面でこのフォルダを開き、そこから選ぶ。
+`{local_dir}`
 
 - 動画: `{video}`
 - サムネイル: `{thumb}`
 {'- 字幕: `' + srt + '`' if srt else ''}
+G: ドライブに見当たらないときだけ、このフォルダからダウンロードする: {drive_url}
 
 ## 2. YouTube Studio で上げる
 1. https://studio.youtube.com を開く（三村さんのアカウントでログイン済みのはず）
@@ -164,16 +174,17 @@ def tag_regist(description: str, src: str) -> str:
     return re.sub(r"(https://(?:www\.)?mimura15\.jp/regist/?)(?![?\w/])", rf"\g<1>?src={src}", description)
 
 
-def spotify_only_text(title: str, description: str, video: str, drive_url: str) -> str:
+def spotify_only_text(title: str, description: str, video: str, drive_url: str, local_dir: str = LOCAL_ROOT) -> str:
     """YouTube は投稿済みで、Spotify だけ追加で上げるときの指示書"""
     return f"""# Spotify 投稿の指示書（YouTube は投稿済み）
 
 みむ囲碁ラジオにエピソードを1本上げてください。**YouTube には何もしないでください。**
 **この指示書に書いてあること以外の操作はしないでください。** 他のエピソードや番組設定には触れないこと。
 
-## 1. ファイルを手元に落とす
-Google Drive のフォルダを開き、ファイル `{video}` をダウンロードする。
-{drive_url}
+## 1. ファイルの場所
+このパソコンの G: ドライブ（Google ドライブ）に同期済み。**ダウンロードはしない。**
+ファイルを選ぶ画面で `{local_dir}` を開き、`{video}` を選ぶ。
+G: ドライブに見当たらないときだけ、このフォルダからダウンロードする: {drive_url}
 {spotify_steps(2, video, title, after_youtube=False)}
 ## 3. 終わったら
 付けた回番号を三村さんに伝える。途中で止まったら、どの画面で何が出たかを伝える。
@@ -235,13 +246,14 @@ def main():
     if a.spotify_only:
         sub = folder_id(drive_name, folder_id(DRIVE_ROOT_NAME))
         drive_url = f"https://drive.google.com/drive/folders/{sub}"
+        local_dir = local_path(sub)
         if not a.no_upload:
             names = {f["name"] for f in gog("search", f"'{sub}' in parents and trashed = false", "--raw-query")}
             if video.name not in names:
                 print(f"Driveへ上げています: {video.name}", flush=True)
                 gog("upload", str(video), "--parent", sub)
         brief = folder / "Spotify投稿指示書.md"
-        brief.write_text(spotify_only_text(title, tag_regist(description, "spotify"), video.name, drive_url), encoding="utf-8")
+        brief.write_text(spotify_only_text(title, tag_regist(description, "spotify"), video.name, drive_url, local_dir), encoding="utf-8")
         if not a.no_upload:
             gog("upload", str(brief), "--parent", sub)
         print(f"指示書: {brief}")
@@ -249,16 +261,18 @@ def main():
         return
 
     drive_url = "（--no-upload のため未作成）"
+    local_dir = LOCAL_ROOT + "\\" + drive_name + "（--no-upload のため推定）"
     if not a.no_upload:
         sub = folder_id(drive_name, folder_id(DRIVE_ROOT_NAME))
         drive_url = f"https://drive.google.com/drive/folders/{sub}"
+        local_dir = local_path(sub)
         for f in (video, thumb, *([srt] if srt else [])):
             print(f"Driveへ上げています: {f.name}", flush=True)
             gog("upload", str(f), "--parent", sub)
 
     brief = folder / "投稿指示書.md"
     brief.write_text(brief_text(title, tag_regist(description, "youtube"), video.name, thumb.name, drive_url, srt.name if srt else None,
-                                 spotify=not a.no_spotify), encoding="utf-8")
+                                 spotify=not a.no_spotify, local_dir=local_dir), encoding="utf-8")
     if not a.no_upload:
         gog("upload", str(brief), "--parent", sub)
     print(f"指示書: {brief}")
