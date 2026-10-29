@@ -1,0 +1,604 @@
+{
+ "version": 3,
+ "known": 455,
+ "judged": 455,
+ "machine": 256,
+ "keep": 288,
+ "mixed": 301,
+ "words": {
+  "号": {
+   "n": 3,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "始まっ": {
+   "n": 4,
+   "machine": 0,
+   "keep": 4,
+   "delegate": false
+  },
+  "分の": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "すみれ": {
+   "n": 3,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "行き": {
+   "n": 12,
+   "machine": 10,
+   "keep": 11,
+   "delegate": false
+  },
+  "掛け継ぎ": {
+   "n": 3,
+   "machine": 3,
+   "keep": 0,
+   "delegate": false
+  },
+  "一拳": {
+   "n": 1,
+   "machine": 1,
+   "keep": 0,
+   "delegate": false
+  },
+  "こう": {
+   "n": 43,
+   "machine": 41,
+   "keep": 41,
+   "delegate": false
+  },
+  "切る": {
+   "n": 13,
+   "machine": 0,
+   "keep": 13,
+   "delegate": false
+  },
+  "つけ": {
+   "n": 7,
+   "machine": 0,
+   "keep": 1,
+   "delegate": false
+  },
+  "空き三角": {
+   "n": 5,
+   "machine": 5,
+   "keep": 5,
+   "delegate": false
+  },
+  "つける": {
+   "n": 2,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "生きる": {
+   "n": 11,
+   "machine": 4,
+   "keep": 4,
+   "delegate": false
+  },
+  "押さえ": {
+   "n": 20,
+   "machine": 5,
+   "keep": 14,
+   "delegate": false
+  },
+  "不責": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "開い": {
+   "n": 3,
+   "machine": 1,
+   "keep": 2,
+   "delegate": false
+  },
+  "33": {
+   "n": 8,
+   "machine": 3,
+   "keep": 3,
+   "delegate": false
+  },
+  "付け": {
+   "n": 8,
+   "machine": 5,
+   "keep": 4,
+   "delegate": false
+  },
+  "さばき": {
+   "n": 3,
+   "machine": 3,
+   "keep": 0,
+   "delegate": false
+  },
+  "下がり": {
+   "n": 7,
+   "machine": 7,
+   "keep": 2,
+   "delegate": true
+  },
+  "あたり": {
+   "n": 16,
+   "machine": 3,
+   "keep": 10,
+   "delegate": false
+  },
+  "目": {
+   "n": 5,
+   "machine": 1,
+   "keep": 0,
+   "delegate": false
+  },
+  "切られる": {
+   "n": 3,
+   "machine": 3,
+   "keep": 3,
+   "delegate": false
+  },
+  "黒の方": {
+   "n": 7,
+   "machine": 7,
+   "keep": 7,
+   "delegate": false
+  },
+  "字": {
+   "n": 1,
+   "machine": 0,
+   "keep": 1,
+   "delegate": false
+  },
+  "逆": {
+   "n": 7,
+   "machine": 7,
+   "keep": 7,
+   "delegate": false
+  },
+  "生き": {
+   "n": 13,
+   "machine": 9,
+   "keep": 9,
+   "delegate": false
+  },
+  "行って": {
+   "n": 9,
+   "machine": 8,
+   "keep": 8,
+   "delegate": false
+  },
+  "渡って": {
+   "n": 3,
+   "machine": 2,
+   "keep": 1,
+   "delegate": false
+  },
+  "抜く": {
+   "n": 6,
+   "machine": 6,
+   "keep": 6,
+   "delegate": false
+  },
+  "コスミつけ": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "固い": {
+   "n": 5,
+   "machine": 3,
+   "keep": 2,
+   "delegate": false
+  },
+  "絞り": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "選手": {
+   "n": 5,
+   "machine": 1,
+   "keep": 5,
+   "delegate": false
+  },
+  "跳ねる": {
+   "n": 8,
+   "machine": 8,
+   "keep": 0,
+   "delegate": true
+  },
+  "間違い": {
+   "n": 2,
+   "machine": 2,
+   "keep": 2,
+   "delegate": false
+  },
+  "2目": {
+   "n": 23,
+   "machine": 5,
+   "keep": 23,
+   "delegate": false
+  },
+  "反対": {
+   "n": 2,
+   "machine": 2,
+   "keep": 2,
+   "delegate": false
+  },
+  "攻め合い": {
+   "n": 7,
+   "machine": 5,
+   "keep": 2,
+   "delegate": false
+  },
+  "渡られ": {
+   "n": 3,
+   "machine": 2,
+   "keep": 1,
+   "delegate": false
+  },
+  "繋がり": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "点": {
+   "n": 7,
+   "machine": 2,
+   "keep": 7,
+   "delegate": false
+  },
+  "継ぐ": {
+   "n": 4,
+   "machine": 3,
+   "keep": 1,
+   "delegate": false
+  },
+  "繋がる": {
+   "n": 3,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "子": {
+   "n": 5,
+   "machine": 2,
+   "keep": 5,
+   "delegate": false
+  },
+  "オーバー": {
+   "n": 3,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "A": {
+   "n": 2,
+   "machine": 1,
+   "keep": 2,
+   "delegate": false
+  },
+  "跳ね返し": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "繋ぐ": {
+   "n": 6,
+   "machine": 2,
+   "keep": 5,
+   "delegate": false
+  },
+  "割り込み": {
+   "n": 4,
+   "machine": 3,
+   "keep": 0,
+   "delegate": false
+  },
+  "曲がり": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "具": {
+   "n": 2,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "当て": {
+   "n": 4,
+   "machine": 3,
+   "keep": 1,
+   "delegate": false
+  },
+  "君": {
+   "n": 4,
+   "machine": 1,
+   "keep": 4,
+   "delegate": false
+  },
+  "女性": {
+   "n": 6,
+   "machine": 6,
+   "keep": 6,
+   "delegate": false
+  },
+  "寄付": {
+   "n": 4,
+   "machine": 4,
+   "keep": 0,
+   "delegate": false
+  },
+  "渡り": {
+   "n": 3,
+   "machine": 2,
+   "keep": 1,
+   "delegate": false
+  },
+  "分": {
+   "n": 4,
+   "machine": 4,
+   "keep": 4,
+   "delegate": false
+  },
+  "数字": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "押し": {
+   "n": 3,
+   "machine": 3,
+   "keep": 3,
+   "delegate": false
+  },
+  "行け": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "つなぎ": {
+   "n": 1,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "押さえる": {
+   "n": 5,
+   "machine": 5,
+   "keep": 5,
+   "delegate": false
+  },
+  "ゆかり": {
+   "n": 2,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "光": {
+   "n": 1,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "予選": {
+   "n": 2,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "渡る": {
+   "n": 2,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "衆": {
+   "n": 2,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "つながっ": {
+   "n": 1,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "1つ": {
+   "n": 2,
+   "machine": 2,
+   "keep": 2,
+   "delegate": false
+  },
+  "6": {
+   "n": 19,
+   "machine": 10,
+   "keep": 19,
+   "delegate": false
+  },
+  "霧": {
+   "n": 3,
+   "machine": 3,
+   "keep": 0,
+   "delegate": false
+  },
+  "中村すみれ": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "伸びれ": {
+   "n": 1,
+   "machine": 1,
+   "keep": 0,
+   "delegate": false
+  },
+  "ぐずみ": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "繋が": {
+   "n": 3,
+   "machine": 3,
+   "keep": 0,
+   "delegate": false
+  },
+  "5": {
+   "n": 1,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "良": {
+   "n": 2,
+   "machine": 2,
+   "keep": 2,
+   "delegate": false
+  },
+  "強": {
+   "n": 4,
+   "machine": 1,
+   "keep": 3,
+   "delegate": false
+  },
+  "中村スミレ": {
+   "n": 1,
+   "machine": 1,
+   "keep": 0,
+   "delegate": false
+  },
+  "伸び": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "置き": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "当たり": {
+   "n": 1,
+   "machine": 0,
+   "keep": 1,
+   "delegate": false
+  },
+  "木文字": {
+   "n": 2,
+   "machine": 2,
+   "keep": 0,
+   "delegate": false
+  },
+  "権": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "孫徳": {
+   "n": 1,
+   "machine": 1,
+   "keep": 0,
+   "delegate": false
+  },
+  "膨らん": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "試合": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "抑え": {
+   "n": 3,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "ねこの": {
+   "n": 2,
+   "machine": 0,
+   "keep": 1,
+   "delegate": false
+  },
+  "つながる": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "位置": {
+   "n": 1,
+   "machine": 0,
+   "keep": 1,
+   "delegate": false
+  },
+  "の妻": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "彼": {
+   "n": 10,
+   "machine": 0,
+   "keep": 10,
+   "delegate": false
+  },
+  "上げ": {
+   "n": 1,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "規制": {
+   "n": 7,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "麻美": {
+   "n": 2,
+   "machine": 0,
+   "keep": 0,
+   "delegate": false
+  },
+  "っていうか": {
+   "n": 1,
+   "machine": 1,
+   "keep": 1,
+   "delegate": false
+  },
+  "いき": {
+   "n": 1,
+   "machine": 0,
+   "keep": 1,
+   "delegate": false
+  }
+ }
+}
