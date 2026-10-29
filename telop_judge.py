@@ -23,7 +23,12 @@ SCORE = L.LEDGER / 'judge_score.json'
 VERSION = 3                    # 頼み方を変えたら上げる（古い判断は使わない）
 # 判定役は LEGION のローカルモデル。Gemini 無料枠（1日20回）は字幕づくり（generate_ass.py）と取り合うので使わない。
 # 遅くてよい（「時間がかかっても良い」2026-10-29 三村さん）。モデルを替えたら VERSION も上げる
-OLLAMA, MODEL = 'http://localhost:11434', 'qwen2.5:14b'
+import os
+# 2026-10-29 同じ455か所で比較: Nemotron 日本語 283・qwen2.5:14b 256・gemma4 262（何も直さない 288）
+DEFAULT = 'hf.co/mmnga-o/NVIDIA-Nemotron-Nano-9B-v2-Japanese-gguf:Q4_K_M'
+OLLAMA, MODEL = 'http://localhost:11434', os.environ.get('TELOP_JUDGE_MODEL', DEFAULT)
+if MODEL != DEFAULT:   # 比べるためのモデルは、本番の任せる語の一覧を上書きしない
+    SCORE = L.LEDGER / f"judge_score_{re.sub(r'[^A-Za-z0-9.]+', '_', MODEL)}.json"
 BATCH = 30
 SHOTS = 8                      # 1語あたりの見本の数
 TARGET, MIN_N = 0.95, 5        # 任せる語の正解率と、それを言うのに要る件数
@@ -129,7 +134,7 @@ def chat(user, schema):
 def cached():
     if not CACHE.exists():
         return {}
-    return {d['id']: d for d in (json.loads(l) for l in CACHE.open() if l.strip()) if d.get('v') == VERSION}
+    return {d['id']: d for d in (json.loads(l) for l in CACHE.open() if l.strip()) if d.get('v') == VERSION and d.get('m', 'qwen2.5:14b') == MODEL}
 
 
 def judge(qs, limit=None):
@@ -148,7 +153,7 @@ def judge(qs, limit=None):
             break
         with CACHE.open('a') as f:
             for qid, d in got.items():
-                d = {'id': qid, 'v': VERSION, **d}
+                d = {'id': qid, 'v': VERSION, 'm': MODEL, **d}
                 done[qid] = d
                 f.write(json.dumps(d, ensure_ascii=False) + '\n')
         print(f'{min(i + BATCH, len(todo))}/{len(todo)}', flush=True)
