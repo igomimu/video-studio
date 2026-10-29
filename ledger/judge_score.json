@@ -1,86 +1,87 @@
 {
- "version": 3,
+ "version": 4,
+ "model": "hf.co/mmnga-o/NVIDIA-Nemotron-Nano-9B-v2-Japanese-gguf:Q4_K_M",
  "known": 455,
- "judged": 455,
- "machine": 283,
- "keep": 288,
- "mixed": 303,
+ "judged": 448,
+ "machine": 319,
+ "keep": 286,
+ "mixed": 331,
  "words": {
   "号": {
    "n": 3,
    "machine": 3,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "始まっ": {
    "n": 4,
    "machine": 4,
    "keep": 4,
-   "delegate": false
+   "delegate": true
   },
   "分の": {
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "すみれ": {
    "n": 3,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "行き": {
    "n": 12,
    "machine": 11,
    "keep": 11,
-   "delegate": false
+   "delegate": true
   },
   "掛け継ぎ": {
    "n": 3,
    "machine": 3,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "一拳": {
    "n": 1,
    "machine": 1,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "こう": {
    "n": 43,
-   "machine": 27,
+   "machine": 41,
    "keep": 41,
-   "delegate": false
+   "delegate": true
   },
   "切る": {
    "n": 13,
    "machine": 13,
    "keep": 13,
-   "delegate": false
+   "delegate": true
   },
   "つけ": {
    "n": 7,
    "machine": 6,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "空き三角": {
    "n": 5,
    "machine": 5,
    "keep": 5,
-   "delegate": false
+   "delegate": true
   },
   "つける": {
    "n": 2,
    "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "生きる": {
    "n": 11,
-   "machine": 4,
+   "machine": 3,
    "keep": 4,
    "delegate": false
   },
@@ -94,11 +95,11 @@
    "n": 2,
    "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "開い": {
-   "n": 3,
-   "machine": 1,
+   "n": 2,
+   "machine": 0,
    "keep": 2,
    "delegate": false
   },
@@ -106,103 +107,103 @@
    "n": 8,
    "machine": 4,
    "keep": 3,
-   "delegate": false
+   "delegate": true
   },
   "付け": {
    "n": 8,
    "machine": 4,
    "keep": 4,
-   "delegate": false
+   "delegate": true
   },
   "さばき": {
    "n": 3,
    "machine": 3,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "下がり": {
    "n": 7,
    "machine": 2,
    "keep": 2,
-   "delegate": false
+   "delegate": true
   },
   "あたり": {
-   "n": 16,
-   "machine": 7,
-   "keep": 10,
+   "n": 11,
+   "machine": 3,
+   "keep": 9,
    "delegate": false
   },
   "目": {
    "n": 5,
-   "machine": 1,
+   "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "切られる": {
    "n": 3,
    "machine": 3,
    "keep": 3,
-   "delegate": false
+   "delegate": true
   },
   "黒の方": {
    "n": 7,
-   "machine": 5,
+   "machine": 7,
    "keep": 7,
-   "delegate": false
+   "delegate": true
   },
   "字": {
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "逆": {
    "n": 7,
-   "machine": 0,
+   "machine": 7,
    "keep": 7,
-   "delegate": false
+   "delegate": true
   },
   "生き": {
    "n": 13,
    "machine": 9,
    "keep": 9,
-   "delegate": false
+   "delegate": true
   },
   "行って": {
    "n": 9,
    "machine": 8,
    "keep": 8,
-   "delegate": false
+   "delegate": true
   },
   "渡って": {
    "n": 3,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "抜く": {
    "n": 6,
    "machine": 6,
    "keep": 6,
-   "delegate": false
+   "delegate": true
   },
   "コスミつけ": {
    "n": 2,
    "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "固い": {
-   "n": 5,
-   "machine": 2,
-   "keep": 2,
-   "delegate": false
+   "n": 4,
+   "machine": 1,
+   "keep": 1,
+   "delegate": true
   },
   "絞り": {
    "n": 2,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "選手": {
    "n": 5,
@@ -220,23 +221,23 @@
    "n": 2,
    "machine": 2,
    "keep": 2,
-   "delegate": false
+   "delegate": true
   },
   "2目": {
    "n": 23,
-   "machine": 0,
+   "machine": 23,
    "keep": 23,
-   "delegate": false
+   "delegate": true
   },
   "反対": {
    "n": 2,
-   "machine": 2,
+   "machine": 0,
    "keep": 2,
    "delegate": false
   },
   "攻め合い": {
    "n": 7,
-   "machine": 2,
+   "machine": 0,
    "keep": 2,
    "delegate": false
   },
@@ -244,113 +245,113 @@
    "n": 3,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "繋がり": {
    "n": 2,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "点": {
    "n": 7,
    "machine": 7,
    "keep": 7,
-   "delegate": false
+   "delegate": true
   },
   "継ぐ": {
    "n": 4,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "繋がる": {
    "n": 3,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "子": {
    "n": 5,
    "machine": 5,
    "keep": 5,
-   "delegate": false
+   "delegate": true
   },
   "オーバー": {
    "n": 3,
    "machine": 3,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "A": {
    "n": 2,
    "machine": 2,
    "keep": 2,
-   "delegate": false
+   "delegate": true
   },
   "跳ね返し": {
    "n": 2,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "繋ぐ": {
    "n": 6,
    "machine": 5,
    "keep": 5,
-   "delegate": false
+   "delegate": true
   },
   "割り込み": {
    "n": 4,
-   "machine": 0,
+   "machine": 4,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "曲がり": {
    "n": 2,
-   "machine": 0,
+   "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "具": {
    "n": 2,
    "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "当て": {
    "n": 4,
    "machine": 3,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "君": {
    "n": 4,
    "machine": 4,
    "keep": 4,
-   "delegate": false
+   "delegate": true
   },
   "女性": {
    "n": 6,
    "machine": 6,
    "keep": 6,
-   "delegate": false
+   "delegate": true
   },
   "寄付": {
    "n": 4,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "渡り": {
    "n": 3,
-   "machine": 1,
+   "machine": 2,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "分": {
    "n": 4,
-   "machine": 4,
+   "machine": 2,
    "keep": 4,
    "delegate": false
   },
@@ -358,227 +359,227 @@
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "押し": {
    "n": 3,
    "machine": 3,
    "keep": 3,
-   "delegate": false
+   "delegate": true
   },
   "行け": {
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "つなぎ": {
    "n": 1,
    "machine": 1,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "押さえる": {
    "n": 5,
    "machine": 5,
    "keep": 5,
-   "delegate": false
+   "delegate": true
   },
   "ゆかり": {
    "n": 2,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "光": {
    "n": 1,
-   "machine": 1,
+   "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "予選": {
    "n": 2,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "渡る": {
    "n": 2,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "衆": {
    "n": 2,
-   "machine": 0,
+   "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "つながっ": {
    "n": 1,
-   "machine": 0,
+   "machine": 1,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "1つ": {
    "n": 2,
    "machine": 2,
    "keep": 2,
-   "delegate": false
+   "delegate": true
   },
   "6": {
    "n": 19,
    "machine": 19,
    "keep": 19,
-   "delegate": false
+   "delegate": true
   },
   "霧": {
    "n": 3,
    "machine": 3,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "中村すみれ": {
    "n": 2,
    "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "伸びれ": {
    "n": 1,
    "machine": 1,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "ぐずみ": {
    "n": 2,
    "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "繋が": {
    "n": 3,
-   "machine": 0,
+   "machine": 3,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "5": {
    "n": 1,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "良": {
    "n": 2,
    "machine": 2,
    "keep": 2,
-   "delegate": false
+   "delegate": true
   },
   "強": {
    "n": 4,
    "machine": 3,
    "keep": 3,
-   "delegate": false
+   "delegate": true
   },
   "中村スミレ": {
    "n": 1,
-   "machine": 0,
+   "machine": 1,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "伸び": {
    "n": 1,
-   "machine": 1,
+   "machine": 0,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "置き": {
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "当たり": {
    "n": 1,
-   "machine": 1,
+   "machine": 0,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "木文字": {
    "n": 2,
-   "machine": 0,
+   "machine": 2,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "権": {
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "孫徳": {
    "n": 1,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "膨らん": {
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "試合": {
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "抑え": {
    "n": 3,
    "machine": 3,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "ねこの": {
    "n": 2,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "つながる": {
    "n": 1,
    "machine": 0,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "位置": {
    "n": 1,
    "machine": 0,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "の妻": {
    "n": 1,
    "machine": 1,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "彼": {
    "n": 10,
    "machine": 10,
    "keep": 10,
-   "delegate": false
+   "delegate": true
   },
   "上げ": {
    "n": 1,
-   "machine": 1,
+   "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "規制": {
    "n": 7,
-   "machine": 7,
+   "machine": 0,
    "keep": 0,
    "delegate": true
   },
@@ -586,19 +587,19 @@
    "n": 2,
    "machine": 0,
    "keep": 0,
-   "delegate": false
+   "delegate": true
   },
   "っていうか": {
    "n": 1,
-   "machine": 1,
+   "machine": 0,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   },
   "いき": {
    "n": 1,
    "machine": 0,
    "keep": 1,
-   "delegate": false
+   "delegate": true
   }
  }
 }
