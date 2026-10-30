@@ -3477,3 +3477,4 @@
 {"id": "h6ff882a909", "v": 4, "m": "hf.co/mmnga-o/NVIDIA-Nemotron-Nano-9B-v2-Japanese-gguf:Q4_K_M", "answer": "棋士", "confidence": 0.95}
 {"id": "h74dae44877", "v": 4, "m": "hf.co/mmnga-o/NVIDIA-Nemotron-Nano-9B-v2-Japanese-gguf:Q4_K_M", "answer": "龍", "confidence": 0.95}
 {"id": "hce11aa31f8", "v": 4, "m": "hf.co/mmnga-o/NVIDIA-Nemotron-Nano-9B-v2-Japanese-gguf:Q4_K_M", "answer": "柳時熏九段", "confidence": 0.95}
+{"id": "h463770851e", "v": 4, "m": "hf.co/mmnga-o/NVIDIA-Nemotron-Nano-9B-v2-Japanese-gguf:Q4_K_M", "answer": "みむ囲碁", "confidence": 0.9}
