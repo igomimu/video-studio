@@ -203,6 +203,32 @@ G: ドライブに見当たらないときだけ、このフォルダからダ�
 """
 
 
+NAME_CARD = Path(__file__).resolve().parent / "assets" / "name_card.png"
+NAME_XY = (1500, 520)   # 顔ワイプ（右下）の上。2026-11-05 中国ルール回から標準
+
+
+def check_name_card(video: Path) -> bool:
+    """冒頭10秒に話者の名札（assets/name_card.png）が入っているか。
+    2026-11-07「囲碁は分かりにくい」で入れ忘れ、三村さん「毎回、これ言わないと行けないのか？」→ 投稿前に機械で止める"""
+    import numpy as np
+    from PIL import Image
+    card = Image.open(NAME_CARD).convert("RGBA")
+    a = np.asarray(card)
+    mask = a[..., 3] > 200
+    x, y = NAME_XY
+    w, h = card.size
+    for t in (2, 5, 8):
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", str(t), "-i", str(video), "-frames:v", "1",
+                              "-vf", f"crop={w}:{h}:{x}:{y}", "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
+                             capture_output=True).stdout
+        if len(raw) != w * h * 3:
+            continue
+        f = np.frombuffer(raw, np.uint8).reshape(h, w, 3).astype(int)
+        if np.abs(f - a[..., :3].astype(int))[mask].mean() < 25:
+            return True
+    return False
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("workdir", type=Path)
@@ -216,6 +242,7 @@ def main():
     ap.add_argument("--spotify-only", action="store_true",
                     help="YouTubeは投稿済み。Spotifyの指示書だけ作る（動画はDriveの同じフォルダにある前提で上げ直さない）")
     ap.add_argument("--no-upload", action="store_true", help="Driveに上げず、指示書だけ作る")
+    ap.add_argument("--no-name-card", action="store_true", help="冒頭の名札が無くてもよい（三村さんが不要と言った回だけ）")
     a = ap.parse_args()
 
     folder = a.workdir.resolve()
@@ -235,6 +262,9 @@ def main():
         sys.exit("説明欄がYouTubeの上限5000バイトを超えている")
     video = a.video or newest(folder, "final*.mp4")
     video = video.resolve()
+    if not a.spotify_only and not a.no_name_card and not check_name_card(video):
+        sys.exit(f"{video.name} の冒頭（2・5・8秒）に名札が見当たらない。assets/name_card.png を {NAME_XY} に 0.3〜10秒で重ねてから書き出す"
+                 "（不要な回だけ --no-name-card）")
     if a.spotify_only and not a.thumb and not list(folder.glob("thumbnail*.jpg")):
         thumb = None  # Spotify だけならサムネは使わない
     else:
